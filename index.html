@@ -179,9 +179,14 @@
   .trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
   .trust{
     background:var(--panel-solid);border:1px solid var(--line-soft);border-top:2px solid var(--amber);
-    border-radius:8px;padding:12px 14px;min-width:0;
+    border-radius:8px;padding:16px 16px 14px;min-width:0;
   }
-  .trust .t-big{font-weight:700;font-size:16px;line-height:1.2;color:#fff}
+  .trust-icon{
+    width:36px;height:36px;border-radius:999px;background:var(--amber);color:var(--amber-ink);
+    display:inline-flex;align-items:center;justify-content:center;margin-bottom:10px;
+  }
+  .trust-icon svg{width:20px;height:20px}
+  .trust .t-big{font-weight:700;font-size:17px;line-height:1.2;color:#fff}
   .trust .t-small{color:var(--ink-2);font-size:13px;line-height:1.35;margin-top:4px}
 
   /* Intro checklist */
@@ -507,29 +512,31 @@
     nav.main .btn.call{display:none}
     nav.main{
       order:3;flex:1 1 100%;width:100%;margin-left:0;flex-wrap:nowrap;
-      overflow-x:auto;overflow-y:hidden;gap:0;padding-bottom:8px;
+      overflow-x:auto;overflow-y:hidden;gap:6px;padding-bottom:8px;
       scrollbar-width:none;-webkit-overflow-scrolling:touch;
     }
     nav.main::-webkit-scrollbar{display:none}
-    nav.main a{white-space:nowrap;font-size:12px;padding:7px 5px;min-height:26px;flex:0 0 auto;gap:5px}
+    nav.main a{white-space:nowrap;font-size:11px;padding:7px 8px;min-height:26px;flex:0 0 auto;gap:5px}
     nav.main .badge{min-width:19px;height:19px;font-size:11.5px;padding:0 5px}
 
     /* Hero — shorter on a phone so the headline and buttons lead, the photo backs them */
     .hero{min-height:0}
-    .hero-in{padding-top:40px;padding-bottom:44px}
-    .marker{font-size:11.5px;letter-spacing:.11em;gap:10px;margin-bottom:14px}
+    .hero-in{padding-top:30px;padding-bottom:34px}
+    .marker{font-size:11.5px;letter-spacing:.11em;gap:10px;margin-bottom:12px}
     .marker::before{width:24px;flex-basis:24px}
-    .hero h1{font-size:48px}
-    .hero .tagline{font-size:19px;margin-top:14px}
-    .hero-ctas{margin-top:22px;gap:10px;flex-wrap:nowrap}
+    .hero h1{font-size:36px;line-height:.92}
+    .hero .tagline{font-size:18px;margin-top:12px}
+    .hero-ctas{margin-top:20px;gap:10px;flex-wrap:nowrap}
     .hero-ctas .btn{flex:1 1 0;font-size:15px;padding:0 10px;white-space:nowrap}
     .hero-call{font-size:15px;margin-top:14px}
 
-    /* Trust strip: four small boxes stay in the one row, even and centred */
-    .trust-band{padding:12px 0}
+    /* Trust strip: four boxes stay in the one row — icon, bold title, quiet caption */
+    .trust-band{padding:14px 0}
     .trust-row{gap:8px}
-    .trust{padding:11px 8px;text-align:center;display:flex;flex-direction:column;justify-content:flex-start}
-    .trust .t-big{font-size:12px;line-height:1.25}
+    .trust{padding:13px 8px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+    .trust-icon{width:30px;height:30px;margin:0 auto 8px}
+    .trust-icon svg{width:17px;height:17px}
+    .trust .t-big{font-size:12.5px;line-height:1.25}
     .trust .t-small{font-size:10.5px;line-height:1.35;margin-top:4px}
 
     /* Estimator total bar + request cards: snug, nothing clipped */
@@ -599,10 +606,10 @@
   <div class="trust-band">
     <div class="wrap">
       <div class="trust-row">
-        <div class="trust"><p class="t-big">ASE Master Technician</p><p class="t-small">Joe Bustamante, owner</p></div>
-        <div class="trust"><p class="t-big tnum">20–30 years</p><p class="t-small">How long San Pedro families have been coming back</p></div>
-        <div class="trust"><p class="t-big">BBB rated A−</p><p class="t-small">Better Business Bureau listing</p></div>
-        <div class="trust"><p class="t-big">Foreign &amp; domestic</p><p class="t-small">Maintenance, service, repairs and diagnostics</p></div>
+        <div class="trust"><span class="trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><p class="t-big">ASE Master Technician</p><p class="t-small">Joe Bustamante, owner</p></div>
+        <div class="trust"><span class="trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2.95 5.98 6.6.96-4.78 4.66 1.13 6.58L12 17.57l-5.9 3.1 1.13-6.57L2.45 9.44l6.6-.96L12 2.5z"/></svg></span><p class="t-big tnum">20–30 years</p><p class="t-small">How long San Pedro families have been coming back</p></div>
+        <div class="trust"><span class="trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5.2L12 2 4 5.2V12c0 6.4 8 10 8 10z"/><path d="M9 11.5l2.2 2.2L15.5 9.4"/></svg></span><p class="t-big">BBB rated A−</p><p class="t-small">Better Business Bureau listing</p></div>
+        <div class="trust"><span class="trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><p class="t-big">Foreign &amp; domestic</p><p class="t-small">Maintenance, service, repairs and diagnostics</p></div>
       </div>
     </div>
   </div>
