@@ -488,11 +488,12 @@
     nav.main .btn.call{display:none}
     nav.main{
       order:3;flex:1 1 100%;width:100%;margin-left:0;flex-wrap:nowrap;
-      overflow-x:auto;overflow-y:hidden;gap:2px;padding-bottom:8px;
+      overflow-x:auto;overflow-y:hidden;gap:0;padding-bottom:8px;
       scrollbar-width:none;-webkit-overflow-scrolling:touch;
     }
     nav.main::-webkit-scrollbar{display:none}
-    nav.main a{white-space:nowrap;font-size:13.5px;padding:7px 7px;min-height:26px;flex:0 0 auto}
+    nav.main a{white-space:nowrap;font-size:12px;padding:7px 5px;min-height:26px;flex:0 0 auto;gap:5px}
+    nav.main .badge{min-width:19px;height:19px;font-size:11.5px;padding:0 5px}
 
     /* Hero — tighter stack; the 3D stage sits centred, full width, early */
     .hero-grid{padding-top:26px;padding-bottom:40px;gap:22px}
@@ -1159,6 +1160,7 @@
     { name: "General repair",         sedan: 240, suv: 260, truck: 280 }
   ];
   var TYPE_LABEL = { sedan: "Sedan", suv: "SUV", truck: "Truck" };
+  var TYPE_PHRASE = { sedan: "a Sedan", suv: "an SUV", truck: "a Truck" };
   var estType = "sedan";
   var estBox = $("est-services");
   estBox.innerHTML = EST.map(function(s, i){
@@ -1211,7 +1213,7 @@
     var note = $("f-note");
     if(!note.value.trim()){
       note.value = "From the estimator: " + picked.map(function(s){ return s.name; }).join(", ")
-        + " for a " + TYPE_LABEL[estType].toLowerCase() + " — example estimate $" + estTotal() + ".";
+        + " for " + TYPE_PHRASE[estType] + " — example estimate $" + estTotal() + ".";
     }
     document.getElementById("book").scrollIntoView({behavior:"smooth"});
   });
