@@ -130,12 +130,6 @@
   nav.main a:hover,nav.main a:focus-visible,nav.main a:active,nav.main a.active{
     background:var(--red-soft);color:var(--red-dark);
   }
-  .badge{
-    background:var(--red);color:#fff;font-weight:700;font-size:12.5px;line-height:1;
-    min-width:22px;height:22px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;padding:0 6px;
-    font-variant-numeric:tabular-nums;
-  }
-  .badge[hidden]{display:none}
   a.btn.header-call{display:none}
 
   /* Buttons — full pills, template style */
@@ -235,24 +229,7 @@
   .about-badge .ab-icon svg{width:21px;height:21px}
   .about-badge .ab-big{font-weight:700;font-size:15px;color:var(--navy);line-height:1.25}
   .about-badge .ab-small{color:var(--ink-2);font-size:13px;line-height:1.35}
-  .check-grid{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:18px 26px}
-  .check-grid li{display:flex;gap:11px;color:var(--ink-2);font-size:15.5px;line-height:1.45}
-  .check-grid li strong{color:var(--navy);font-weight:700;display:block;font-size:16px}
-  .tick{
-    color:#fff;background:var(--red);font-weight:700;flex:0 0 22px;width:22px;height:22px;
-    border-radius:999px;font-size:13px;line-height:1;
-    display:inline-flex;align-items:center;justify-content:center;margin-top:2px;
-  }
-  .about-cta{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:34px}
-  .phone-cta{display:flex;gap:13px;align-items:center;text-decoration:none}
-  .phone-cta .pc-icon{
-    width:48px;height:48px;flex:0 0 48px;border-radius:999px;background:var(--red-soft);color:var(--red-dark);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .phone-cta .pc-icon svg{width:23px;height:23px}
-  .phone-cta .pc-lab{font-size:13.5px;color:var(--ink-2);display:block;line-height:1.3}
-  .phone-cta .pc-num{font-weight:800;font-size:19px;color:var(--navy);display:block;line-height:1.25;white-space:nowrap}
-  .phone-cta:hover .pc-num{color:var(--red-dark)}
+
 
   /* Services — white cards on the navy band, hover turns the card red */
   .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;position:relative;z-index:1}
@@ -431,50 +408,16 @@
   .confirm dd{margin:0;color:var(--ink-2)}
   .confirm .c-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 
-  /* My requests + live tracker */
-  .req-list{display:grid;gap:16px;margin-top:40px;max-width:840px;position:relative;z-index:1}
-  .req-list:empty{display:none}
-  .req{
-    background:var(--white);border:1px solid var(--line-soft);border-radius:16px;
-    box-shadow:var(--shadow-sm);padding:24px 26px;
-  }
+  /* Dashboard request rows, status pills + empty state */
   .req-top{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;justify-content:space-between}
-  .req h3{font-size:19px}
-  .req .meta{color:var(--ink-2);font-size:15.5px;margin-top:4px}
   .status{font-size:13.5px;font-weight:700;border-radius:999px;padding:5px 12px;white-space:nowrap;background:#EDF0F3;color:var(--ink-2)}
   .status.working{background:var(--red-soft);color:var(--red-dark)}
   .status.completed{background:var(--ok-bg);color:var(--ok)}
-  .tracker{display:flex;margin-top:22px}
-  .tstage{flex:1;text-align:center;position:relative;padding-top:28px;min-width:0}
-  .tstage::before{content:"";position:absolute;top:11px;left:-50%;width:100%;height:2px;background:var(--line)}
-  .tstage:first-child::before{display:none}
-  .tstage.done::before,.tstage.current::before{background:var(--red)}
-  .tdot{
-    position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:24px;border-radius:999px;
-    border:2px solid var(--line);background:var(--white);color:var(--ink-3);font-size:12.5px;font-weight:700;
-    display:flex;align-items:center;justify-content:center;z-index:1;
-  }
-  .tstage.done .tdot{background:var(--red);border-color:var(--red);color:#fff}
-  .tstage.current .tdot{border-color:var(--red);color:var(--red-dark);background:var(--white)}
-  .tlabel{display:block;font-size:13.5px;color:var(--ink-3);line-height:1.3;padding:0 2px}
-  .tstage.done .tlabel{color:var(--ink-2)}
-  .tstage.current .tlabel{color:var(--navy);font-weight:700}
-  .live{
-    display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;
-    font-size:11px;font-weight:700;letter-spacing:.02em;padding:2.5px 8px;border-radius:999px;margin-top:6px;
-  }
-  .live::before{content:"";width:7px;height:7px;border-radius:999px;background:#fff;animation:pulse 1.6s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
   .empty{
     background:var(--white);border:1.5px dashed var(--line);border-radius:16px;
     padding:24px;color:var(--ink-2);margin-top:40px;max-width:840px;position:relative;z-index:1;
   }
   .empty[hidden]{display:none}
-  .done-head{font-weight:800;font-style:italic;text-transform:uppercase;font-size:28px;letter-spacing:-.01em;color:var(--navy);margin:48px 0 6px}
-  .hist{max-width:840px;position:relative;z-index:1}
-  .hist-row{display:flex;gap:14px;align-items:center;padding:15px 2px;border-bottom:1px solid var(--line-soft);flex-wrap:wrap}
-  .hist-row .h-main{font-weight:700;color:var(--navy)}
-  .hist-row .h-meta{color:var(--ink-2);font-size:15px}
 
   /* Visit cards */
   .visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;position:relative;z-index:1}
@@ -586,7 +529,6 @@
     .tiles{gap:10px}
     .tile img{height:76px}
     .tile .t-name{padding:9px 10px;font-size:15px}
-    .check-grid{grid-template-columns:1fr}
     .hero-stats{gap:14px}
     .hero-stats .s-num{font-size:25px}
     .hero-stats .s-lab{font-size:12.5px}
@@ -596,8 +538,6 @@
     .est-card{padding:22px}
     .est-bar .total{font-size:33px}
     .form-card{padding:24px}
-    .req{padding:20px 18px}
-    .tlabel{font-size:11.5px}
     #day-chips .chip{flex:1 1 0;padding-left:4px;padding-right:4px}
     #time-chips .chip{flex:1 1 26%}
     .dash-controls select{width:100%}
@@ -630,7 +570,6 @@
     nav.main::-webkit-scrollbar{display:none}
     nav.main a{white-space:nowrap;font-size:13.5px;padding:8px 10px;min-height:38px;flex:0 0 auto}
     nav.main a.btn{display:none}
-    .badge{min-width:19px;height:19px;font-size:11.5px;padding:0 5px}
   }
 </style>
 </head>
@@ -662,7 +601,6 @@
     <nav class="main" aria-label="Main">
       <a href="#estimate">Estimate</a>
       <a href="#services">Services</a>
-      <a href="#my-requests" id="nav-my-requests">My requests <span class="badge" id="req-badge" hidden>0</span></a>
       <a href="#about">About</a>
       <a class="btn call" href="#book">Book appointment</a>
     </nav>
@@ -886,14 +824,13 @@
 
           <div class="confirm form-card" id="confirm-panel" hidden tabindex="-1">
             <h3>Thank you — your request is in</h3>
-            <p class="c-sub">The shop has it in their dashboard and will call you to confirm your time. Follow your car any time under My requests — the stage updates live as the work moves.</p>
+            <p class="c-sub">The shop has it in their dashboard and will call you to confirm your time.</p>
             <div class="review-ask">
               <p>Enjoyed dealing with us?<span>Reviews on Google help other San Pedro drivers find an honest shop.</span></p>
               <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=San+Pedro+Automotive%2C+1208+N+Gaffey+St+%23C%2C+San+Pedro%2C+CA+90731" target="_blank" rel="noopener">Leave a Google review</a>
             </div>
             <dl id="confirm-details"></dl>
             <div class="c-actions">
-              <a class="btn secondary" href="#my-requests">View my requests</a>
               <button class="btn secondary" type="button" id="book-another">Book another vehicle</button>
             </div>
           </div>
@@ -990,23 +927,6 @@
     </div>
   </section>
 
-  <!-- My requests: live tracking + service history -->
-  <section class="section" id="my-requests">
-    <span class="ghost" aria-hidden="true">Tracking</span>
-    <div class="wrap">
-      <div class="section-head">
-        <p class="label">My requests</p>
-        <h2 class="display">Follow your car</h2>
-        <p class="lede">Requests you send from this device appear here. Watch the stage move as the shop works — and once a job is done, it stays on record in your service history.</p>
-      </div>
-      <div class="empty" id="my-empty">You haven't sent a service request yet. <a href="#book">Book service</a> and it will show up here.</div>
-      <div class="req-list" id="my-active"></div>
-      <h3 class="done-head" id="my-done-head" hidden>Service history</h3>
-      <div class="hist" id="my-done"></div>
-      <div id="my-done-review"></div>
-    </div>
-  </section>
-
   <!-- Visit -->
   <section class="section white" id="visit">
     <div class="wrap">
@@ -1055,21 +975,7 @@
       <div>
         <p class="label">About us</p>
         <h2 class="display">The story behind the shop on N. Gaffey</h2>
-        <p class="lede">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself. The shop handles maintenance, service, repairs and diagnostics for foreign and domestic vehicles — and long-time customers keep coming back to the same small team.</p>
-        <p class="lede">That is why San Pedro families have kept bringing their cars here for 20–30 years.</p>
-        <ul class="check-grid">
-          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Owner on site</strong>The man who owns the shop is the ASE Master Technician doing the work.</span></li>
-          <li><span class="tick" aria-hidden="true">✓</span><span><strong>The price before the work</strong>We inspect first and call you with the price — nothing starts until you say yes.</span></li>
-          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Foreign and domestic</strong>One shop for the whole household's cars.</span></li>
-          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Pick-up &amp; drop</strong>Turn it on when you book and the shop arranges collection and return.</span></li>
-        </ul>
-        <div class="about-cta">
-          <a class="phone-cta" href="tel:+13108313700">
-            <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-            <span><span class="pc-lab">Call the shop</span><span class="pc-num">(310) 831-3700</span></span>
-          </a>
-          <a class="btn" href="#book">Book an appointment</a>
-        </div>
+        <p class="lede">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself — an ASE Master Technician on site, not behind a desk. San Pedro families have kept bringing their cars back to him for 20–30 years, foreign and domestic alike.</p>
       </div>
     </div>
   </section>
@@ -1246,17 +1152,15 @@
   var requests = [];
   var seq = 0;
 
-  /* Dashboard statuses map onto the customer's live tracker stages. */
-  var STAGES = ["Received", "Inspection", "In progress", "Quality check", "Ready for pickup"];
+  /* Dashboard request statuses. */
   var STATUS = {
-    received:   { label: "Received",         stage: 0, cls: "" },
-    inspection: { label: "Inspection",       stage: 1, cls: "working" },
-    inprogress: { label: "In progress",      stage: 2, cls: "working" },
-    quality:    { label: "Quality check",    stage: 3, cls: "working" },
-    ready:      { label: "Ready for pickup", stage: 4, cls: "working" },
-    completed:  { label: "Completed",        stage: 5, cls: "completed" }
+    received:   { label: "Received",         cls: "" },
+    inspection: { label: "Inspection",       cls: "working" },
+    inprogress: { label: "In progress",      cls: "working" },
+    quality:    { label: "Quality check",    cls: "working" },
+    ready:      { label: "Ready for pickup", cls: "working" },
+    completed:  { label: "Completed",        cls: "completed" }
   };
-  var REVIEW_URL = "https://www.google.com/maps/search/?api=1&query=San+Pedro+Automotive%2C+1208+N+Gaffey+St+%23C%2C+San+Pedro%2C+CA+90731";
 
   function $(id){ return document.getElementById(id); }
   function esc(s){
@@ -1273,66 +1177,6 @@
   }
   function isoOf(d){
     return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
-  }
-
-  /* ---------- Badge + My requests (live tracker + service history) ---------- */
-  function activeMine(){
-    return requests.filter(function(r){ return r.mine && r.status!=="completed"; });
-  }
-  function renderBadge(){
-    var n = activeMine().length;
-    var badge = $("req-badge");
-    badge.textContent = n;
-    badge.hidden = n===0;
-  }
-
-  function trackerHTML(r){
-    var stage = STATUS[r.status].stage;
-    var html = '<div class="tracker" role="img" aria-label="Progress: ' + esc(STAGES[stage]) + '">';
-    for(var i=0;i<STAGES.length;i++){
-      var cls = i<stage ? "done" : (i===stage ? "current" : "");
-      var dot = i<stage ? "✓" : String(i+1);
-      html += '<div class="tstage ' + cls + '"><span class="tdot" aria-hidden="true">' + dot + '</span>'
-        + '<span class="tlabel">' + esc(STAGES[i]) + '</span>'
-        + (i===stage ? '<span class="live">Live</span>' : '')
-        + '</div>';
-    }
-    html += '</div>';
-    return html;
-  }
-
-  function reqCard(r){
-    var html = '<article class="req">'
-      + '<div class="req-top"><h3>' + esc(r.vehicle) + ' — ' + esc(r.service) + '</h3>'
-      + '<span class="status ' + STATUS[r.status].cls + '">' + STATUS[r.status].label + '</span></div>'
-      + '<p class="meta">Request ' + esc(r.id) + ' · ' + esc(fmtDate(r.date)) + ' · ' + esc(r.time)
-      + (r.pickup ? ' · Pick-up &amp; drop' : '') + '</p>';
-    if(r.note){ html += '<p class="meta">Note: ' + esc(r.note) + '</p>'; }
-    html += trackerHTML(r);
-    html += '</article>';
-    return html;
-  }
-
-  function histRow(r){
-    return '<div class="hist-row">'
-      + '<span class="tick" aria-hidden="true">✓</span>'
-      + '<span class="h-main">' + esc(fmtDate(r.date)) + ' — ' + esc(r.service) + '</span>'
-      + '<span class="h-meta">' + esc(r.vehicle) + ' · Request ' + esc(r.id) + '</span>'
-      + '</div>';
-  }
-
-  function renderMine(){
-    var mine = requests.filter(function(r){ return r.mine; });
-    var active = mine.filter(function(r){ return r.status!=="completed"; });
-    var done = mine.filter(function(r){ return r.status==="completed"; });
-    $("my-empty").hidden = mine.length>0;
-    $("my-active").innerHTML = active.map(reqCard).join("");
-    $("my-done-head").hidden = done.length===0;
-    $("my-done").innerHTML = done.map(histRow).join("");
-    $("my-done-review").innerHTML = done.length===0 ? "" :
-      '<div class="review-ask" style="max-width:840px"><p>Picked up and happy with the work?<span>Reviews on Google help other San Pedro drivers find an honest shop.</span></p>'
-      + '<a class="btn" href="' + REVIEW_URL + '" target="_blank" rel="noopener">Leave a Google review</a></div>';
-    renderBadge();
   }
 
   /* ---------- Dashboard ---------- */
@@ -1357,7 +1201,7 @@
         + (r.contact ? ' · Prefers ' + esc(r.contact.toLowerCase()) : '')
         + (r.pickup ? ' · Pick-up &amp; drop requested' : '') + '</p>'
         + (r.note ? '<p class="note">Note: ' + esc(r.note) + '</p>' : '')
-        + '<div class="dash-controls"><label for="st-' + r.id + '" style="font-weight:600;font-size:15.5px">Status — moves the customer\'s live tracker</label>'
+        + '<div class="dash-controls"><label for="st-' + r.id + '" style="font-weight:600;font-size:15.5px">Status</label>'
         + '<select id="st-' + r.id + '" data-status-for="' + r.id + '">' + opts + '</select></div>'
         + '</article>';
     }).join("");
@@ -1369,7 +1213,6 @@
           if(requests[j].id===id){ requests[j].status = this.value; break; }
         }
         renderDashboard();
-        renderMine();
       });
     }
   }
@@ -1533,7 +1376,7 @@
       id: "SP-" + String(1000 + seq),
       service: service, name: name, phone: phone, vehicle: vehicle, contact: contact,
       date: selectedDay, time: selectedTime, pickup: pickup,
-      note: note, status: "received", mine: true
+      note: note, status: "received"
     };
     requests.push(req);
 
@@ -1549,7 +1392,6 @@
     panel.hidden = false;
     panel.focus();
     panel.scrollIntoView({behavior:"smooth", block:"center"});
-    renderMine();
     if(ownerSignedIn) renderDashboard();
   });
 
@@ -1645,8 +1487,6 @@
       if(sec) spy.observe(sec);
     });
   }
-
-  renderMine();
 })();
 </script>
 
