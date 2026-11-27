@@ -157,6 +157,11 @@
   .hero{position:relative;overflow:hidden;background:#0a0e13;min-height:min(88vh,780px);display:flex;align-items:center}
   .hero-bg{position:absolute;inset:0;z-index:0}
   .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+  .hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity .7s var(--ease)}
+  .hero-bg video.ready{opacity:1}
+  @media (prefers-reduced-motion: reduce){
+    .hero-bg video{display:none}
+  }
   .hero-bg::after{
     content:"";position:absolute;inset:0;
     background:linear-gradient(90deg, rgba(5,7,9,.93) 0%, rgba(5,7,9,.80) 44%, rgba(5,7,9,.36) 78%, rgba(5,7,9,.45) 100%),
@@ -588,9 +593,14 @@
 
 <main id="top">
 
-  <!-- Hero — full-bleed shop-front photo, headline over it at the left -->
+  <!-- Hero — full-bleed film of repair work in the shop, headline over it at the left -->
   <div class="hero">
-    <div class="hero-bg"><img src="assets/shop-dusk.webp" alt="" width="1400" height="788" fetchpriority="high" /></div>
+    <div class="hero-bg">
+      <img src="assets/shop-dusk.webp" alt="" width="1400" height="788" fetchpriority="high" />
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/shop-dusk.webp" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+        <source src="assets/hero-repair.mp4" type="video/mp4" />
+      </video>
+    </div>
     <div class="wrap hero-in">
       <p class="marker">Independent auto repair · N. Gaffey St</p>
       <h1>San Pedro<br /><span class="amber">Auto Repair</span></h1>
@@ -602,6 +612,26 @@
       <p class="hero-call">Or call us: <a href="tel:+13108313700">(310) 831-3700</a></p>
     </div>
   </div>
+
+  <script>
+  (function(){
+    var v = document.querySelector(".hero-video");
+    if(!v) return;
+    /* Reduced motion: keep the still shop photo, never load the film */
+    if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      v.remove();
+      return;
+    }
+    /* If the film cannot load, the poster photo underneath stays */
+    v.addEventListener("error", function(){ v.remove(); }, true);
+    /* The dusk photo paints first; the film fades in only once it is playing */
+    v.addEventListener("playing", function(){ v.classList.add("ready"); });
+    if(v.readyState >= 2) v.classList.add("ready");
+    v.muted = true;
+    var p = v.play && v.play();
+    if(p && p.catch) p.catch(function(){});
+  })();
+  </script>
 
   <div class="trust-band">
     <div class="wrap">
