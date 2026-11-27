@@ -660,10 +660,10 @@
     </a>
     <a class="btn call header-call" href="tel:+13108313700" aria-label="Call San Pedro Automotive at (310) 831-3700">Call</a>
     <nav class="main" aria-label="Main">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
       <a href="#estimate">Estimate</a>
+      <a href="#services">Services</a>
       <a href="#my-requests" id="nav-my-requests">My requests <span class="badge" id="req-badge" hidden>0</span></a>
+      <a href="#about">About</a>
       <a class="btn call" href="#book">Book appointment</a>
     </nav>
   </div>
@@ -750,129 +750,6 @@
     document.getElementById("marquee-track").innerHTML = set + set;
   })();
   </script>
-
-  <!-- About -->
-  <section class="section white" id="about">
-    <div class="wrap about-grid">
-      <div class="about-photo">
-        <div class="ph"><img src="assets/intro.webp" alt="A technician's gloved hands working in an engine bay" loading="lazy" width="1200" height="800" /></div>
-        <div class="about-badge">
-          <span class="ab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5.2L12 2 4 5.2V12c0 6.4 8 10 8 10z"/><path d="M9 11.5l2.2 2.2L15.5 9.4"/></svg></span>
-          <span>
-            <span class="ab-big">ASE Master Technician</span>
-            <span class="ab-small" style="display:block">Joe Bustamante — owner of the shop</span>
-          </span>
-        </div>
-      </div>
-      <div>
-        <p class="label">About us</p>
-        <h2 class="display">The story behind the shop on N. Gaffey</h2>
-        <p class="lede">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself. The shop handles maintenance, service, repairs and diagnostics for foreign and domestic vehicles — and long-time customers keep coming back to the same small team.</p>
-        <p class="lede">That is why San Pedro families have kept bringing their cars here for 20–30 years.</p>
-        <ul class="check-grid">
-          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Owner on site</strong>The man who owns the shop is the ASE Master Technician doing the work.</span></li>
-          <li><span class="tick" aria-hidden="true">✓</span><span><strong>The price before the work</strong>We inspect first and call you with the price — nothing starts until you say yes.</span></li>
-          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Foreign and domestic</strong>One shop for the whole household's cars.</span></li>
-          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Pick-up &amp; drop</strong>Turn it on when you book and the shop arranges collection and return.</span></li>
-        </ul>
-        <div class="about-cta">
-          <a class="phone-cta" href="tel:+13108313700">
-            <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-            <span><span class="pc-lab">Call the shop</span><span class="pc-num">(310) 831-3700</span></span>
-          </a>
-          <a class="btn" href="#book">Book an appointment</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services — white cards on the navy band -->
-  <section class="section navy on-navy" id="services">
-    <span class="ghost" aria-hidden="true">Services</span>
-    <div class="wrap">
-      <div class="section-head">
-        <p class="label">Services</p>
-        <h2 class="display">We offer a wide range of car services</h2>
-        <p class="lede">The whole car, not one part of it — every service below is done in this shop, by this team.</p>
-      </div>
-      <div class="svc-grid">
-        <div class="svc-card">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
-          <h3>Diagnostics</h3>
-          <p>Check-engine lights and electrical faults, traced to the cause.</p>
-          <button class="req-link" type="button" data-book-service="Diagnostics">Request this service →</button>
-        </div>
-        <div class="svc-card">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
-          <h3>Brake service</h3>
-          <p>Pads, rotors and hydraulics — inspected first, replaced only as needed.</p>
-          <button class="req-link" type="button" data-book-service="Brake service">Request this service →</button>
-        </div>
-        <div class="svc-card">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span>
-          <h3>Oil &amp; fluids</h3>
-          <p>Oil and filter, with fluids, belts and hoses checked on the lift.</p>
-          <button class="req-link" type="button" data-book-service="Oil change">Request this service →</button>
-        </div>
-        <div class="svc-card">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></span>
-          <h3>Scheduled maintenance</h3>
-          <p>Factory-scheduled servicing that keeps your warranty intact.</p>
-          <button class="req-link" type="button" data-book-service="Scheduled maintenance">Request this service →</button>
-        </div>
-        <div class="svc-card">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 14.5V21"/><path d="M9.8 10.8 3.6 8.6"/><path d="M14.2 10.8l6.2-2.2"/></svg></span>
-          <h3>Suspension &amp; steering</h3>
-          <p>Shocks, struts, axles and steering, inspected and replaced as needed.</p>
-          <button class="req-link" type="button" data-book-service="Suspension &amp; steering">Request this service →</button>
-        </div>
-        <div class="svc-card">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-          <h3>General repair</h3>
-          <p>Engine and mechanical repair for foreign and domestic vehicles.</p>
-          <button class="req-link" type="button" data-book-service="General repair">Request this service →</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why choose us -->
-  <section class="section" id="why">
-    <div class="wrap why-grid">
-      <div class="why-photo">
-        <div class="ph"><img src="assets/engine-work.webp" alt="Engine work under way at San Pedro Automotive" loading="lazy" width="1400" height="788" /></div>
-        <div class="why-card">
-          <span class="wc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2.95 5.98 6.6.96-4.78 4.66 1.13 6.58L12 17.57l-5.9 3.1 1.13-6.57L2.45 9.44l6.6-.96L12 2.5z"/></svg></span>
-          <span>
-            <span class="wc-big">BBB rated A−</span>
-            <span class="wc-small" style="display:block">On the shop's Better Business Bureau listing</span>
-          </span>
-        </div>
-      </div>
-      <div>
-        <p class="label">Why choose us</p>
-        <h2 class="display">What makes this shop different</h2>
-        <div class="accordion">
-          <details open>
-            <summary>An ASE Master Technician owns the shop</summary>
-            <p>Joe Bustamante owns San Pedro Automotive and leads the work himself — the person you talk to is the person who knows your car.</p>
-          </details>
-          <details>
-            <summary>Foreign &amp; domestic, under one roof</summary>
-            <p>Maintenance, service, repairs and diagnostics for foreign and domestic vehicles, so one shop covers the whole household's cars.</p>
-          </details>
-          <details>
-            <summary>Honest example estimates up front</summary>
-            <p>The estimator below gives you an example ballpark before you book, and the shop inspects first and calls with the exact price — nothing starts until you say yes.</p>
-          </details>
-          <details>
-            <summary>Pick-up &amp; drop available</summary>
-            <p>Turn on pick-up &amp; drop when you book, and the shop will arrange collection and return when they call to confirm.</p>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Estimator — where the template's pricing section sits -->
   <section class="section white" id="estimate">
@@ -1025,6 +902,94 @@
     </div>
   </section>
 
+  <!-- Services — white cards on the navy band -->
+  <section class="section navy on-navy" id="services">
+    <span class="ghost" aria-hidden="true">Services</span>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Services</p>
+        <h2 class="display">We offer a wide range of car services</h2>
+        <p class="lede">The whole car, not one part of it — every service below is done in this shop, by this team.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <h3>Diagnostics</h3>
+          <p>Check-engine lights and electrical faults, traced to the cause.</p>
+          <button class="req-link" type="button" data-book-service="Diagnostics">Request this service →</button>
+        </div>
+        <div class="svc-card">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h3>Brake service</h3>
+          <p>Pads, rotors and hydraulics — inspected first, replaced only as needed.</p>
+          <button class="req-link" type="button" data-book-service="Brake service">Request this service →</button>
+        </div>
+        <div class="svc-card">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span>
+          <h3>Oil &amp; fluids</h3>
+          <p>Oil and filter, with fluids, belts and hoses checked on the lift.</p>
+          <button class="req-link" type="button" data-book-service="Oil change">Request this service →</button>
+        </div>
+        <div class="svc-card">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></span>
+          <h3>Scheduled maintenance</h3>
+          <p>Factory-scheduled servicing that keeps your warranty intact.</p>
+          <button class="req-link" type="button" data-book-service="Scheduled maintenance">Request this service →</button>
+        </div>
+        <div class="svc-card">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 14.5V21"/><path d="M9.8 10.8 3.6 8.6"/><path d="M14.2 10.8l6.2-2.2"/></svg></span>
+          <h3>Suspension &amp; steering</h3>
+          <p>Shocks, struts, axles and steering, inspected and replaced as needed.</p>
+          <button class="req-link" type="button" data-book-service="Suspension &amp; steering">Request this service →</button>
+        </div>
+        <div class="svc-card">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+          <h3>General repair</h3>
+          <p>Engine and mechanical repair for foreign and domestic vehicles.</p>
+          <button class="req-link" type="button" data-book-service="General repair">Request this service →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section class="section" id="why">
+    <div class="wrap why-grid">
+      <div class="why-photo">
+        <div class="ph"><img src="assets/engine-work.webp" alt="Engine work under way at San Pedro Automotive" loading="lazy" width="1400" height="788" /></div>
+        <div class="why-card">
+          <span class="wc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2.95 5.98 6.6.96-4.78 4.66 1.13 6.58L12 17.57l-5.9 3.1 1.13-6.57L2.45 9.44l6.6-.96L12 2.5z"/></svg></span>
+          <span>
+            <span class="wc-big">BBB rated A−</span>
+            <span class="wc-small" style="display:block">On the shop's Better Business Bureau listing</span>
+          </span>
+        </div>
+      </div>
+      <div>
+        <p class="label">Why choose us</p>
+        <h2 class="display">What makes this shop different</h2>
+        <div class="accordion">
+          <details open>
+            <summary>An ASE Master Technician owns the shop</summary>
+            <p>Joe Bustamante owns San Pedro Automotive and leads the work himself — the person you talk to is the person who knows your car.</p>
+          </details>
+          <details>
+            <summary>Foreign &amp; domestic, under one roof</summary>
+            <p>Maintenance, service, repairs and diagnostics for foreign and domestic vehicles, so one shop covers the whole household's cars.</p>
+          </details>
+          <details>
+            <summary>Honest example estimates up front</summary>
+            <p>The estimator above gives you an example ballpark before you book, and the shop inspects first and calls with the exact price — nothing starts until you say yes.</p>
+          </details>
+          <details>
+            <summary>Pick-up &amp; drop available</summary>
+            <p>Turn on pick-up &amp; drop when you book, and the shop will arrange collection and return when they call to confirm.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- My requests: live tracking + service history -->
   <section class="section" id="my-requests">
     <span class="ghost" aria-hidden="true">Tracking</span>
@@ -1069,6 +1034,41 @@
           <h3>Hours</h3>
           <p><strong>Monday – Friday</strong><br />7:00 AM – 4:30 PM</p>
           <p>Book a time inside those hours, or call ahead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section white" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo">
+        <div class="ph"><img src="assets/intro.webp" alt="A technician's gloved hands working in an engine bay" loading="lazy" width="1200" height="800" /></div>
+        <div class="about-badge">
+          <span class="ab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5.2L12 2 4 5.2V12c0 6.4 8 10 8 10z"/><path d="M9 11.5l2.2 2.2L15.5 9.4"/></svg></span>
+          <span>
+            <span class="ab-big">ASE Master Technician</span>
+            <span class="ab-small" style="display:block">Joe Bustamante — owner of the shop</span>
+          </span>
+        </div>
+      </div>
+      <div>
+        <p class="label">About us</p>
+        <h2 class="display">The story behind the shop on N. Gaffey</h2>
+        <p class="lede">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself. The shop handles maintenance, service, repairs and diagnostics for foreign and domestic vehicles — and long-time customers keep coming back to the same small team.</p>
+        <p class="lede">That is why San Pedro families have kept bringing their cars here for 20–30 years.</p>
+        <ul class="check-grid">
+          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Owner on site</strong>The man who owns the shop is the ASE Master Technician doing the work.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span><strong>The price before the work</strong>We inspect first and call you with the price — nothing starts until you say yes.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Foreign and domestic</strong>One shop for the whole household's cars.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Pick-up &amp; drop</strong>Turn it on when you book and the shop arranges collection and return.</span></li>
+        </ul>
+        <div class="about-cta">
+          <a class="phone-cta" href="tel:+13108313700">
+            <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <span><span class="pc-lab">Call the shop</span><span class="pc-num">(310) 831-3700</span></span>
+          </a>
+          <a class="btn" href="#book">Book an appointment</a>
         </div>
       </div>
     </div>
