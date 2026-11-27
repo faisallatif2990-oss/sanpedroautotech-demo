@@ -79,6 +79,17 @@
   }
   .cine.plain{background:var(--bg)}
   .cine.tight{padding:84px 0}
+  /* Vivid variant — the photo reads as the section's picture, text stays legible on the left */
+  .cine-bg.vivid::after{
+    background:linear-gradient(90deg, rgba(5,7,9,.90) 0%, rgba(5,7,9,.66) 52%, rgba(5,7,9,.38) 100%),
+               linear-gradient(0deg, rgba(5,7,9,.82) 0%, rgba(5,7,9,0) 34%, rgba(5,7,9,0) 74%, rgba(5,7,9,.66) 100%);
+  }
+  .cine-bg.tall img{object-position:center 30%}
+  /* Deep variant — brighter photo on the right, copy sits directly on it */
+  .cine-bg.vivid.deep::after{
+    background:linear-gradient(90deg, rgba(5,7,9,.93) 0%, rgba(5,7,9,.82) 52%, rgba(5,7,9,.62) 100%),
+               linear-gradient(0deg, rgba(5,7,9,.85) 0%, rgba(5,7,9,.1) 38%, rgba(5,7,9,.1) 72%, rgba(5,7,9,.7) 100%);
+  }
 
   /* Utility bar + header */
   .utility-bar{background:#05070a;color:var(--ink-2);font-size:14px;border-bottom:1px solid var(--line-soft)}
@@ -168,13 +179,15 @@
     .scene-sheen{transform:translateZ(0)}
   }
 
-  /* Trust strip — quiet facts on hairlines, no cards */
-  .trust-band{border-top:1px solid var(--line-soft);background:var(--bg)}
-  .trust-row{display:grid;grid-template-columns:repeat(4,1fr)}
-  .trust{padding:26px 24px 26px 0}
-  .trust + .trust{border-left:1px solid var(--line-soft);padding-left:24px}
-  .trust .t-big{font-weight:600;font-size:17px;color:#fff}
-  .trust .t-small{color:var(--ink-2);font-size:14.5px;margin-top:3px}
+  /* Trust strip — four small boxes, always one row */
+  .trust-band{border-top:1px solid var(--line-soft);background:var(--bg);padding:16px 0}
+  .trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .trust{
+    background:var(--panel-solid);border:1px solid var(--line-soft);border-top:2px solid var(--amber);
+    border-radius:8px;padding:12px 14px;min-width:0;
+  }
+  .trust .t-big{font-weight:700;font-size:16px;line-height:1.2;color:#fff}
+  .trust .t-small{color:var(--ink-2);font-size:13px;line-height:1.35;margin-top:4px}
 
   /* Intro checklist */
   .check-list{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:14px;max-width:32em}
@@ -426,9 +439,10 @@
     .scene{aspect-ratio:16/9}
     .book-grid,.visit-grid{grid-template-columns:1fr}
     .svc-cols{grid-template-columns:1fr 1fr}
-    .trust-row{grid-template-columns:1fr 1fr}
-    .trust:nth-child(3){border-left:none;padding-left:0}
-    .trust:nth-child(n+3){border-top:1px solid var(--line-soft)}
+    .trust-row{grid-template-columns:repeat(4,1fr);gap:8px}
+    .trust{padding:10px}
+    .trust .t-big{font-size:13.5px}
+    .trust .t-small{font-size:11.5px}
     .dash-stats{grid-template-columns:1fr 1fr}
     .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
     .cine{padding:76px 0}
@@ -448,8 +462,10 @@
     .hero-grid{padding-top:40px;padding-bottom:40px;gap:28px}
     .scene{aspect-ratio:4/3}
     .hero-cred{gap:6px 20px}
-    .trust-row{grid-template-columns:1fr}
-    .trust + .trust{border-left:none;border-top:1px solid var(--line-soft);padding-left:0}
+    .trust-row{grid-template-columns:repeat(4,1fr);gap:6px}
+    .trust{padding:8px 7px;border-radius:7px}
+    .trust .t-big{font-size:11.5px;line-height:1.18}
+    .trust .t-small{font-size:10px;line-height:1.3;margin-top:3px}
     .brand-name{font-size:22px}
     nav.main a{padding:8px 10px}
     .cine{padding:60px 0}
@@ -496,6 +512,9 @@
     .hero-ctas .btn{flex:1 1 auto;font-size:15px;padding:0 12px}
     .hero-cred{display:none}
     .scene{aspect-ratio:4/3}
+
+    /* Trust strip: four small boxes stay in the one row */
+    .trust-band{padding:12px 0}
 
     /* Estimator total bar + request cards: snug, nothing clipped */
     .est-bar{padding:16px 18px}
@@ -567,7 +586,7 @@
       </div>
       <div class="scene" id="scene">
         <div class="scene-3d" id="scene-3d">
-          <img class="scene-img" id="scene-img" src="assets/car-hero.webp" alt="Steel-blue SUV in a dark showroom" width="1400" height="788" fetchpriority="high" />
+          <img class="scene-img" id="scene-img" src="assets/car-hero.webp" alt="Steel-blue SUV in a dark showroom" width="981" height="788" fetchpriority="high" />
           <div class="scene-sheen" aria-hidden="true"></div>
         </div>
       </div>
@@ -586,7 +605,8 @@
   </div>
 
   <!-- Estimator -->
-  <section class="cine plain" id="estimate">
+  <section class="cine" id="estimate">
+    <div class="cine-bg vivid tall"><img src="assets/lift.webp" alt="" loading="lazy" width="800" height="1200" /></div>
     <div class="wrap">
       <p class="marker">Service cost estimator</p>
       <h2 class="mega">Know the ballpark<br />before you book.</h2>
@@ -624,7 +644,7 @@
 
   <!-- Booking -->
   <section class="cine" id="book">
-    <div class="cine-bg"><img src="assets/hood.webp" alt="" loading="lazy" width="1024" height="1024" /></div>
+    <div class="cine-bg vivid"><img src="assets/engine-work.webp" alt="" loading="lazy" width="1400" height="788" /></div>
     <div class="wrap">
       <div class="book-grid">
         <div>
@@ -766,7 +786,7 @@
 
   <!-- FAQ -->
   <section class="cine" id="faq">
-    <div class="cine-bg"><img src="assets/suspension.webp" alt="" loading="lazy" width="1200" height="858" /></div>
+    <div class="cine-bg vivid"><img src="assets/suspension.webp" alt="" loading="lazy" width="1200" height="858" /></div>
     <div class="wrap">
       <p class="marker">Questions</p>
       <h2 class="mega">The things<br />people ask first.</h2>
@@ -815,7 +835,8 @@
   </section>
 
   <!-- Visit -->
-  <section class="cine plain tight" id="visit">
+  <section class="cine tight" id="visit">
+    <div class="cine-bg vivid deep"><img src="assets/shop-dusk.webp" alt="" loading="lazy" width="1400" height="788" /></div>
     <div class="wrap">
       <p class="marker">Visit</p>
       <h2 class="mega">Find the shop.</h2>
