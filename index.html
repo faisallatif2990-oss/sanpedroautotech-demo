@@ -514,7 +514,8 @@
     nav.main a{white-space:nowrap;font-size:12px;padding:7px 5px;min-height:26px;flex:0 0 auto;gap:5px}
     nav.main .badge{min-width:19px;height:19px;font-size:11.5px;padding:0 5px}
 
-    /* Hero — photo fills the screen, headline and buttons over it at the left */
+    /* Hero — shorter on a phone so the headline and buttons lead, the photo backs them */
+    .hero{min-height:0}
     .hero-in{padding-top:40px;padding-bottom:44px}
     .marker{font-size:11.5px;letter-spacing:.11em;gap:10px;margin-bottom:14px}
     .marker::before{width:24px;flex-basis:24px}
@@ -524,8 +525,12 @@
     .hero-ctas .btn{flex:1 1 0;font-size:15px;padding:0 10px;white-space:nowrap}
     .hero-call{font-size:15px;margin-top:14px}
 
-    /* Trust strip: four small boxes stay in the one row */
+    /* Trust strip: four small boxes stay in the one row, even and centred */
     .trust-band{padding:12px 0}
+    .trust-row{gap:8px}
+    .trust{padding:11px 8px;text-align:center;display:flex;flex-direction:column;justify-content:flex-start}
+    .trust .t-big{font-size:12px;line-height:1.25}
+    .trust .t-small{font-size:10.5px;line-height:1.35;margin-top:4px}
 
     /* Estimator total bar + request cards: snug, nothing clipped */
     .est-bar{padding:16px 18px}
@@ -640,6 +645,65 @@
     </div>
   </section>
 
+  <!-- Services -->
+  <section class="cine" id="services">
+    <div class="cine-bg"><img src="assets/camshaft.webp" alt="" loading="lazy" width="1024" height="607" /></div>
+    <div class="wrap">
+      <p class="marker">Services</p>
+      <h2 class="mega">The whole car,<br />not one part of it.</h2>
+      <div class="svc-grid">
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <div>
+            <h3>Diagnostics</h3>
+            <p>Check-engine lights and electrical faults, traced to the cause.</p>
+            <button class="req-link" type="button" data-book-service="Diagnostics">Request this service →</button>
+          </div>
+        </div>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <div>
+            <h3>Brake service</h3>
+            <p>Pads, rotors and hydraulics — inspected first, replaced only as needed.</p>
+            <button class="req-link" type="button" data-book-service="Brake service">Request this service →</button>
+          </div>
+        </div>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span>
+          <div>
+            <h3>Oil changes</h3>
+            <p>Oil and filter, with fluids, belts and hoses checked on the lift.</p>
+            <button class="req-link" type="button" data-book-service="Oil change">Request this service →</button>
+          </div>
+        </div>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></span>
+          <div>
+            <h3>Scheduled maintenance</h3>
+            <p>Factory-scheduled servicing that keeps your warranty intact.</p>
+            <button class="req-link" type="button" data-book-service="Scheduled maintenance">Request this service →</button>
+          </div>
+        </div>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 14.5V21"/><path d="M9.8 10.8 3.6 8.6"/><path d="M14.2 10.8l6.2-2.2"/></svg></span>
+          <div>
+            <h3>Suspension &amp; steering</h3>
+            <p>Shocks, struts, axles and steering, inspected and replaced as needed.</p>
+            <button class="req-link" type="button" data-book-service="Suspension &amp; steering">Request this service →</button>
+          </div>
+        </div>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+          <div>
+            <h3>General repair</h3>
+            <p>Engine and mechanical repair for foreign and domestic vehicles.</p>
+            <button class="req-link" type="button" data-book-service="General repair">Request this service →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Booking -->
   <section class="cine" id="book">
     <div class="cine-bg vivid"><img src="assets/engine-work.webp" alt="" loading="lazy" width="1400" height="788" /></div>
@@ -745,65 +809,6 @@
               <a class="btn secondary" href="#my-requests">View my requests</a>
               <button class="btn secondary" type="button" id="book-another">Book another vehicle</button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section class="cine" id="services">
-    <div class="cine-bg"><img src="assets/camshaft.webp" alt="" loading="lazy" width="1024" height="607" /></div>
-    <div class="wrap">
-      <p class="marker">Services</p>
-      <h2 class="mega">The whole car,<br />not one part of it.</h2>
-      <div class="svc-grid">
-        <div class="svc-item">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
-          <div>
-            <h3>Diagnostics</h3>
-            <p>Check-engine lights and electrical faults, traced to the cause.</p>
-            <button class="req-link" type="button" data-book-service="Diagnostics">Request this service →</button>
-          </div>
-        </div>
-        <div class="svc-item">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
-          <div>
-            <h3>Brake service</h3>
-            <p>Pads, rotors and hydraulics — inspected first, replaced only as needed.</p>
-            <button class="req-link" type="button" data-book-service="Brake service">Request this service →</button>
-          </div>
-        </div>
-        <div class="svc-item">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span>
-          <div>
-            <h3>Oil changes</h3>
-            <p>Oil and filter, with fluids, belts and hoses checked on the lift.</p>
-            <button class="req-link" type="button" data-book-service="Oil change">Request this service →</button>
-          </div>
-        </div>
-        <div class="svc-item">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></span>
-          <div>
-            <h3>Scheduled maintenance</h3>
-            <p>Factory-scheduled servicing that keeps your warranty intact.</p>
-            <button class="req-link" type="button" data-book-service="Scheduled maintenance">Request this service →</button>
-          </div>
-        </div>
-        <div class="svc-item">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 14.5V21"/><path d="M9.8 10.8 3.6 8.6"/><path d="M14.2 10.8l6.2-2.2"/></svg></span>
-          <div>
-            <h3>Suspension &amp; steering</h3>
-            <p>Shocks, struts, axles and steering, inspected and replaced as needed.</p>
-            <button class="req-link" type="button" data-book-service="Suspension &amp; steering">Request this service →</button>
-          </div>
-        </div>
-        <div class="svc-item">
-          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-          <div>
-            <h3>General repair</h3>
-            <p>Engine and mechanical repair for foreign and domestic vehicles.</p>
-            <button class="req-link" type="button" data-book-service="General repair">Request this service →</button>
           </div>
         </div>
       </div>
