@@ -114,6 +114,7 @@
     font-variant-numeric:tabular-nums;
   }
   .badge[hidden]{display:none}
+  a.btn.header-call{display:none}
 
   /* Buttons */
   .btn{
@@ -140,6 +141,7 @@
   .hero h1 .amber{color:var(--amber)}
   .hero .tagline{font-size:21px;font-weight:600;color:#fff;margin-top:20px}
   .hero .lede{font-size:17.5px;color:var(--ink-2);margin-top:10px;max-width:32em}
+  .hero .lede-short{display:none}
   .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
   .hero-cred{
     margin-top:30px;padding-top:20px;border-top:1px solid var(--line-soft);
@@ -470,6 +472,53 @@
     .tlabel{font-size:12px}
     .tracker{margin-left:-4px;margin-right:-4px}
   }
+
+  /* ---------- Mobile fix (≤640px): compact two-row header, early centred hero stage ---------- */
+  @media (max-width:640px){
+    .utility-bar{display:none}
+    .wrap{padding:0 18px}
+
+    /* Header — Row 1: brand + small Call on ONE line. Row 2: nav on ONE scrollable line. */
+    .header-in{flex-wrap:wrap;gap:4px 10px;padding-top:8px;padding-bottom:0}
+    .brand{gap:8px;flex:1 1 auto;min-width:0;min-height:40px}
+    .brand-mark{width:34px;height:34px;flex:0 0 34px;font-size:15px;border-radius:7px}
+    .brand-name{font-size:17px;white-space:nowrap;letter-spacing:.01em}
+    .brand-sub{display:none}
+    a.btn.header-call{display:inline-flex;min-height:38px;padding:0 16px;font-size:15px;flex:0 0 auto}
+    nav.main .btn.call{display:none}
+    nav.main{
+      order:3;flex:1 1 100%;width:100%;margin-left:0;flex-wrap:nowrap;
+      overflow-x:auto;overflow-y:hidden;gap:2px;padding-bottom:8px;
+      scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    }
+    nav.main::-webkit-scrollbar{display:none}
+    nav.main a{white-space:nowrap;font-size:13.5px;padding:7px 7px;min-height:26px;flex:0 0 auto}
+
+    /* Hero — tighter stack; the 3D stage sits centred, full width, early */
+    .hero-grid{padding-top:26px;padding-bottom:40px;gap:22px}
+    .marker{font-size:11.5px;letter-spacing:.11em;gap:10px;margin-bottom:14px}
+    .marker::before{width:24px;flex-basis:24px}
+    .hero h1{font-size:48px}
+    .hero .tagline{font-size:19px;margin-top:14px}
+    .lede-full{display:none}
+    .hero .lede-short{display:block}
+    .hero-ctas{margin-top:22px;gap:10px}
+    .hero-ctas .btn{flex:1 1 auto;font-size:15px;padding:0 12px}
+    .hero-cred{display:none}
+    .scene{aspect-ratio:4/3}
+
+    /* Estimator total bar + request cards: snug, nothing clipped */
+    .est-bar{padding:16px 18px}
+    .est-bar .total{font-size:34px}
+    .req{padding:20px 18px}
+    .tlabel{font-size:11.5px}
+
+    /* Booking chips: even rows, no orphan chip dangling */
+    #day-chips .chip{flex:1 1 0;padding-left:4px;padding-right:4px}
+    #time-chips .chip{flex:1 1 26%}
+    .dash-controls select{width:100%}
+    .review-ask .btn{flex:1 1 100%}
+  }
 </style>
 </head>
 <body>
@@ -490,14 +539,15 @@
       <span class="brand-mark" aria-hidden="true">SP</span>
       <span>
         <span class="brand-name">San Pedro Automotive</span>
-        <span class="brand-sub" style="display:block">Auto repair · San Pedro, CA</span>
+        <span class="brand-sub">Auto repair · San Pedro, CA</span>
       </span>
     </a>
+    <a class="btn call header-call" href="tel:+13108313700" aria-label="Call San Pedro Automotive at (310) 831-3700">Call</a>
     <nav class="main" aria-label="Main">
-      <a href="#services">Services</a>
       <a href="#estimate">Estimate</a>
-      <a href="#about">About</a>
       <a href="#book">Book service</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
       <a href="#my-requests" id="nav-my-requests">My requests <span class="badge" id="req-badge" hidden>0</span></a>
       <a class="btn call" href="tel:+13108313700">Call (310) 831-3700</a>
     </nav>
@@ -513,7 +563,8 @@
         <p class="marker">Independent auto repair · N. Gaffey St</p>
         <h1>San Pedro<br /><span class="amber">Auto Repair</span></h1>
         <p class="tagline">Foreign and domestic, fixed right.</p>
-        <p class="lede">Diagnostics, brakes, oil changes, suspension and general repair — owner-run by ASE Master Technician Joe Bustamante. Book online, follow the work live, and pick up when it's ready. No phone tag.</p>
+        <p class="lede lede-full">Diagnostics, brakes, oil changes, suspension and general repair — owner-run by ASE Master Technician Joe Bustamante. Book online, follow the work live, and pick up when it's ready. No phone tag.</p>
+        <p class="lede lede-short">Diagnostics, brakes, oil changes, suspension and general repair — owner-run by ASE Master Technician Joe Bustamante.</p>
         <div class="hero-ctas">
           <a class="btn" href="#book">Book service</a>
           <a class="btn secondary" href="#estimate">Get an example estimate</a>
@@ -543,62 +594,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Intro / About -->
-  <section class="cine" id="about">
-    <div class="cine-bg"><img src="assets/intro.webp" alt="" loading="lazy" width="1200" height="800" /></div>
-    <div class="wrap">
-      <p class="marker">The shop</p>
-      <h2 class="mega">We open it.<br />We find it.<br />We fix it.</h2>
-      <p class="quiet">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself. The shop handles maintenance, service, repairs and diagnostics for foreign and domestic vehicles — and long-time customers keep coming back to the same small team.</p>
-      <ul class="check-list">
-        <li><span class="tick" aria-hidden="true">✓</span><span><strong>Owner on site.</strong> The man who owns the shop is the ASE Master Technician doing the work.</span></li>
-        <li><span class="tick" aria-hidden="true">✓</span><span><strong>The price before the work.</strong> We inspect first and call you with the price — nothing starts until you say yes.</span></li>
-        <li><span class="tick" aria-hidden="true">✓</span><span><strong>Foreign and domestic.</strong> One shop for the whole household's cars.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section class="cine" id="services">
-    <div class="cine-bg"><img src="assets/camshaft.webp" alt="" loading="lazy" width="1024" height="607" /></div>
-    <div class="wrap">
-      <p class="marker">Services</p>
-      <h2 class="mega">The whole car,<br />not one part of it.</h2>
-      <div class="svc-cols">
-        <div class="svc-col">
-          <h3>Diagnostics</h3>
-          <p>Check-engine lights, electrical faults and drivability problems, traced with computer diagnostics and hands-on troubleshooting.</p>
-          <button class="req-link" type="button" data-book-service="Diagnostics">Request this service →</button>
-        </div>
-        <div class="svc-col">
-          <h3>Brake service</h3>
-          <p>Pads, rotors, calipers and hydraulics — inspected first, replaced only as needed.</p>
-          <button class="req-link" type="button" data-book-service="Brake service">Request this service →</button>
-        </div>
-        <div class="svc-col">
-          <h3>Oil changes</h3>
-          <p>Oil and filter change, plus a check of fluids, belts and hoses while your car is on the lift.</p>
-          <button class="req-link" type="button" data-book-service="Oil change">Request this service →</button>
-        </div>
-        <div class="svc-col">
-          <h3>Scheduled maintenance</h3>
-          <p>Factory-scheduled maintenance that keeps your warranty intact and catches wear before it becomes a repair.</p>
-          <button class="req-link" type="button" data-book-service="Scheduled maintenance">Request this service →</button>
-        </div>
-        <div class="svc-col">
-          <h3>Suspension &amp; steering</h3>
-          <p>Shocks, struts, axles and steering components inspected and replaced as needed.</p>
-          <button class="req-link" type="button" data-book-service="Suspension &amp; steering">Request this service →</button>
-        </div>
-        <div class="svc-col">
-          <h3>General repair</h3>
-          <p>Engine and mechanical repair for foreign and domestic vehicles.</p>
-          <button class="req-link" type="button" data-book-service="General repair">Request this service →</button>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Estimator -->
   <section class="cine plain" id="estimate">
@@ -634,21 +629,6 @@
           <button class="btn" type="button" id="est-book">Book these services</button>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section class="cine" id="how">
-    <div class="cine-bg"><img src="assets/lift.webp" alt="" loading="lazy" width="800" height="1200" /></div>
-    <div class="wrap">
-      <p class="marker">How it works</p>
-      <h2 class="mega">Four steps,<br />no surprises.</h2>
-      <ol class="steps">
-        <li><span class="n" aria-hidden="true">1</span><span><span class="s-t">You tell us what it is doing</span><br /><span class="s-d">Book here in a minute — the noise, the light on the dash, whatever you've noticed.</span></span></li>
-        <li><span class="n" aria-hidden="true">2</span><span><span class="s-t">We inspect and call you with the price</span><br /><span class="s-d">Nothing is repaired until you've heard the price and said yes.</span></span></li>
-        <li><span class="n" aria-hidden="true">3</span><span><span class="s-t">We fix it</span><br /><span class="s-d">Follow your car through inspection, the work and the quality check, live, under My requests.</span></span></li>
-        <li><span class="n" aria-hidden="true">4</span><span><span class="s-t">You pick it up</span><br /><span class="s-d">When it reads Ready for pickup, it's ready. The job joins your service history on this page.</span></span></li>
-      </ol>
     </div>
   </section>
 
@@ -735,6 +715,77 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="cine" id="services">
+    <div class="cine-bg"><img src="assets/camshaft.webp" alt="" loading="lazy" width="1024" height="607" /></div>
+    <div class="wrap">
+      <p class="marker">Services</p>
+      <h2 class="mega">The whole car,<br />not one part of it.</h2>
+      <div class="svc-cols">
+        <div class="svc-col">
+          <h3>Diagnostics</h3>
+          <p>Check-engine lights, electrical faults and drivability problems, traced with computer diagnostics and hands-on troubleshooting.</p>
+          <button class="req-link" type="button" data-book-service="Diagnostics">Request this service →</button>
+        </div>
+        <div class="svc-col">
+          <h3>Brake service</h3>
+          <p>Pads, rotors, calipers and hydraulics — inspected first, replaced only as needed.</p>
+          <button class="req-link" type="button" data-book-service="Brake service">Request this service →</button>
+        </div>
+        <div class="svc-col">
+          <h3>Oil changes</h3>
+          <p>Oil and filter change, plus a check of fluids, belts and hoses while your car is on the lift.</p>
+          <button class="req-link" type="button" data-book-service="Oil change">Request this service →</button>
+        </div>
+        <div class="svc-col">
+          <h3>Scheduled maintenance</h3>
+          <p>Factory-scheduled maintenance that keeps your warranty intact and catches wear before it becomes a repair.</p>
+          <button class="req-link" type="button" data-book-service="Scheduled maintenance">Request this service →</button>
+        </div>
+        <div class="svc-col">
+          <h3>Suspension &amp; steering</h3>
+          <p>Shocks, struts, axles and steering components inspected and replaced as needed.</p>
+          <button class="req-link" type="button" data-book-service="Suspension &amp; steering">Request this service →</button>
+        </div>
+        <div class="svc-col">
+          <h3>General repair</h3>
+          <p>Engine and mechanical repair for foreign and domestic vehicles.</p>
+          <button class="req-link" type="button" data-book-service="General repair">Request this service →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="cine" id="how">
+    <div class="cine-bg"><img src="assets/lift.webp" alt="" loading="lazy" width="800" height="1200" /></div>
+    <div class="wrap">
+      <p class="marker">How it works</p>
+      <h2 class="mega">Four steps,<br />no surprises.</h2>
+      <ol class="steps">
+        <li><span class="n" aria-hidden="true">1</span><span><span class="s-t">You tell us what it is doing</span><br /><span class="s-d">Book here in a minute — the noise, the light on the dash, whatever you've noticed.</span></span></li>
+        <li><span class="n" aria-hidden="true">2</span><span><span class="s-t">We inspect and call you with the price</span><br /><span class="s-d">Nothing is repaired until you've heard the price and said yes.</span></span></li>
+        <li><span class="n" aria-hidden="true">3</span><span><span class="s-t">We fix it</span><br /><span class="s-d">Follow your car through inspection, the work and the quality check, live, under My requests.</span></span></li>
+        <li><span class="n" aria-hidden="true">4</span><span><span class="s-t">You pick it up</span><br /><span class="s-d">When it reads Ready for pickup, it's ready. The job joins your service history on this page.</span></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Intro / About -->
+  <section class="cine" id="about">
+    <div class="cine-bg"><img src="assets/intro.webp" alt="" loading="lazy" width="1200" height="800" /></div>
+    <div class="wrap">
+      <p class="marker">The shop</p>
+      <h2 class="mega">We open it.<br />We find it.<br />We fix it.</h2>
+      <p class="quiet">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself. The shop handles maintenance, service, repairs and diagnostics for foreign and domestic vehicles — and long-time customers keep coming back to the same small team.</p>
+      <ul class="check-list">
+        <li><span class="tick" aria-hidden="true">✓</span><span><strong>Owner on site.</strong> The man who owns the shop is the ASE Master Technician doing the work.</span></li>
+        <li><span class="tick" aria-hidden="true">✓</span><span><strong>The price before the work.</strong> We inspect first and call you with the price — nothing starts until you say yes.</span></li>
+        <li><span class="tick" aria-hidden="true">✓</span><span><strong>Foreign and domestic.</strong> One shop for the whole household's cars.</span></li>
+      </ul>
     </div>
   </section>
 
