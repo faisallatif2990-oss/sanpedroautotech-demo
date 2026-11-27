@@ -142,42 +142,26 @@
   .btn.call{white-space:nowrap}
   .btn[disabled]{opacity:.55;cursor:default}
 
-  /* Hero */
-  .hero{position:relative;background:radial-gradient(1100px 520px at 78% 30%, #14202b 0%, var(--bg) 62%);overflow:hidden}
-  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;padding-top:72px;padding-bottom:72px}
+  /* Hero — full-bleed shop-front photo, headline over it at the left */
+  .hero{position:relative;overflow:hidden;background:#0a0e13;min-height:min(88vh,780px);display:flex;align-items:center}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg, rgba(5,7,9,.93) 0%, rgba(5,7,9,.80) 44%, rgba(5,7,9,.36) 78%, rgba(5,7,9,.45) 100%),
+               linear-gradient(0deg, rgba(5,7,9,.88) 0%, rgba(5,7,9,0) 34%, rgba(5,7,9,0) 78%, rgba(5,7,9,.55) 100%);
+  }
+  .hero-in{padding-top:88px;padding-bottom:88px;width:100%}
   .hero h1{
     font-family:"Barlow Condensed",sans-serif;font-weight:700;text-transform:uppercase;
     font-size:clamp(58px,8vw,104px);line-height:.94;letter-spacing:.005em;color:#fff;
   }
   .hero h1 .amber{color:var(--amber)}
   .hero .tagline{font-size:21px;font-weight:600;color:#fff;margin-top:20px}
-  .hero .lede{font-size:17.5px;color:var(--ink-2);margin-top:10px;max-width:32em}
-  .hero .lede-short{display:none}
   .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-  .hero-cred{
-    margin-top:30px;padding-top:20px;border-top:1px solid var(--line-soft);
-    font-size:15px;color:var(--ink-2);display:flex;gap:10px 28px;flex-wrap:wrap;
-  }
-  .hero-cred strong{color:#fff;font-weight:600}
-  /* Hero — 3D showroom stage (pointer tilt + layered scroll parallax) */
-  .scene{
-    position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;
-    background:#0b141d;border:1px solid var(--line);perspective:1200px;isolation:isolate;
-    box-shadow:0 30px 60px rgba(0,0,0,.5);
-  }
-  .scene-3d{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
-  .scene-img{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
-    transform:scale(1.07);will-change:transform;
-  }
-  .scene-sheen{
-    position:absolute;inset:-12%;pointer-events:none;transform:translateZ(42px);will-change:transform;
-    background:linear-gradient(115deg, rgba(255,255,255,.09) 0%, rgba(255,255,255,0) 42%);
-  }
-  @media (prefers-reduced-motion: reduce){
-    .scene-img{transform:none}
-    .scene-sheen{transform:translateZ(0)}
-  }
+  .hero-call{margin-top:18px;font-size:16px;color:var(--ink-2)}
+  .hero-call a{color:#fff;font-weight:600;text-decoration:none;white-space:nowrap}
+  .hero-call a:hover{text-decoration:underline;text-underline-offset:3px}
 
   /* Trust strip — four small boxes, always one row */
   .trust-band{border-top:1px solid var(--line-soft);background:var(--bg);padding:16px 0}
@@ -199,15 +183,29 @@
     display:inline-flex;align-items:center;justify-content:center;margin-top:2px;
   }
 
-  /* Services — small columns over the photo */
-  .svc-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 44px;margin-top:48px;max-width:1020px}
-  .svc-col h3{font-size:20px;color:#fff}
-  .svc-col p{color:var(--ink-2);font-size:15.5px;margin-top:6px}
-  .svc-col .req-link{
-    background:none;border:none;padding:10px 0 4px;min-height:44px;cursor:pointer;
+  /* Trust / About — points at the left, one big rounded photo at the right */
+  .about-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center}
+  .about-photo{border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .about-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+
+  /* Services — two-column panel of icon + name + one-line description */
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px}
+  .svc-item{
+    display:flex;gap:16px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:22px;
+  }
+  .svc-icon{
+    flex:0 0 46px;width:46px;height:46px;border-radius:999px;background:var(--amber);color:var(--amber-ink);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .svc-icon svg{width:23px;height:23px}
+  .svc-item h3{font-size:19.5px;color:#fff}
+  .svc-item p{color:var(--ink-2);font-size:15.5px;margin-top:5px}
+  .svc-item .req-link{
+    background:none;border:none;padding:10px 0 2px;min-height:44px;cursor:pointer;
     color:var(--amber);font-weight:600;font-size:15.5px;display:inline-flex;align-items:center;gap:6px;
   }
-  .svc-col .req-link:hover{text-decoration:underline;text-underline-offset:3px}
+  .svc-item .req-link:hover{text-decoration:underline;text-underline-offset:3px}
 
   /* FAQ rows */
   .faq{margin-top:44px;max-width:720px;border-top:1px solid var(--line)}
@@ -269,6 +267,13 @@
   }
   .field textarea{min-height:88px;resize:vertical}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field-row.three{grid-template-columns:.8fr 1.1fr 1.1fr}
+  /* Visit card beside the booking form */
+  .visit-card{margin-top:34px;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:22px 24px;max-width:30em}
+  .visit-card h3{font-size:19px;color:#fff;margin-bottom:10px}
+  .visit-card p{color:var(--ink-2);font-size:15.5px}
+  .visit-card p + p{margin-top:8px}
+  .visit-card a{font-weight:500}
   .form-note{font-size:14.5px;color:var(--ink-2)}
   .form-error{background:var(--err-bg);color:#ffd9d6;border-radius:8px;padding:12px 14px;font-weight:500}
   .form-error[hidden]{display:none}
@@ -435,10 +440,10 @@
   .msg[hidden]{display:none}
 
   @media (max-width:900px){
-    .hero-grid{grid-template-columns:1fr;gap:32px;padding-top:48px;padding-bottom:48px}
-    .scene{aspect-ratio:16/9}
+    .hero-in{padding-top:64px;padding-bottom:64px}
+    .about-grid{grid-template-columns:1fr;gap:28px}
+    .about-photo{order:-1}
     .book-grid,.visit-grid{grid-template-columns:1fr}
-    .svc-cols{grid-template-columns:1fr 1fr}
     .trust-row{grid-template-columns:repeat(4,1fr);gap:8px}
     .trust{padding:10px}
     .trust .t-big{font-size:13.5px}
@@ -448,7 +453,7 @@
     .cine{padding:76px 0}
   }
   @media (max-width:640px){
-    .svc-cols{grid-template-columns:1fr}
+    .svc-grid{grid-template-columns:1fr}
     .est-services{grid-template-columns:1fr}
     .tiles{grid-template-columns:1fr 1fr 1fr;gap:10px}
     .tile img{height:76px}
@@ -457,11 +462,9 @@
   }
   @media (max-width:560px){
     .field-row{grid-template-columns:1fr}
+    .field-row.three{grid-template-columns:.8fr 1.1fr 1.1fr;gap:10px}
     .header-in{gap:8px}
     nav.main{margin-left:0}
-    .hero-grid{padding-top:40px;padding-bottom:40px;gap:28px}
-    .scene{aspect-ratio:4/3}
-    .hero-cred{gap:6px 20px}
     .trust-row{grid-template-columns:repeat(4,1fr);gap:6px}
     .trust{padding:8px 7px;border-radius:7px}
     .trust .t-big{font-size:11.5px;line-height:1.18}
@@ -500,18 +503,15 @@
     nav.main a{white-space:nowrap;font-size:12px;padding:7px 5px;min-height:26px;flex:0 0 auto;gap:5px}
     nav.main .badge{min-width:19px;height:19px;font-size:11.5px;padding:0 5px}
 
-    /* Hero — tighter stack; the 3D stage sits centred, full width, early */
-    .hero-grid{padding-top:26px;padding-bottom:40px;gap:22px}
+    /* Hero — photo fills the screen, headline and buttons over it at the left */
+    .hero-in{padding-top:40px;padding-bottom:44px}
     .marker{font-size:11.5px;letter-spacing:.11em;gap:10px;margin-bottom:14px}
     .marker::before{width:24px;flex-basis:24px}
     .hero h1{font-size:48px}
     .hero .tagline{font-size:19px;margin-top:14px}
-    .lede-full{display:none}
-    .hero .lede-short{display:block}
-    .hero-ctas{margin-top:22px;gap:10px}
-    .hero-ctas .btn{flex:1 1 auto;font-size:15px;padding:0 12px}
-    .hero-cred{display:none}
-    .scene{aspect-ratio:4/3}
+    .hero-ctas{margin-top:22px;gap:10px;flex-wrap:nowrap}
+    .hero-ctas .btn{flex:1 1 0;font-size:15px;padding:0 10px;white-space:nowrap}
+    .hero-call{font-size:15px;margin-top:14px}
 
     /* Trust strip: four small boxes stay in the one row */
     .trust-band{padding:12px 0}
@@ -565,31 +565,18 @@
 
 <main id="top">
 
-  <!-- Hero -->
+  <!-- Hero — full-bleed shop-front photo, headline over it at the left -->
   <div class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <p class="marker">Independent auto repair · N. Gaffey St</p>
-        <h1>San Pedro<br /><span class="amber">Auto Repair</span></h1>
-        <p class="tagline">Foreign and domestic, fixed right.</p>
-        <p class="lede lede-full">Diagnostics, brakes, oil changes, suspension and general repair — owner-run by ASE Master Technician Joe Bustamante. Book online, follow the work live, and pick up when it's ready. No phone tag.</p>
-        <p class="lede lede-short">Diagnostics, brakes, oil changes, suspension and general repair — owner-run by ASE Master Technician Joe Bustamante.</p>
-        <div class="hero-ctas">
-          <a class="btn" href="#book">Book service</a>
-          <a class="btn secondary" href="#estimate">Get an example estimate</a>
-        </div>
-        <div class="hero-cred">
-          <span><strong>ASE Master Technician</strong> — owner on site</span>
-          <span><strong>BBB rated A−</strong></span>
-          <span><strong>Foreign &amp; domestic</strong></span>
-        </div>
+    <div class="hero-bg"><img src="assets/shop-dusk.webp" alt="" width="1400" height="788" fetchpriority="high" /></div>
+    <div class="wrap hero-in">
+      <p class="marker">Independent auto repair · N. Gaffey St</p>
+      <h1>San Pedro<br /><span class="amber">Auto Repair</span></h1>
+      <p class="tagline">Foreign and domestic, fixed right.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="#book">Book service</a>
+        <a class="btn secondary" href="#estimate">Get an example estimate</a>
       </div>
-      <div class="scene" id="scene">
-        <div class="scene-3d" id="scene-3d">
-          <img class="scene-img" id="scene-img" src="assets/car-hero.webp" alt="Steel-blue SUV in a dark showroom" width="981" height="788" fetchpriority="high" />
-          <div class="scene-sheen" aria-hidden="true"></div>
-        </div>
-      </div>
+      <p class="hero-call">Or call us: <a href="tel:+13108313700">(310) 831-3700</a></p>
     </div>
   </div>
 
@@ -652,6 +639,14 @@
           <h2 class="mega">Tell us what<br />it is doing.</h2>
           <p class="quiet">Pick a day and a time that suit you, tell us what the car is doing, and send it. The request lands straight in the shop's dashboard, and the shop calls to confirm — no account, no email needed.</p>
           <p class="quiet">Need the car collected? Turn on pick-up &amp; drop in the form and the shop will arrange it when they call.</p>
+          <div class="visit-card">
+            <h3>Visit the shop</h3>
+            <p><strong style="color:#fff">San Pedro Automotive</strong><br />
+            1208 N Gaffey St, Suite C, San Pedro, CA 90731</p>
+            <p>Mon–Fri · 7:00 AM – 4:30 PM<br />
+            Phone: <a href="tel:+13108313700">(310) 831-3700</a></p>
+            <p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=San+Pedro+Automotive%2C+1208+N+Gaffey+St+%23C%2C+San+Pedro%2C+CA+90731" target="_blank" rel="noopener">Get directions</a></p>
+          </div>
         </div>
         <div>
           <form class="book panel" id="book-form" novalidate>
@@ -679,9 +674,26 @@
                 <input id="f-phone" name="phone" type="tel" autocomplete="tel" required />
               </div>
             </div>
+            <div class="field-row three">
+              <div class="field">
+                <label for="f-year">Year</label>
+                <input id="f-year" name="year" type="text" inputmode="numeric" autocomplete="off" placeholder="2019" required />
+              </div>
+              <div class="field">
+                <label for="f-make">Make</label>
+                <input id="f-make" name="make" type="text" autocomplete="off" placeholder="Toyota" required />
+              </div>
+              <div class="field">
+                <label for="f-model">Model</label>
+                <input id="f-model" name="model" type="text" autocomplete="off" placeholder="Camry" required />
+              </div>
+            </div>
             <div class="field">
-              <label for="f-vehicle">Vehicle <span class="hint">— year, make and model, e.g. 2018 Toyota Camry</span></label>
-              <input id="f-vehicle" name="vehicle" type="text" required />
+              <label for="f-contact">Preferred contact</label>
+              <select id="f-contact" name="contact">
+                <option>Phone call</option>
+                <option>Text message</option>
+              </select>
             </div>
             <div class="field">
               <span class="f-label" id="day-label">Preferred day</span>
@@ -734,53 +746,77 @@
     <div class="wrap">
       <p class="marker">Services</p>
       <h2 class="mega">The whole car,<br />not one part of it.</h2>
-      <div class="svc-cols">
-        <div class="svc-col">
-          <h3>Diagnostics</h3>
-          <p>Check-engine lights, electrical faults and drivability problems, traced with computer diagnostics and hands-on troubleshooting.</p>
-          <button class="req-link" type="button" data-book-service="Diagnostics">Request this service →</button>
+      <div class="svc-grid">
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <div>
+            <h3>Diagnostics</h3>
+            <p>Check-engine lights and electrical faults, traced to the cause.</p>
+            <button class="req-link" type="button" data-book-service="Diagnostics">Request this service →</button>
+          </div>
         </div>
-        <div class="svc-col">
-          <h3>Brake service</h3>
-          <p>Pads, rotors, calipers and hydraulics — inspected first, replaced only as needed.</p>
-          <button class="req-link" type="button" data-book-service="Brake service">Request this service →</button>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <div>
+            <h3>Brake service</h3>
+            <p>Pads, rotors and hydraulics — inspected first, replaced only as needed.</p>
+            <button class="req-link" type="button" data-book-service="Brake service">Request this service →</button>
+          </div>
         </div>
-        <div class="svc-col">
-          <h3>Oil changes</h3>
-          <p>Oil and filter change, plus a check of fluids, belts and hoses while your car is on the lift.</p>
-          <button class="req-link" type="button" data-book-service="Oil change">Request this service →</button>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span>
+          <div>
+            <h3>Oil changes</h3>
+            <p>Oil and filter, with fluids, belts and hoses checked on the lift.</p>
+            <button class="req-link" type="button" data-book-service="Oil change">Request this service →</button>
+          </div>
         </div>
-        <div class="svc-col">
-          <h3>Scheduled maintenance</h3>
-          <p>Factory-scheduled maintenance that keeps your warranty intact and catches wear before it becomes a repair.</p>
-          <button class="req-link" type="button" data-book-service="Scheduled maintenance">Request this service →</button>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></span>
+          <div>
+            <h3>Scheduled maintenance</h3>
+            <p>Factory-scheduled servicing that keeps your warranty intact.</p>
+            <button class="req-link" type="button" data-book-service="Scheduled maintenance">Request this service →</button>
+          </div>
         </div>
-        <div class="svc-col">
-          <h3>Suspension &amp; steering</h3>
-          <p>Shocks, struts, axles and steering components inspected and replaced as needed.</p>
-          <button class="req-link" type="button" data-book-service="Suspension &amp; steering">Request this service →</button>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 14.5V21"/><path d="M9.8 10.8 3.6 8.6"/><path d="M14.2 10.8l6.2-2.2"/></svg></span>
+          <div>
+            <h3>Suspension &amp; steering</h3>
+            <p>Shocks, struts, axles and steering, inspected and replaced as needed.</p>
+            <button class="req-link" type="button" data-book-service="Suspension &amp; steering">Request this service →</button>
+          </div>
         </div>
-        <div class="svc-col">
-          <h3>General repair</h3>
-          <p>Engine and mechanical repair for foreign and domestic vehicles.</p>
-          <button class="req-link" type="button" data-book-service="General repair">Request this service →</button>
+        <div class="svc-item">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+          <div>
+            <h3>General repair</h3>
+            <p>Engine and mechanical repair for foreign and domestic vehicles.</p>
+            <button class="req-link" type="button" data-book-service="General repair">Request this service →</button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Intro / About -->
-  <section class="cine" id="about">
-    <div class="cine-bg"><img src="assets/intro.webp" alt="" loading="lazy" width="1200" height="800" /></div>
+  <!-- Intro / About — trust points at the left, big engine-bay photo at the right -->
+  <section class="cine plain" id="about">
     <div class="wrap">
-      <p class="marker">The shop</p>
-      <h2 class="mega">We open it.<br />We find it.<br />We fix it.</h2>
-      <p class="quiet">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself. The shop handles maintenance, service, repairs and diagnostics for foreign and domestic vehicles — and long-time customers keep coming back to the same small team.</p>
-      <ul class="check-list">
-        <li><span class="tick" aria-hidden="true">✓</span><span><strong>Owner on site.</strong> The man who owns the shop is the ASE Master Technician doing the work.</span></li>
-        <li><span class="tick" aria-hidden="true">✓</span><span><strong>The price before the work.</strong> We inspect first and call you with the price — nothing starts until you say yes.</span></li>
-        <li><span class="tick" aria-hidden="true">✓</span><span><strong>Foreign and domestic.</strong> One shop for the whole household's cars.</span></li>
-      </ul>
+      <div class="about-grid">
+        <div>
+          <p class="marker">The shop</p>
+          <h2 class="mega">We open it.<br />We find it.<br />We fix it.</h2>
+          <p class="quiet">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself. The shop handles maintenance, service, repairs and diagnostics for foreign and domestic vehicles — and long-time customers keep coming back to the same small team.</p>
+          <ul class="check-list">
+            <li><span class="tick" aria-hidden="true">✓</span><span><strong>Owner on site.</strong> The man who owns the shop is the ASE Master Technician doing the work.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span><strong>The price before the work.</strong> We inspect first and call you with the price — nothing starts until you say yes.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span><strong>Foreign and domestic.</strong> One shop for the whole household's cars.</span></li>
+          </ul>
+        </div>
+        <div class="about-photo">
+          <img src="assets/intro.webp" alt="A technician's gloved hands working in an engine bay" loading="lazy" width="1200" height="800" />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -836,7 +872,7 @@
 
   <!-- Visit -->
   <section class="cine tight" id="visit">
-    <div class="cine-bg vivid deep"><img src="assets/shop-dusk.webp" alt="" loading="lazy" width="1400" height="788" /></div>
+    <div class="cine-bg vivid deep"><img src="assets/car-hero.webp" alt="" loading="lazy" width="981" height="788" /></div>
     <div class="wrap">
       <p class="marker">Visit</p>
       <h2 class="mega">Find the shop.</h2>
@@ -1126,6 +1162,7 @@
         + '<div class="req-top"><h3>' + esc(r.service) + ' — ' + esc(r.vehicle) + '</h3>'
         + '<span class="status ' + STATUS[r.status].cls + '">' + STATUS[r.status].label + '</span></div>'
         + '<p class="meta">' + esc(r.id) + ' · ' + esc(r.name) + ' · ' + esc(r.phone) + ' · ' + esc(fmtDate(r.date)) + ' · ' + esc(r.time)
+        + (r.contact ? ' · Prefers ' + esc(r.contact.toLowerCase()) : '')
         + (r.pickup ? ' · Pick-up &amp; drop requested' : '') + '</p>'
         + (r.note ? '<p class="note">Note: ' + esc(r.note) + '</p>' : '')
         + '<div class="dash-controls"><label for="st-' + r.id + '" style="font-weight:600;font-size:15.5px">Status — moves the customer\'s live tracker</label>'
@@ -1270,7 +1307,11 @@
     var service = $("f-service").value;
     var name = $("f-name").value.trim();
     var phone = $("f-phone").value.trim();
-    var vehicle = $("f-vehicle").value.trim();
+    var vehYear = $("f-year").value.trim();
+    var vehMake = $("f-make").value.trim();
+    var vehModel = $("f-model").value.trim();
+    var vehicle = [vehYear, vehMake, vehModel].filter(Boolean).join(" ");
+    var contact = $("f-contact").value;
     var pickup = $("f-pickup").checked;
     var note = $("f-note").value.trim();
     var err = $("form-error");
@@ -1278,7 +1319,7 @@
     if(!service) missing.push("a service");
     if(!name) missing.push("your name");
     if(!phone) missing.push("your phone number");
-    if(!vehicle) missing.push("your vehicle");
+    if(!vehYear || !vehMake || !vehModel) missing.push("your vehicle's year, make and model");
     if(!selectedDay) missing.push("a preferred day");
     if(!selectedTime) missing.push("a preferred time");
     if(missing.length){
@@ -1291,7 +1332,7 @@
     seq += 1;
     var req = {
       id: "SP-" + String(1000 + seq),
-      service: service, name: name, phone: phone, vehicle: vehicle,
+      service: service, name: name, phone: phone, vehicle: vehicle, contact: contact,
       date: selectedDay, time: selectedTime, pickup: pickup,
       note: note, status: "received", mine: true
     };
@@ -1303,7 +1344,7 @@
       + '<dt>Vehicle</dt><dd>' + esc(req.vehicle) + '</dd>'
       + '<dt>Preferred</dt><dd>' + esc(fmtDate(req.date)) + ' · ' + esc(req.time) + '</dd>'
       + (req.pickup ? '<dt>Pick-up &amp; drop</dt><dd>Yes — the shop will arrange it on the confirmation call</dd>' : '')
-      + '<dt>We\'ll call</dt><dd>' + esc(req.phone) + '</dd>';
+      + '<dt>Preferred contact</dt><dd>' + esc(req.contact) + ' · ' + esc(req.phone) + '</dd>';
     form.hidden = true;
     var panel = $("confirm-panel");
     panel.hidden = false;
@@ -1377,70 +1418,6 @@
     okMsg.hidden = false;
     okMsg.scrollIntoView({behavior:"smooth", block:"center"});
   });
-
-  /* ---------- Hero 3D stage: eased tilt (pointer) + layered parallax (scroll) ---------- */
-  (function(){
-    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var finePointer = window.matchMedia("(pointer: fine)").matches;
-    var scene = $("scene");
-    var stage = $("scene-3d");
-    var img = $("scene-img");
-    var sheen = scene ? scene.querySelector(".scene-sheen") : null;
-    if(!scene || !stage || !img) return;
-
-    var targetRX = 0, targetRY = 0, curRX = 0, curRY = 0;
-    var scrollShift = 0, scrollDirty = false, running = false, inView = true;
-
-    function loop(){
-      curRX += (targetRX - curRX) * 0.075;
-      curRY += (targetRY - curRY) * 0.075;
-      stage.style.transform = "rotateX(" + curRX.toFixed(3) + "deg) rotateY(" + curRY.toFixed(3) + "deg)";
-      img.style.transform = "scale(1.07) translate3d(" + (curRY * -0.9).toFixed(2) + "px," + ((curRX * 0.9) + scrollShift).toFixed(2) + "px,0)";
-      if(sheen){
-        sheen.style.transform = "translate3d(" + (curRY * 1.6).toFixed(2) + "px," + ((curRX * -1.6 + scrollShift * 1.6)).toFixed(2) + "px,42px)";
-      }
-      if(inView && (Math.abs(targetRX - curRX) > 0.01 || Math.abs(targetRY - curRY) > 0.01 || scrollDirty)){
-        scrollDirty = false;
-        requestAnimationFrame(loop);
-      } else {
-        running = false;
-      }
-    }
-    function kick(){
-      if(!running && inView){ running = true; requestAnimationFrame(loop); }
-    }
-    if(finePointer){
-      scene.addEventListener("pointermove", function(ev){
-        var r = scene.getBoundingClientRect();
-        var px = (ev.clientX - r.left) / r.width - 0.5;
-        var py = (ev.clientY - r.top) / r.height - 0.5;
-        targetRY = px * 5;
-        targetRX = py * -4;
-        kick();
-      });
-      scene.addEventListener("pointerleave", function(){
-        targetRX = 0; targetRY = 0; kick();
-      });
-    }
-    function onScroll(){
-      var r = scene.getBoundingClientRect();
-      var vh = window.innerHeight || 800;
-      if(r.bottom < 0 || r.top > vh) return;
-      var progress = (r.top + r.height / 2 - vh / 2) / vh;
-      scrollShift = Math.max(-10, Math.min(10, progress * -14));
-      scrollDirty = true;
-      kick();
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    if("IntersectionObserver" in window){
-      new IntersectionObserver(function(entries){
-        inView = entries[0].isIntersecting;
-        if(inView) kick();
-      }).observe(scene);
-    }
-    onScroll();
-    kick();
-  })();
 
   renderMine();
 })();
