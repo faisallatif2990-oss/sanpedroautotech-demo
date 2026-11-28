@@ -200,6 +200,12 @@
     -webkit-overflow-scrolling:touch;cursor:grab;
   }
   .seg:active{cursor:grabbing}
+  /* While the row is auto-drifting, snap is suspended: with proximity
+     snap on, Chromium snaps every small programmatic drift step back to
+     the current snap point and the row never actually moves. Snap comes
+     back the moment the visitor interacts (the .drifting class is
+     removed in haltDrift). */
+  .seg.drifting{scroll-snap-type:none}
   .seg .tile{
     flex:0 0 168px;scroll-snap-align:start;background:var(--sheet);
     border:1.5px solid var(--line-strong);border-radius:8px;overflow:hidden;
@@ -1360,13 +1366,17 @@
      the visitor touches it. A tap stops the drift right on that car and
      selects it (the tile handler above); a finger swipe slides the row
      natively, and a mouse drag slides it too. Once touched, the drift
-     never restarts. Reduced-motion visitors get a still row. */
+     never restarts. Reduced-motion visitors get a still row. While
+     drifting, scroll-snap is suspended (the .drifting class) — with
+     proximity snap left on, Chromium snaps each tiny drift step back
+     to the current snap point and the row never moves; snap returns
+     as soon as the visitor interacts (see haltDrift). */
   var segRow = $("est-tiles");
   var driftHalted = false;
   var driftDir = 1;
   var driftVisible = false;
   var driftReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function haltDrift(){ driftHalted = true; }
+  function haltDrift(){ driftHalted = true; segRow.classList.remove("drifting"); }
   segRow.addEventListener("wheel", haltDrift, {passive: true});
   segRow.addEventListener("touchstart", haltDrift, {passive: true});
   if("IntersectionObserver" in window){
@@ -1390,26 +1400,36 @@
     driftLast = ts;
     requestAnimationFrame(driftFrame);
   }
-  if(!driftReduced) requestAnimationFrame(driftFrame);
+  if(!driftReduced){ segRow.classList.add("drifting"); requestAnimationFrame(driftFrame); }
 
-  /* Mouse drag-to-scroll (touch swipe is native to the row). A real
-     drag must not end as a tap, so the click that follows a drag is
-     swallowed once, in the capture phase, before it reaches a tile. */
+  /* Mouse drag-to-scroll (touch swipe is native to the row). Pointer
+     capture is taken only once a real drag is under way: capturing on
+     pointerdown retargets the click to the row, so a plain mouse click
+     would never reach the tile and the car would never be selected.
+     A real drag must not end as a tap, so the click that follows a drag
+     is swallowed once, in the capture phase, before it reaches a tile. */
   var dragX = null, dragStart = 0, dragged = false;
   segRow.addEventListener("dragstart", function(ev){ ev.preventDefault(); });
   segRow.addEventListener("pointerdown", function(ev){
     haltDrift();
     if(ev.pointerType !== "mouse") return;
     dragX = ev.clientX; dragStart = segRow.scrollLeft; dragged = false;
-    if(segRow.setPointerCapture){ try{ segRow.setPointerCapture(ev.pointerId); }catch(e){} }
   });
   segRow.addEventListener("pointermove", function(ev){
     if(dragX === null) return;
     var dx = ev.clientX - dragX;
-    if(Math.abs(dx) > 6) dragged = true;
+    if(Math.abs(dx) > 6 && !dragged){
+      dragged = true;
+      if(segRow.setPointerCapture){ try{ segRow.setPointerCapture(ev.pointerId); }catch(e){} }
+    }
     if(dragged) segRow.scrollLeft = dragStart - dx;
   });
-  function endDrag(){ dragX = null; }
+  function endDrag(){
+    dragX = null;
+    /* If a drag somehow produced no click to consume the flag, clear it
+       shortly after release so the next genuine click is not swallowed. */
+    if(dragged) setTimeout(function(){ dragged = false; }, 50);
+  }
   segRow.addEventListener("pointerup", endDrag);
   segRow.addEventListener("pointercancel", endDrag);
   segRow.addEventListener("click", function(ev){
