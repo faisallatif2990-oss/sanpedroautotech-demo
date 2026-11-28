@@ -136,8 +136,8 @@
   .brand-sub{font-size:11.5px;color:var(--ink-2);line-height:1.3;display:block;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
   nav.main{margin-left:auto;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
   nav.main a{
-    color:var(--ink);text-decoration:none;font-weight:600;font-size:15.5px;padding:9px 14px;border-radius:8px;
-    display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+    color:var(--ink);text-decoration:none;font-weight:600;font-size:15.5px;padding:5px 10px;border-radius:8px;
+    display:inline-flex;align-items:center;justify-content:center;min-height:36px;
     transition:background-color .18s var(--ease),color .18s var(--ease);
   }
   nav.main a:hover,nav.main a:focus-visible,nav.main a:active,nav.main a.active{
@@ -210,7 +210,6 @@
   .seg .tile[aria-checked="true"]{background:var(--amber);color:#171310;border-color:var(--amber-deep)}
   .seg .tile .tile-photo{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--ink-deep)}
   .seg .tile .tile-photo img{width:100%;height:100%;object-fit:cover}
-  .seg .tile .tile-photo img.flip-x{transform:scaleX(-1)}
   .seg .tile .tile-name{display:block;text-align:center;padding:10px 8px}
   .seg-nav{
     position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;z-index:3;
@@ -440,26 +439,26 @@
   /* Message the shop — everything lives in the side pop-up panel */
   .assistant-id{display:flex;align-items:center;gap:10px}
   .assistant-avatar{
-    width:38px;height:38px;flex:0 0 38px;border-radius:999px;background:var(--amber);color:#171310;
+    width:30px;height:30px;flex:0 0 30px;border-radius:999px;background:var(--amber);color:#171310;
     display:flex;align-items:center;justify-content:center;
   }
-  .assistant-avatar svg{width:19px;height:19px}
-  .assistant-name{color:var(--amber);font-weight:700;font-size:13.5px;margin-top:2px}
-  .assistant-role{color:var(--on-ink-2);font-size:12.5px}
+  .assistant-avatar svg{width:15px;height:15px}
+  .assistant-name{color:var(--amber);font-weight:700;font-size:12.5px;margin-top:1px}
+  .assistant-role{color:var(--on-ink-2);font-weight:400}
 
   .chat-thread{
-    display:flex;flex-direction:column;gap:8px;max-height:140px;overflow-y:auto;
-    padding:4px 2px 6px;scrollbar-width:thin;margin-top:0;
+    display:flex;flex-direction:column;gap:6px;max-height:104px;overflow-y:auto;
+    padding:2px 2px 4px;scrollbar-width:thin;margin-top:0;
   }
   .bubble{
-    max-width:88%;padding:9px 12px;border-radius:12px;font-size:14.5px;line-height:1.45;
+    max-width:92%;padding:7px 10px;border-radius:12px;font-size:13.5px;line-height:1.4;
   }
   .bubble.bot{background:#282219;border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:4px;align-self:flex-start}
   .bubble.user{background:var(--amber);color:#171310;border-bottom-right-radius:4px;align-self:flex-end;font-weight:500}
   .bubble .b-name{display:block;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber-ink);margin-bottom:3px}
   .bubble a{color:var(--amber-ink);font-weight:700}
   .bubble.user a{color:#171310}
-  form.msg-form{display:grid;gap:10px;margin-top:14px}
+  form.msg-form{display:grid;gap:8px;margin-top:10px}
   .msg-sent{background:var(--ok-bg);color:var(--ok);border-radius:8px;padding:12px 14px;font-weight:600}
   .msg-sent[hidden]{display:none}
 
@@ -476,11 +475,11 @@
   .chat-panel[hidden]{display:none}
   @keyframes panel-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .chat-panel-head{
-    background:var(--ink-deep);color:var(--on-ink);padding:13px 14px;flex:0 0 auto;
-    display:flex;align-items:flex-start;gap:10px;border-bottom:1px solid var(--line);
+    background:var(--ink-deep);color:var(--on-ink);padding:9px 12px;flex:0 0 auto;
+    display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);
   }
   .chat-panel-head .assistant-id{flex:1 1 auto;min-width:0}
-  .chat-panel-head h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:18px;color:#FBF7EA;line-height:1.15}
+  .chat-panel-head h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:15px;color:#FBF7EA;line-height:1.15}
   .chat-close{
     flex:0 0 34px;width:34px;height:34px;border-radius:8px;border:1px solid var(--line-ink);
     background:transparent;color:#FBF7EA;cursor:pointer;display:flex;align-items:center;justify-content:center;
@@ -488,15 +487,16 @@
   }
   .chat-close:hover{background:rgba(250,247,240,.12)}
   .chat-close svg{width:16px;height:16px}
-  .chat-panel-body{overflow-y:auto;padding:14px 14px 16px;scrollbar-width:thin}
+  .chat-panel-body{overflow-y:auto;padding:10px 12px 12px;scrollbar-width:thin}
   .chat-panel-body .a-note{color:var(--ink-2);font-size:14px;line-height:1.45}
-  .chat-panel .field{gap:5px}
-  .chat-panel .field label{font-size:14px}
-  .chat-panel .field input,.chat-panel .field textarea{min-height:40px;padding:8px 10px;font-size:14.5px}
-  .chat-panel .field textarea{min-height:62px}
-  .chat-panel form.msg-form .btn{min-height:44px;font-size:15px}
-  .chat-panel .form-note{font-size:13px}
-  .chat-panel .field-row{grid-template-columns:1fr}
+  .chat-panel .field{gap:4px}
+  .chat-panel .field label{font-size:12.5px}
+  .chat-panel .field .hint{display:none}
+  .chat-panel .field input,.chat-panel .field textarea{min-height:38px;padding:7px 9px;font-size:14px}
+  .chat-panel .field textarea{min-height:50px}
+  .chat-panel form.msg-form .btn{min-height:42px;font-size:15px}
+  .chat-panel .form-note{font-size:11.5px;line-height:1.35}
+  .chat-panel .field-row{grid-template-columns:1fr 1fr;gap:10px}
 
   /* Floating chat button — opens the pop-up panel */
   .chat-fab{
@@ -524,7 +524,7 @@
     .svc-row .req-link{grid-column:3}
   }
   @media (max-width:640px){
-    .chat-panel{right:12px;bottom:80px;width:min(300px,calc(100vw - 24px));max-height:min(430px,46dvh)}
+    .chat-panel{right:12px;bottom:80px;width:min(300px,calc(100vw - 24px));max-height:min(430px,calc(100dvh - 96px))}
     .topbar{display:none}
     .wrap{padding:0 18px}
     section[id]{scroll-margin-top:126px}
@@ -569,7 +569,7 @@
       order:3;flex:1 1 100%;width:100%;margin-left:0;flex-wrap:nowrap;
       justify-content:space-between;gap:0;padding-top:2px;
     }
-    nav.main a{white-space:nowrap;font-size:13px;padding:8px 6px;min-height:38px;flex:0 1 auto}
+    nav.main a{white-space:nowrap;font-size:13px;padding:4px 6px;min-height:32px;flex:0 1 auto}
   }
 </style>
 </head>
@@ -668,15 +668,15 @@
         <div class="seg-wrap">
           <div class="seg" role="radiogroup" aria-labelledby="est-type-label" id="est-tiles">
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="sedan"><span class="tile-photo"><img src="assets/tile-sedan.webp" alt="" width="760" height="326" /></span><span class="tile-name">Sedan</span></button>
-            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="hatchback"><span class="tile-photo"><img class="flip-x" src="assets/tile-hatchback.webp" alt="" width="760" height="473" loading="lazy" /></span><span class="tile-name">Hatchback</span></button>
-            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="coupe"><span class="tile-photo"><img src="assets/tile-coupe.webp" alt="" width="760" height="507" loading="lazy" /></span><span class="tile-name">Coupe</span></button>
-            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="convertible"><span class="tile-photo"><img src="assets/tile-convertible.webp" alt="" width="760" height="508" loading="lazy" /></span><span class="tile-name">Convertible</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="hatchback"><span class="tile-photo"><img src="assets/tile-hatchback.webp" alt="" width="760" height="473" loading="lazy" /></span><span class="tile-name">Hatchback</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="coupe"><span class="tile-photo"><img src="assets/tile-coupe.webp" alt="" width="600" height="400" loading="lazy" /></span><span class="tile-name">Coupe</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="convertible"><span class="tile-photo"><img src="assets/tile-convertible.webp" alt="" width="760" height="327" loading="lazy" /></span><span class="tile-name">Convertible</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="wagon"><span class="tile-photo"><img src="assets/tile-wagon.webp" alt="" width="760" height="507" loading="lazy" /></span><span class="tile-name">Wagon</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="suv"><span class="tile-photo"><img src="assets/tile-suv.webp" alt="" width="760" height="513" loading="lazy" /></span><span class="tile-name">SUV</span></button>
-            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="minivan"><span class="tile-photo"><img class="flip-x" src="assets/tile-minivan.webp" alt="" width="760" height="427" loading="lazy" /></span><span class="tile-name">Minivan</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="minivan"><span class="tile-photo"><img src="assets/tile-minivan.webp" alt="" width="760" height="428" loading="lazy" /></span><span class="tile-name">Minivan</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="truck"><span class="tile-photo"><img src="assets/tile-truck.webp" alt="" width="760" height="507" loading="lazy" /></span><span class="tile-name">Truck</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="van"><span class="tile-photo"><img src="assets/tile-van.webp" alt="" width="760" height="434" loading="lazy" /></span><span class="tile-name">Van</span></button>
-            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="electric"><span class="tile-photo"><img src="assets/tile-electric.webp" alt="" width="760" height="427" loading="lazy" /></span><span class="tile-name">Electric</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="electric"><span class="tile-photo"><img src="assets/tile-electric.webp" alt="" width="760" height="325" loading="lazy" /></span><span class="tile-name">Electric</span></button>
           </div>
           <button class="seg-nav prev" type="button" id="seg-prev" aria-label="Previous cars"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
           <button class="seg-nav next" type="button" id="seg-next" aria-label="More cars"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
@@ -980,8 +980,7 @@
       <span class="assistant-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
       <div>
         <h3>How can I help you?</h3>
-        <p class="assistant-name">San Pedro Assistant</p>
-        <p class="assistant-role">San Pedro Automotive · online support</p>
+        <p class="assistant-name">San Pedro Assistant <span class="assistant-role">· online support</span></p>
       </div>
     </div>
     <button class="chat-close" type="button" id="chat-close" aria-label="Close chat">
@@ -990,7 +989,7 @@
   </div>
   <div class="chat-panel-body" id="chat-panel-body">
     <div class="chat-thread" id="chat-thread" aria-live="polite">
-      <div class="bubble bot"><span class="b-name">San Pedro Assistant</span>Hi — how can I help you? Send a message below and the shop will reply by phone.</div>
+      <div class="bubble bot">Hi — how can I help? Leave a message here and the shop will reply by phone.</div>
     </div>
     <form class="msg-form" id="msg-form" novalidate>
       <div class="form-error" id="msg-error" role="alert" hidden></div>
