@@ -134,10 +134,10 @@
     letter-spacing:.015em;text-transform:uppercase;display:block;white-space:nowrap;
   }
   .brand-sub{font-size:11.5px;color:var(--ink-2);line-height:1.3;display:block;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
-  nav.main{margin-left:auto;display:flex;align-items:center;gap:2px;flex-wrap:wrap}
+  nav.main{margin-left:auto;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
   nav.main a{
-    color:var(--ink);text-decoration:none;font-weight:600;font-size:15.5px;padding:9px 13px;border-radius:999px;
-    display:inline-flex;align-items:center;min-height:44px;
+    color:var(--ink);text-decoration:none;font-weight:600;font-size:15.5px;padding:9px 14px;border-radius:8px;
+    display:inline-flex;align-items:center;justify-content:center;min-height:44px;
     transition:background-color .18s var(--ease),color .18s var(--ease);
   }
   nav.main a:hover,nav.main a:focus-visible,nav.main a:active,nav.main a.active{
@@ -193,7 +193,7 @@
   .sheet-head .sh-title{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:19px;letter-spacing:.02em}
   .sheet-head .sh-sub{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
   .est-label{display:block;font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);margin-top:28px}
-  .seg-wrap{position:relative;margin-top:14px}
+  .seg-wrap{position:relative;margin-top:14px;padding:0 52px}
   .seg{
     display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;
     padding:2px 2px 10px;scrollbar-width:thin;background:transparent;
@@ -210,9 +210,10 @@
   .seg .tile[aria-checked="true"]{background:var(--amber);color:#171310;border-color:var(--amber-deep)}
   .seg .tile .tile-photo{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--ink-deep)}
   .seg .tile .tile-photo img{width:100%;height:100%;object-fit:cover}
+  .seg .tile .tile-photo img.flip-x{transform:scaleX(-1)}
   .seg .tile .tile-name{display:block;text-align:center;padding:10px 8px}
   .seg-nav{
-    position:absolute;top:38%;width:40px;height:40px;border-radius:999px;z-index:3;
+    position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;z-index:3;
     background:var(--amber);border:1.5px solid var(--amber-deep);color:#171310;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 6px 18px rgba(0,0,0,.45);
@@ -220,8 +221,8 @@
   }
   .seg-nav svg{width:18px;height:18px}
   .seg-nav:hover{background:var(--amber-deep)}
-  .seg-nav.prev{left:-8px}
-  .seg-nav.next{right:-8px}
+  .seg-nav.prev{left:0}
+  .seg-nav.next{right:0}
   .seg-nav[disabled]{opacity:.35;cursor:default}
   .seg-hint{font-size:13.5px;color:var(--ink-3);margin-top:2px}
   .est-note-text{
@@ -445,22 +446,10 @@
   .assistant-avatar svg{width:19px;height:19px}
   .assistant-name{color:var(--amber);font-weight:700;font-size:13.5px;margin-top:2px}
   .assistant-role{color:var(--on-ink-2);font-size:12.5px}
-  .support-opts{display:grid;gap:7px;margin-top:12px}
-  .support-opts a,.support-opts button{
-    display:flex;align-items:center;gap:9px;width:100%;box-sizing:border-box;text-align:left;
-    background:var(--field);border:1px solid var(--line);border-radius:8px;
-    padding:9px 12px;min-height:44px;color:var(--ink);text-decoration:none;font-weight:600;font-size:14.5px;cursor:pointer;
-    transition:background-color .16s var(--ease),border-color .16s var(--ease);
-  }
-  .support-opts a:hover,.support-opts button:hover{background:var(--paper-2);border-color:var(--line-strong)}
-  .support-opts svg{width:17px;height:17px;color:var(--amber);flex:0 0 17px}
-  .support-opts .so-sub{display:block;font-weight:400;color:var(--ink-2);font-size:12.5px}
-  .assistant-facts{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);color:var(--ink-2);font-size:13px;display:grid;gap:4px}
-  .assistant-facts strong{color:var(--ink)}
 
   .chat-thread{
     display:flex;flex-direction:column;gap:8px;max-height:140px;overflow-y:auto;
-    padding:4px 2px 6px;scrollbar-width:thin;margin-top:14px;
+    padding:4px 2px 6px;scrollbar-width:thin;margin-top:0;
   }
   .bubble{
     max-width:88%;padding:9px 12px;border-radius:12px;font-size:14.5px;line-height:1.45;
@@ -470,13 +459,6 @@
   .bubble .b-name{display:block;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber-ink);margin-bottom:3px}
   .bubble a{color:var(--amber-ink);font-weight:700}
   .bubble.user a{color:#171310}
-  .chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
-  .chat-chips .q-chip{
-    border:1.5px solid var(--line-strong);background:transparent;border-radius:999px;color:var(--ink);
-    padding:6px 11px;min-height:36px;font-size:13.5px;font-weight:600;cursor:pointer;
-    transition:background-color .15s var(--ease),border-color .15s var(--ease),color .15s var(--ease);
-  }
-  .chat-chips .q-chip:hover{border-color:var(--amber);color:var(--amber)}
   form.msg-form{display:grid;gap:10px;margin-top:14px}
   .msg-sent{background:var(--ok-bg);color:var(--ok);border-radius:8px;padding:12px 14px;font-weight:600}
   .msg-sent[hidden]{display:none}
@@ -548,6 +530,7 @@
     section[id]{scroll-margin-top:126px}
     #book{scroll-margin-top:126px}
     .est-services{grid-template-columns:1fr}
+    .seg-wrap{padding:0 48px}
     .sheet{padding:24px 20px}
     .est-bar .total{font-size:32px}
     .form-card{padding:24px 20px}
@@ -685,12 +668,12 @@
         <div class="seg-wrap">
           <div class="seg" role="radiogroup" aria-labelledby="est-type-label" id="est-tiles">
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="sedan"><span class="tile-photo"><img src="assets/tile-sedan.webp" alt="" width="760" height="326" /></span><span class="tile-name">Sedan</span></button>
-            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="hatchback"><span class="tile-photo"><img src="assets/tile-hatchback.webp" alt="" width="760" height="473" loading="lazy" /></span><span class="tile-name">Hatchback</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="hatchback"><span class="tile-photo"><img class="flip-x" src="assets/tile-hatchback.webp" alt="" width="760" height="473" loading="lazy" /></span><span class="tile-name">Hatchback</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="coupe"><span class="tile-photo"><img src="assets/tile-coupe.webp" alt="" width="760" height="507" loading="lazy" /></span><span class="tile-name">Coupe</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="convertible"><span class="tile-photo"><img src="assets/tile-convertible.webp" alt="" width="760" height="508" loading="lazy" /></span><span class="tile-name">Convertible</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="wagon"><span class="tile-photo"><img src="assets/tile-wagon.webp" alt="" width="760" height="507" loading="lazy" /></span><span class="tile-name">Wagon</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="suv"><span class="tile-photo"><img src="assets/tile-suv.webp" alt="" width="760" height="513" loading="lazy" /></span><span class="tile-name">SUV</span></button>
-            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="minivan"><span class="tile-photo"><img src="assets/tile-minivan.webp" alt="" width="760" height="427" loading="lazy" /></span><span class="tile-name">Minivan</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="minivan"><span class="tile-photo"><img class="flip-x" src="assets/tile-minivan.webp" alt="" width="760" height="427" loading="lazy" /></span><span class="tile-name">Minivan</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="truck"><span class="tile-photo"><img src="assets/tile-truck.webp" alt="" width="760" height="507" loading="lazy" /></span><span class="tile-name">Truck</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="van"><span class="tile-photo"><img src="assets/tile-van.webp" alt="" width="760" height="434" loading="lazy" /></span><span class="tile-name">Van</span></button>
             <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="electric"><span class="tile-photo"><img src="assets/tile-electric.webp" alt="" width="760" height="427" loading="lazy" /></span><span class="tile-name">Electric</span></button>
@@ -1006,40 +989,8 @@
     </button>
   </div>
   <div class="chat-panel-body" id="chat-panel-body">
-    <p class="a-note">Tap a topic for an instant answer, or write your own message below and the shop will come back to you by phone.</p>
-    <div class="support-opts">
-      <a href="tel:+13108313700">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>Call the shop<span class="so-sub">(310) 831-3700 · Mon–Fri, 7:00 AM–4:30 PM</span></span>
-      </a>
-      <a href="#estimate">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
-        <span>Get an estimate<span class="so-sub">Example prices, built on this page</span></span>
-      </a>
-      <a href="#book">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        <span>Book a visit<span class="so-sub">Pick a service, a day and a time</span></span>
-      </a>
-      <button type="button" data-ask="hours">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        <span>Hours &amp; directions<span class="so-sub">When we're open, and how to find us</span></span>
-      </button>
-    </div>
-    <div class="assistant-facts">
-      <span><strong>Hours:</strong> Monday – Friday · 7:00 AM – 4:30 PM</span>
-      <span><strong>Shop:</strong> 1208 N Gaffey St, Suite C, San Pedro, CA 90731</span>
-      <span><strong>Email:</strong> fixit@sanpedroautotech.com</span>
-    </div>
     <div class="chat-thread" id="chat-thread" aria-live="polite">
-      <div class="bubble bot"><span class="b-name">San Pedro Assistant</span>How can I help you? Ask about hours, prices, pick-up &amp; drop, or booking — or send the shop a message below and they'll reply by phone.</div>
-    </div>
-    <div class="chat-chips" role="group" aria-label="Quick questions">
-      <button class="q-chip" type="button" data-ask="hours">Opening hours</button>
-      <button class="q-chip" type="button" data-ask="location">Where are you?</button>
-      <button class="q-chip" type="button" data-ask="price">Example prices</button>
-      <button class="q-chip" type="button" data-ask="services">What do you repair?</button>
-      <button class="q-chip" type="button" data-ask="pickup">Pick-up &amp; drop?</button>
-      <button class="q-chip" type="button" data-ask="book">How do I book?</button>
+      <div class="bubble bot"><span class="b-name">San Pedro Assistant</span>Hi — how can I help you? Send a message below and the shop will reply by phone.</div>
     </div>
     <form class="msg-form" id="msg-form" novalidate>
       <div class="form-error" id="msg-error" role="alert" hidden></div>
