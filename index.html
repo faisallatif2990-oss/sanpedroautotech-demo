@@ -176,16 +176,6 @@
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
   /* Credentials strip — grounded facts only */
-  .creds{background:var(--paper);border-bottom:1px solid var(--line)}
-  .creds-in{
-    display:flex;flex-wrap:wrap;align-items:center;gap:14px 0;padding-top:20px;padding-bottom:20px;
-  }
-  .creds span{
-    font-size:14.5px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:14px;
-    padding-right:14px;white-space:nowrap;
-  }
-  .creds span::after{content:"";width:5px;height:5px;background:var(--amber);transform:rotate(45deg);flex:0 0 5px}
-  .creds span:last-child::after{display:none}
 
   /* Scroll reveal — quiet, once */
   .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s var(--ease)}
@@ -203,21 +193,37 @@
   .sheet-head .sh-title{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:19px;letter-spacing:.02em}
   .sheet-head .sh-sub{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
   .est-label{display:block;font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);margin-top:28px}
+  .seg-wrap{position:relative;margin-top:14px}
   .seg{
-    display:flex;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;margin-top:14px;background:var(--sheet);
+    display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:2px 2px 10px;scrollbar-width:thin;background:transparent;
+    -webkit-overflow-scrolling:touch;
   }
   .seg .tile{
-    flex:1 1 0;background:var(--sheet);border:none;border-right:1.5px solid var(--ink);
-    padding:0;cursor:pointer;font-weight:700;font-size:16.5px;color:var(--ink);
+    flex:0 0 168px;scroll-snap-align:start;background:var(--sheet);
+    border:1.5px solid var(--line-strong);border-radius:8px;overflow:hidden;
+    padding:0;cursor:pointer;font-weight:700;font-size:15.5px;color:var(--ink);
     min-height:50px;display:flex;flex-direction:column;
-    transition:background-color .15s var(--ease),color .15s var(--ease);
+    transition:background-color .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease);
   }
-  .seg .tile:last-child{border-right:none}
   .seg .tile:hover{background:var(--paper-2)}
-  .seg .tile[aria-checked="true"]{background:var(--amber);color:#171310}
+  .seg .tile[aria-checked="true"]{background:var(--amber);color:#171310;border-color:var(--amber-deep)}
   .seg .tile .tile-photo{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--ink-deep)}
   .seg .tile .tile-photo img{width:100%;height:100%;object-fit:cover}
-  .seg .tile .tile-name{display:block;text-align:center;padding:11px 10px}
+  .seg .tile .tile-name{display:block;text-align:center;padding:10px 8px}
+  .seg-nav{
+    position:absolute;top:38%;width:40px;height:40px;border-radius:999px;z-index:3;
+    background:var(--amber);border:1.5px solid var(--amber-deep);color:#171310;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,.45);
+    transition:opacity .15s var(--ease),background-color .15s var(--ease);
+  }
+  .seg-nav svg{width:18px;height:18px}
+  .seg-nav:hover{background:var(--amber-deep)}
+  .seg-nav.prev{left:-8px}
+  .seg-nav.next{right:-8px}
+  .seg-nav[disabled]{opacity:.35;cursor:default}
+  .seg-hint{font-size:13.5px;color:var(--ink-3);margin-top:2px}
   .est-note-text{
     width:100%;box-sizing:border-box;background:var(--field);border:1px solid var(--line-strong);
     border-radius:8px;padding:11px 13px;min-height:84px;resize:vertical;color:var(--ink);margin-top:14px;
@@ -351,50 +357,7 @@
   }
   .svc-row .req-link:hover,.svc-row .req-link:focus-visible{background-size:100% 1.5px}
 
-  /* Why choose us — big photo, checked list, FAQ accordion */
-  .why-grid{display:grid;grid-template-columns:.96fr 1.04fr;gap:56px;align-items:center}
-  .why-photo{border-radius:8px;overflow:hidden}
-  .why-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3.2;transition:transform .6s var(--ease)}
-  .why-photo:hover img{transform:scale(1.02)}
-  .check-list{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:14px}
-  .check-list li{display:flex;gap:12px;align-items:flex-start;font-size:16.5px;color:var(--ink)}
-  .check-list .ck{
-    width:24px;height:24px;flex:0 0 24px;border-radius:999px;background:var(--amber);
-    color:var(--ink);display:flex;align-items:center;justify-content:center;margin-top:1px;
-  }
-  .check-list .ck svg{width:14px;height:14px}
-  .accordion{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
-  .accordion details{
-    background:var(--sheet);border:1px solid var(--line);border-radius:8px;
-  }
-  .accordion summary{
-    cursor:pointer;padding:17px 20px;font-weight:700;font-size:16.5px;color:var(--ink);list-style:none;
-    display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;
-  }
-  .accordion summary::-webkit-details-marker{display:none}
-  .accordion summary::after{
-    content:"+";color:var(--amber-deep);font-size:23px;font-weight:600;line-height:1;flex:0 0 auto;
-  }
-  .accordion details[open ] summary::after{content:"–"}
-  .accordion details p{color:var(--ink-2);padding:0 20px 19px;font-size:15.5px;max-width:36em}
 
-  /* Visit cards */
-  .visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;position:relative;z-index:1}
-  .visit-card-item{
-    background:var(--field);border:1px solid var(--line);border-radius:8px;padding:26px;
-    transition:transform .2s var(--ease);
-  }
-  .visit-card-item:hover{transform:translateY(-2px)}
-  .visit-card-item .vc-icon{
-    width:46px;height:46px;border-radius:8px;background:var(--amber);color:var(--ink);
-    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
-  }
-  .visit-card-item .vc-icon svg{width:23px;height:23px}
-  .visit-card-item h3{font-size:19px;margin-bottom:10px}
-  .visit-card-item p{color:var(--ink-2);font-size:15.5px}
-  .visit-card-item p + p{margin-top:8px}
-  .visit-card-item a{font-weight:600;color:var(--amber-ink)}
-  .visit-card-item strong{color:var(--ink)}
 
   /* About */
   .about-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
@@ -402,13 +365,6 @@
   .about-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3.1;transition:transform .6s var(--ease)}
   .about-photo:hover img{transform:scale(1.02)}
 
-  /* Amber CTA band */
-  .cta-band{background:var(--amber);padding:58px 0;position:relative}
-  .cta-in{display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:space-between}
-  .cta-in h2{color:var(--ink);font-size:clamp(27px,3.4vw,40px);max-width:16em}
-  .cta-in p{color:#4A3A14;margin-top:8px;font-size:16.5px}
-  .cta-actions{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-  .cta-phone{color:var(--ink);font-weight:800;font-size:18px;white-space:nowrap}
 
   /* Footer — ink */
   footer.site{background:var(--ink-deep);color:var(--on-ink-2)}
@@ -481,99 +437,103 @@
   .msg[hidden]{display:none}
 
   /* Message the shop — everything lives in the side pop-up panel */
-  .assistant-id{display:flex;align-items:center;gap:14px}
+  .assistant-id{display:flex;align-items:center;gap:10px}
   .assistant-avatar{
-    width:52px;height:52px;flex:0 0 52px;border-radius:999px;background:var(--amber);color:#171310;
+    width:38px;height:38px;flex:0 0 38px;border-radius:999px;background:var(--amber);color:#171310;
     display:flex;align-items:center;justify-content:center;
   }
-  .assistant-avatar svg{width:26px;height:26px}
-  .assistant-name{color:var(--amber);font-weight:700;font-size:15px;margin-top:3px}
-  .assistant-role{color:var(--on-ink-2);font-size:14.5px}
-  .support-opts{display:grid;gap:10px;margin-top:18px}
+  .assistant-avatar svg{width:19px;height:19px}
+  .assistant-name{color:var(--amber);font-weight:700;font-size:13.5px;margin-top:2px}
+  .assistant-role{color:var(--on-ink-2);font-size:12.5px}
+  .support-opts{display:grid;gap:7px;margin-top:12px}
   .support-opts a,.support-opts button{
-    display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;text-align:left;
+    display:flex;align-items:center;gap:9px;width:100%;box-sizing:border-box;text-align:left;
     background:var(--field);border:1px solid var(--line);border-radius:8px;
-    padding:13px 16px;min-height:52px;color:var(--ink);text-decoration:none;font-weight:600;font-size:16px;cursor:pointer;
+    padding:9px 12px;min-height:44px;color:var(--ink);text-decoration:none;font-weight:600;font-size:14.5px;cursor:pointer;
     transition:background-color .16s var(--ease),border-color .16s var(--ease);
   }
   .support-opts a:hover,.support-opts button:hover{background:var(--paper-2);border-color:var(--line-strong)}
-  .support-opts svg{width:19px;height:19px;color:var(--amber);flex:0 0 19px}
-  .support-opts .so-sub{display:block;font-weight:400;color:var(--ink-2);font-size:13.5px}
-  .assistant-facts{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);color:var(--ink-2);font-size:14.5px;display:grid;gap:6px}
+  .support-opts svg{width:17px;height:17px;color:var(--amber);flex:0 0 17px}
+  .support-opts .so-sub{display:block;font-weight:400;color:var(--ink-2);font-size:12.5px}
+  .assistant-facts{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);color:var(--ink-2);font-size:13px;display:grid;gap:4px}
   .assistant-facts strong{color:var(--ink)}
 
   .chat-thread{
-    display:flex;flex-direction:column;gap:10px;max-height:250px;overflow-y:auto;
-    padding:4px 2px 6px;scrollbar-width:thin;margin-top:22px;
+    display:flex;flex-direction:column;gap:8px;max-height:140px;overflow-y:auto;
+    padding:4px 2px 6px;scrollbar-width:thin;margin-top:14px;
   }
   .bubble{
-    max-width:85%;padding:11px 15px;border-radius:14px;font-size:15.5px;line-height:1.5;
+    max-width:88%;padding:9px 12px;border-radius:12px;font-size:14.5px;line-height:1.45;
   }
   .bubble.bot{background:#282219;border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:4px;align-self:flex-start}
   .bubble.user{background:var(--amber);color:#171310;border-bottom-right-radius:4px;align-self:flex-end;font-weight:500}
   .bubble .b-name{display:block;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber-ink);margin-bottom:3px}
   .bubble a{color:var(--amber-ink);font-weight:700}
   .bubble.user a{color:#171310}
-  .chat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+  .chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
   .chat-chips .q-chip{
     border:1.5px solid var(--line-strong);background:transparent;border-radius:999px;color:var(--ink);
-    padding:8px 14px;min-height:40px;font-size:14.5px;font-weight:600;cursor:pointer;
+    padding:6px 11px;min-height:36px;font-size:13.5px;font-weight:600;cursor:pointer;
     transition:background-color .15s var(--ease),border-color .15s var(--ease),color .15s var(--ease);
   }
   .chat-chips .q-chip:hover{border-color:var(--amber);color:var(--amber)}
-  form.msg-form{display:grid;gap:14px;margin-top:18px}
+  form.msg-form{display:grid;gap:10px;margin-top:14px}
   .msg-sent{background:var(--ok-bg);color:var(--ok);border-radius:8px;padding:12px 14px;font-weight:600}
   .msg-sent[hidden]{display:none}
 
   /* Side pop-up panel — opened in place by the floating chat button */
   .chat-panel{
-    position:fixed;right:20px;bottom:92px;z-index:56;
-    width:min(400px,calc(100vw - 32px));
-    max-height:min(680px,calc(100dvh - 116px));
+    position:fixed;right:16px;bottom:86px;z-index:56;
+    width:min(320px,calc(100vw - 28px));
+    max-height:min(500px,calc(100dvh - 108px));
     display:flex;flex-direction:column;
     background:var(--sheet);border:1px solid var(--line-strong);border-radius:12px;
-    box-shadow:0 24px 60px rgba(0,0,0,.55);overflow:hidden;
+    box-shadow:0 18px 44px rgba(0,0,0,.55);overflow:hidden;
     animation:panel-in .25s var(--ease);
   }
   .chat-panel[hidden]{display:none}
   @keyframes panel-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .chat-panel-head{
-    background:var(--ink-deep);color:var(--on-ink);padding:20px 22px;flex:0 0 auto;
-    display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid var(--line);
+    background:var(--ink-deep);color:var(--on-ink);padding:13px 14px;flex:0 0 auto;
+    display:flex;align-items:flex-start;gap:10px;border-bottom:1px solid var(--line);
   }
   .chat-panel-head .assistant-id{flex:1 1 auto;min-width:0}
-  .chat-panel-head h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:23px;color:#FBF7EA;line-height:1.15}
+  .chat-panel-head h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:18px;color:#FBF7EA;line-height:1.15}
   .chat-close{
-    flex:0 0 40px;width:40px;height:40px;border-radius:8px;border:1px solid var(--line-ink);
+    flex:0 0 34px;width:34px;height:34px;border-radius:8px;border:1px solid var(--line-ink);
     background:transparent;color:#FBF7EA;cursor:pointer;display:flex;align-items:center;justify-content:center;
     transition:background-color .16s var(--ease);
   }
   .chat-close:hover{background:rgba(250,247,240,.12)}
-  .chat-close svg{width:18px;height:18px}
-  .chat-panel-body{overflow-y:auto;padding:20px 22px 22px;scrollbar-width:thin}
-  .chat-panel-body .a-note{color:var(--ink-2);font-size:15.5px}
+  .chat-close svg{width:16px;height:16px}
+  .chat-panel-body{overflow-y:auto;padding:14px 14px 16px;scrollbar-width:thin}
+  .chat-panel-body .a-note{color:var(--ink-2);font-size:14px;line-height:1.45}
+  .chat-panel .field{gap:5px}
+  .chat-panel .field label{font-size:14px}
+  .chat-panel .field input,.chat-panel .field textarea{min-height:40px;padding:8px 10px;font-size:14.5px}
+  .chat-panel .field textarea{min-height:62px}
+  .chat-panel form.msg-form .btn{min-height:44px;font-size:15px}
+  .chat-panel .form-note{font-size:13px}
   .chat-panel .field-row{grid-template-columns:1fr}
 
   /* Floating chat button — opens the pop-up panel */
   .chat-fab{
-    position:fixed;right:20px;bottom:20px;z-index:55;width:58px;height:58px;border-radius:999px;
+    position:fixed;right:16px;bottom:16px;z-index:55;width:52px;height:52px;border-radius:999px;
     background:var(--amber);border:none;color:#171310;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 10px 28px rgba(0,0,0,.5);
     transition:background-color .16s var(--ease);
   }
-  .chat-fab svg{width:26px;height:26px}
+  .chat-fab svg{width:23px;height:23px}
   .chat-fab:hover{background:var(--amber-deep)}
 
   @media (max-width:1020px){
-    .visit-grid{grid-template-columns:1fr 1fr}
     .book-grid{grid-template-columns:1fr 1fr;gap:36px}
     .svc-row{grid-template-columns:44px 150px 1fr auto;gap:20px}
   }
   @media (max-width:900px){
     .book-grid{grid-template-columns:1fr}
-    .why-grid,.about-grid{grid-template-columns:1fr;gap:36px}
-    .accordion{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr;gap:36px}
     .dash-stats{grid-template-columns:1fr 1fr}
     .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
     .section{padding:72px 0}
@@ -582,12 +542,11 @@
     .svc-row .req-link{grid-column:3}
   }
   @media (max-width:640px){
-    .chat-panel{right:16px;bottom:88px}
+    .chat-panel{right:12px;bottom:80px;width:min(300px,calc(100vw - 24px));max-height:min(430px,46dvh)}
     .topbar{display:none}
     .wrap{padding:0 18px}
     section[id]{scroll-margin-top:126px}
     #book{scroll-margin-top:126px}
-    .visit-grid{grid-template-columns:1fr}
     .est-services{grid-template-columns:1fr}
     .sheet{padding:24px 20px}
     .est-bar .total{font-size:32px}
@@ -596,12 +555,10 @@
     #time-chips .chip{flex:1 1 26%}
     .dash-controls select{width:100%}
     .review-ask .btn{flex:1 1 100%}
-    .cta-in{gap:20px}
     .svc-row{grid-template-columns:34px 1fr;grid-template-rows:auto auto auto;padding:20px 4px;gap:8px 16px}
     .svc-photo{grid-column:2;aspect-ratio:16/8}
     .svc-row .svc-text{grid-column:2}
     .svc-row .req-link{grid-column:2}
-    .creds span{white-space:normal}
   }
   @media (max-width:560px){
     .field-row{grid-template-columns:1fr}
@@ -725,11 +682,23 @@
           <span class="sh-sub">San Pedro Automotive</span>
         </div>
         <p class="est-label" id="est-type-label">1 · Your car</p>
-        <div class="seg" role="radiogroup" aria-labelledby="est-type-label" id="est-tiles">
-          <button class="tile" type="button" role="radio" aria-checked="true" data-cartype="sedan"><span class="tile-photo"><img src="assets/tile-sedan.webp" alt="" width="760" height="326" /></span><span class="tile-name">Sedan</span></button>
-          <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="suv"><span class="tile-photo"><img src="assets/tile-suv.webp" alt="" width="760" height="513" /></span><span class="tile-name">SUV</span></button>
-          <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="truck"><span class="tile-photo"><img src="assets/tile-truck.webp" alt="" width="760" height="507" /></span><span class="tile-name">Truck</span></button>
+        <div class="seg-wrap">
+          <div class="seg" role="radiogroup" aria-labelledby="est-type-label" id="est-tiles">
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="sedan"><span class="tile-photo"><img src="assets/tile-sedan.webp" alt="" width="760" height="326" /></span><span class="tile-name">Sedan</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="hatchback"><span class="tile-photo"><img src="assets/tile-hatchback.webp" alt="" width="760" height="473" loading="lazy" /></span><span class="tile-name">Hatchback</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="coupe"><span class="tile-photo"><img src="assets/tile-coupe.webp" alt="" width="760" height="507" loading="lazy" /></span><span class="tile-name">Coupe</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="convertible"><span class="tile-photo"><img src="assets/tile-convertible.webp" alt="" width="760" height="508" loading="lazy" /></span><span class="tile-name">Convertible</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="wagon"><span class="tile-photo"><img src="assets/tile-wagon.webp" alt="" width="760" height="507" loading="lazy" /></span><span class="tile-name">Wagon</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="suv"><span class="tile-photo"><img src="assets/tile-suv.webp" alt="" width="760" height="513" loading="lazy" /></span><span class="tile-name">SUV</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="minivan"><span class="tile-photo"><img src="assets/tile-minivan.webp" alt="" width="760" height="427" loading="lazy" /></span><span class="tile-name">Minivan</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="truck"><span class="tile-photo"><img src="assets/tile-truck.webp" alt="" width="760" height="507" loading="lazy" /></span><span class="tile-name">Truck</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="van"><span class="tile-photo"><img src="assets/tile-van.webp" alt="" width="760" height="434" loading="lazy" /></span><span class="tile-name">Van</span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="electric"><span class="tile-photo"><img src="assets/tile-electric.webp" alt="" width="760" height="427" loading="lazy" /></span><span class="tile-name">Electric</span></button>
+          </div>
+          <button class="seg-nav prev" type="button" id="seg-prev" aria-label="Previous cars"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+          <button class="seg-nav next" type="button" id="seg-next" aria-label="More cars"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
         </div>
+        <p class="seg-hint">Slide or use the arrows — more cars keep coming. Tap yours to select it.</p>
         <p class="est-label" id="est-svc-label">2 · Service needed</p>
         <div class="est-services" id="est-services" role="group" aria-labelledby="est-svc-label"></div>
         <label class="est-label" for="est-note-text">3 · Tell us what's needed</label>
@@ -1244,12 +1213,11 @@
   }
 
   /* ---------- Estimator ----------
-     The total is always recomputed from the live checkbox + vehicle state
-     and written in the same interaction: on first render, on every service
-     toggle, and on every vehicle change. All six services start selected,
-     so the resting total is the full example sum for the default vehicle.
-     The itemised summary lines are rebuilt in the same pass, so the lines
-     on the sheet always add up to the big total beside them. */
+     Nothing is pre-selected: no car type and no service starts ticked,
+     so the resting total is $0. The total is recomputed from the live
+     checkbox + vehicle state in the same interaction — on every service
+     toggle and on every vehicle change. The itemised summary lines are
+     rebuilt in the same pass, so the lines always add up to the total. */
   var EST = [
     { name: "Diagnostics",            sedan: 95,  suv: 110, truck: 110 },
     { name: "Brake service",          sedan: 180, suv: 210, truck: 230 },
@@ -1258,12 +1226,16 @@
     { name: "Suspension & steering",  sedan: 320, suv: 360, truck: 390 },
     { name: "General repair",         sedan: 240, suv: 260, truck: 280 }
   ];
-  var TYPE_LABEL = { sedan: "Sedan", suv: "SUV", truck: "Truck" };
-  var TYPE_PHRASE = { sedan: "a Sedan", suv: "an SUV", truck: "a Truck" };
-  var estType = "sedan";
+  var TYPE_LABEL = { sedan: "Sedan", hatchback: "Hatchback", coupe: "Coupe", convertible: "Convertible", wagon: "Wagon", suv: "SUV", minivan: "Minivan", truck: "Truck", van: "Van", electric: "Electric" };
+  var TYPE_PHRASE = { sedan: "a Sedan", hatchback: "a Hatchback", coupe: "a Coupe", convertible: "a Convertible", wagon: "a Wagon", suv: "an SUV", minivan: "a Minivan", truck: "a Truck", van: "a Van", electric: "an Electric car" };
+  /* Example-price bands: car body types price on the Sedan band,
+     SUV / Minivan / Van on the SUV band, Truck on its own band. */
+  var TYPE_BAND = { sedan: "sedan", hatchback: "sedan", coupe: "sedan", convertible: "sedan", wagon: "sedan", electric: "sedan", suv: "suv", minivan: "suv", van: "suv", truck: "truck" };
+  function estPrice(s){ return s[TYPE_BAND[estType]]; }
+  var estType = null;
   var estBox = $("est-services");
   estBox.innerHTML = EST.map(function(s, i){
-    return '<label class="est-svc"><input type="checkbox" data-est="' + i + '" checked />'
+    return '<label class="est-svc"><input type="checkbox" data-est="' + i + '" />'
       + '<span>' + esc(s.name) + '</span>'
       + '<span class="price" data-est-price="' + i + '"></span></label>';
   }).join("");
@@ -1275,22 +1247,27 @@
     return out;
   }
   function estTotal(){
-    return estChecked().reduce(function(sum, s){ return sum + s[estType]; }, 0);
+    if(!estType) return 0;
+    return estChecked().reduce(function(sum, s){ return sum + estPrice(s); }, 0);
   }
   function updateEst(){
     for(var i=0;i<EST.length;i++){
       var p = estBox.querySelector('[data-est-price="' + i + '"]');
-      if(p) p.textContent = "+$" + EST[i][estType];
+      if(p) p.textContent = estType ? "+$" + estPrice(EST[i]) : "";
     }
     var picked = estChecked();
     var lines = $("est-lines");
     if(lines){
-      if(picked.length===0){
+      if(!estType && picked.length===0){
+        lines.innerHTML = '<div class="est-line none"><span>Nothing selected yet — pick your car above, then tick a service.</span></div>';
+      } else if(!estType){
+        lines.innerHTML = '<div class="est-line none"><span>Pick your car above to see prices for the services you ticked.</span></div>';
+      } else if(picked.length===0){
         lines.innerHTML = '<div class="est-line none"><span>Nothing ticked yet — tick a service above.</span></div>';
       } else {
         lines.innerHTML = picked.map(function(s){
           return '<div class="est-line"><span>' + esc(s.name) + ' · ' + TYPE_LABEL[estType] + '</span>'
-            + '<span class="p">$' + s[estType] + '</span></div>';
+            + '<span class="p">$' + estPrice(s) + '</span></div>';
         }).join("");
       }
     }
@@ -1307,14 +1284,41 @@
       for(var u=0;u<tiles.length;u++) tiles[u].setAttribute("aria-checked","false");
       this.setAttribute("aria-checked","true");
       estType = this.getAttribute("data-cartype");
+      $("est-msg").hidden = true;
       updateEst();
     });
   }
   updateEst();
 
+  /* Vehicle slider: arrows slide the row by one tile; swipe / drag is
+     native via the scrollable row. Arrows dim at either end. */
+  var segRow = $("est-tiles");
+  var segPrev = $("seg-prev"), segNext = $("seg-next");
+  function segStep(){
+    var tile = segRow.querySelector(".tile");
+    return tile ? tile.offsetWidth + 10 : 178;
+  }
+  function segNavState(){
+    var max = segRow.scrollWidth - segRow.clientWidth - 4;
+    segPrev.disabled = segRow.scrollLeft <= 4;
+    segNext.disabled = segRow.scrollLeft >= max;
+  }
+  segPrev.addEventListener("click", function(){ segRow.scrollBy({left: -segStep(), behavior: "smooth"}); });
+  segNext.addEventListener("click", function(){ segRow.scrollBy({left: segStep(), behavior: "smooth"}); });
+  segRow.addEventListener("scroll", segNavState, {passive: true});
+  window.addEventListener("resize", segNavState);
+  segNavState();
+
   $("est-book").addEventListener("click", function(){
     var picked = estChecked();
+    if(!estType){
+      $("est-msg").textContent = "Pick your car type above first, then tick what it needs.";
+      $("est-msg").hidden = false;
+      $("est-msg").scrollIntoView({behavior:"smooth", block:"center"});
+      return;
+    }
     if(picked.length===0){
+      $("est-msg").textContent = "Tick at least one service above and we'll carry it into the booking form.";
       $("est-msg").hidden = false;
       $("est-msg").scrollIntoView({behavior:"smooth", block:"center"});
       return;
