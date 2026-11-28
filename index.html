@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="color-scheme" content="light" />
+<meta name="color-scheme" content="dark" />
 <meta name="description" content="Demo website concept for San Pedro Automotive — auto repair in San Pedro, CA. Diagnostics, brakes, oil changes, suspension and general repair for foreign and domestic vehicles." />
 <link rel="icon" href="data:," />
 <title>San Pedro Automotive — Auto Repair in San Pedro, CA</title>
@@ -12,29 +12,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    color-scheme: light;
-    --paper:#FAF7F0;
-    --paper-2:#F3EDDD;
-    --sheet:#FFFFFF;
-    --ink:#1D1A16;
-    --ink-deep:#14110D;
-    --ink-2:#57503F;
-    --ink-3:#8A8271;
+    color-scheme: dark;
+    --paper:#12100B;
+    --paper-2:#181410;
+    --sheet:#1E1A13;
+    --ink:#F1EBDA;
+    --ink-deep:#0B0906;
+    --ink-2:#B8AF97;
+    --ink-3:#968C74;
     --amber:#E9A13B;
     --amber-deep:#C9821E;
-    --amber-ink:#8A5A08;
-    --amber-tint:#FBF0D9;
-    --line:#E4DCC8;
-    --line-strong:#CFC4A4;
+    --amber-ink:#E9A13B;
+    --amber-tint:rgba(233,161,59,.14);
+    --line:#2C2719;
+    --line-strong:#4A4230;
     --on-ink:#E9E2D0;
     --on-ink-2:#B7AE97;
-    --line-ink:rgba(250,247,240,.16);
-    --field:#FCFAF4;
-    --ok:#1F7A43;
-    --ok-bg:#E4F3E9;
-    --err:#B3261E;
-    --err-bg:#FBEAE8;
-    --focus:#8A5A08;
+    --line-ink:rgba(250,247,240,.14);
+    --field:#161310;
+    --ok:#57C57B;
+    --ok-bg:#15301D;
+    --err:#F08A80;
+    --err-bg:#3B1D19;
+    --focus:#E9A13B;
     --ease:cubic-bezier(0.22,1,0.36,1);
   }
   html{scroll-behavior:smooth}
@@ -75,7 +75,7 @@
   .section{padding:92px 0;position:relative}
   .section.white{background:var(--sheet)}
   .section.paper2{background:var(--paper-2)}
-  .section.ink{background:var(--ink);color:var(--on-ink)}
+  .section.ink{background:var(--ink-deep);color:var(--on-ink)}
   .section.ink h2{color:#FBF7EA}
   .section-head{max-width:720px}
 
@@ -92,16 +92,16 @@
   /* Buttons — one style everywhere: solid ink or amber, small radius */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    background:var(--ink);color:#FBF7EA;border:1.5px solid var(--ink);
+    background:var(--amber);color:#171310;border:1.5px solid var(--amber);
     font-weight:700;font-size:16px;text-decoration:none;padding:0 26px;min-height:52px;border-radius:8px;cursor:pointer;
     transition:background-color .16s var(--ease),border-color .16s var(--ease),color .16s var(--ease),transform .1s var(--ease);
   }
-  .btn:hover{background:var(--ink-deep);border-color:var(--ink-deep)}
+  .btn:hover{background:var(--amber-deep);border-color:var(--amber-deep)}
   .btn:active{transform:translateY(1px)}
-  .btn.amber{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+  .btn.amber{background:var(--amber);border-color:var(--amber);color:#171310}
   .btn.amber:hover{background:var(--amber-deep);border-color:var(--amber-deep)}
-  .btn.secondary{background:transparent;color:var(--ink);border-color:var(--ink)}
-  .btn.secondary:hover{background:var(--ink);color:#FBF7EA}
+  .btn.secondary{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+  .btn.secondary:hover{background:rgba(241,235,218,.08);color:var(--ink)}
   .btn.outline-w{background:transparent;color:#FBF7EA;border-color:rgba(251,247,234,.85)}
   .btn.outline-w:hover{background:#FBF7EA;color:var(--ink);border-color:#FBF7EA}
   .btn.small{min-height:44px;padding:0 20px;font-size:15px}
@@ -109,7 +109,7 @@
   .btn[disabled]{opacity:.55;cursor:default}
 
   /* Top line */
-  .topbar{background:var(--ink);color:var(--on-ink-2);font-size:13.5px}
+  .topbar{background:var(--ink-deep);color:var(--on-ink-2);font-size:13.5px}
   .topbar-in{display:flex;align-items:center;gap:16px;justify-content:space-between;padding-top:8px;padding-bottom:8px}
   .topbar-meta{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
   .topbar-meta span{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
@@ -125,8 +125,8 @@
   .header-in{display:flex;align-items:center;gap:20px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
   .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);min-height:44px}
   .brand-mark{
-    width:42px;height:42px;flex:0 0 42px;border-radius:8px;background:var(--ink);
-    color:var(--amber);display:flex;align-items:center;justify-content:center;
+    width:42px;height:42px;flex:0 0 42px;border-radius:8px;background:var(--amber);
+    color:#171310;display:flex;align-items:center;justify-content:center;
   }
   .brand-mark svg{width:22px;height:22px}
   .brand-name{
@@ -148,7 +148,7 @@
   a.btn.header-call{display:none}
 
   /* Hero — full-bleed repair film under a warm dark scrim */
-  .hero{position:relative;background:var(--ink);overflow:hidden}
+  .hero{position:relative;background:var(--ink-deep);overflow:hidden}
   .hero-media-bg{position:absolute;inset:0;z-index:0}
   .hero-media-bg img,.hero-media-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .hero-media-bg video{opacity:0;transition:opacity .8s var(--ease)}
@@ -213,7 +213,7 @@
   }
   .seg .tile:last-child{border-right:none}
   .seg .tile:hover{background:var(--paper-2)}
-  .seg .tile[aria-checked="true"]{background:var(--ink);color:#FBF7EA}
+  .seg .tile[aria-checked="true"]{background:var(--amber);color:#171310}
   .est-services{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
   .est-svc{
     display:flex;align-items:center;gap:12px;padding:13px 4px;cursor:pointer;min-height:50px;
@@ -230,11 +230,11 @@
   .est-line .p{font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
   .est-line.none{color:var(--ink-3);border-bottom:none}
   .est-bar{
-    margin-top:16px;background:var(--ink);border-radius:8px;
+    margin-top:16px;background:var(--amber);border-radius:8px;
     padding:18px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;
   }
-  .est-bar .lab{font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--on-ink-2)}
-  .est-bar .total{font-weight:800;font-size:38px;color:#FBF7EA;line-height:1;font-variant-numeric:tabular-nums}
+  .est-bar .lab{font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#5C430D}
+  .est-bar .total{font-weight:800;font-size:38px;color:#171310;line-height:1;font-variant-numeric:tabular-nums}
   .est-note{color:var(--ink-2);font-size:15px;margin-top:16px;max-width:44em}
   .est-msg{color:var(--amber-ink);font-weight:600;margin-top:12px}
   .est-msg[hidden]{display:none}
@@ -279,9 +279,9 @@
   .chip .dow{font-size:12.5px;letter-spacing:.03em;color:var(--ink-3)}
   .chip .dnum{font-size:17px;font-weight:700;color:var(--ink)}
   .chip.time{flex-direction:row;font-variant-numeric:tabular-nums;font-weight:600}
-  .chip[aria-pressed="true"]{background:var(--amber);border-color:var(--amber-deep);color:var(--ink);font-weight:700}
-  .chip[aria-pressed="true"] .dow{color:var(--ink-2)}
-  .chip[aria-pressed="true"] .dnum{color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--amber);border-color:var(--amber-deep);color:#171310;font-weight:700}
+  .chip[aria-pressed="true"] .dow{color:#5C430D}
+  .chip[aria-pressed="true"] .dnum{color:#171310}
   /* Pick-up & drop toggle */
   .toggle-row{
     display:flex;align-items:center;gap:14px;justify-content:space-between;
@@ -292,7 +292,7 @@
   .switch{position:relative;flex:0 0 52px;width:52px;height:30px}
   .switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
   .switch .track{
-    position:absolute;inset:0;border-radius:999px;background:#D9D2BC;border:1px solid var(--line-strong);
+    position:absolute;inset:0;border-radius:999px;background:#4A4230;border:1px solid var(--line-strong);
     transition:background-color .16s var(--ease);pointer-events:none;
   }
   .switch .track::after{
@@ -309,7 +309,7 @@
   .confirm h3{font-size:23px;font-family:"Fraunces",Georgia,serif;font-weight:600}
   .confirm .c-sub{color:var(--ink-2);margin-top:6px}
   .review-ask{
-    background:var(--amber-tint);border:1px solid #EBD9AE;border-radius:8px;
+    background:var(--amber-tint);border:1px solid var(--line-strong);border-radius:8px;
     padding:16px 18px;margin-top:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:space-between;
   }
   .review-ask p{font-weight:600;color:var(--ink)}
@@ -402,7 +402,7 @@
   .cta-phone{color:var(--ink);font-weight:800;font-size:18px;white-space:nowrap}
 
   /* Footer — ink */
-  footer.site{background:var(--ink);color:var(--on-ink-2)}
+  footer.site{background:var(--ink-deep);color:var(--on-ink-2)}
   .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding:60px 0 42px}
   .footer-grid h4{font-size:14px;font-weight:700;color:#FBF7EA;margin:0 0 14px;text-transform:uppercase;letter-spacing:.1em}
   .footer-grid p,.footer-grid li{font-size:15.5px;line-height:1.6}
@@ -454,7 +454,7 @@
   .dash-req .meta{color:var(--ink-2);font-size:15.5px;margin-top:4px}
   .dash-req .note{margin-top:8px;font-size:15.5px}
   .req-top{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;justify-content:space-between}
-  .status{font-size:13.5px;font-weight:700;border-radius:999px;padding:5px 12px;white-space:nowrap;background:#EFE9D6;color:var(--ink-2)}
+  .status{font-size:13.5px;font-weight:700;border-radius:999px;padding:5px 12px;white-space:nowrap;background:#2E2A1E;color:var(--ink-2)}
   .status.working{background:#F7E3BC;color:#7A5210}
   .status.completed{background:var(--ok-bg);color:var(--ok)}
   .dash-controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
@@ -471,6 +471,71 @@
   .msg.err{background:var(--err-bg);color:var(--err)}
   .msg[hidden]{display:none}
 
+  /* Message the shop — assistant card + message box */
+  #message{scroll-margin-top:92px}
+  .msg-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:28px;align-items:start;margin-top:44px;position:relative;z-index:1}
+  .assistant-card{
+    background:var(--ink-deep);border:1px solid var(--line);border-radius:10px;padding:30px;color:var(--on-ink);
+  }
+  .assistant-id{display:flex;align-items:center;gap:14px}
+  .assistant-avatar{
+    width:52px;height:52px;flex:0 0 52px;border-radius:999px;background:var(--amber);color:#171310;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .assistant-avatar svg{width:26px;height:26px}
+  .assistant-card h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:25px;color:#FBF7EA;line-height:1.15}
+  .assistant-name{color:var(--amber);font-weight:700;font-size:15px;margin-top:3px}
+  .assistant-role{color:var(--on-ink-2);font-size:14.5px}
+  .assistant-card .a-note{color:var(--on-ink-2);font-size:15.5px;margin-top:16px}
+  .support-opts{display:grid;gap:10px;margin-top:22px}
+  .support-opts a,.support-opts button{
+    display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;text-align:left;
+    background:rgba(250,247,240,.05);border:1px solid var(--line-ink);border-radius:8px;
+    padding:13px 16px;min-height:52px;color:#FBF7EA;text-decoration:none;font-weight:600;font-size:16px;cursor:pointer;
+    transition:background-color .16s var(--ease),border-color .16s var(--ease);
+  }
+  .support-opts a:hover,.support-opts button:hover{background:rgba(250,247,240,.11);border-color:rgba(250,247,240,.35)}
+  .support-opts svg{width:19px;height:19px;color:var(--amber);flex:0 0 19px}
+  .support-opts .so-sub{display:block;font-weight:400;color:var(--on-ink-2);font-size:13.5px}
+  .assistant-facts{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-ink);color:var(--on-ink-2);font-size:14.5px;display:grid;gap:6px}
+  .assistant-facts strong{color:#FBF7EA}
+
+  .chat-card{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:26px}
+  .chat-thread{
+    display:flex;flex-direction:column;gap:10px;max-height:320px;overflow-y:auto;
+    padding:4px 2px 6px;scrollbar-width:thin;
+  }
+  .bubble{
+    max-width:85%;padding:11px 15px;border-radius:14px;font-size:15.5px;line-height:1.5;
+  }
+  .bubble.bot{background:#282219;border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:4px;align-self:flex-start}
+  .bubble.user{background:var(--amber);color:#171310;border-bottom-right-radius:4px;align-self:flex-end;font-weight:500}
+  .bubble .b-name{display:block;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber-ink);margin-bottom:3px}
+  .bubble a{color:var(--amber-ink);font-weight:700}
+  .bubble.user a{color:#171310}
+  .chat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+  .chat-chips .q-chip{
+    border:1.5px solid var(--line-strong);background:transparent;border-radius:999px;color:var(--ink);
+    padding:8px 14px;min-height:40px;font-size:14.5px;font-weight:600;cursor:pointer;
+    transition:background-color .15s var(--ease),border-color .15s var(--ease),color .15s var(--ease);
+  }
+  .chat-chips .q-chip:hover{border-color:var(--amber);color:var(--amber)}
+  form.msg-form{display:grid;gap:14px;margin-top:18px}
+  .msg-sent{background:var(--ok-bg);color:var(--ok);border-radius:8px;padding:12px 14px;font-weight:600}
+  .msg-sent[hidden]{display:none}
+
+  /* Floating chat button — jumps to the message box */
+  .chat-fab{
+    position:fixed;right:20px;bottom:20px;z-index:55;width:58px;height:58px;border-radius:999px;
+    background:var(--amber);border:none;color:#171310;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 28px rgba(0,0,0,.5);
+    transition:background-color .16s var(--ease),opacity .25s var(--ease),transform .25s var(--ease);
+  }
+  .chat-fab svg{width:26px;height:26px}
+  .chat-fab:hover{background:var(--amber-deep)}
+  .chat-fab.away{opacity:0;pointer-events:none;transform:translateY(10px)}
+
   @media (max-width:1020px){
     .visit-grid{grid-template-columns:1fr 1fr}
     .book-grid{grid-template-columns:1fr 1fr;gap:36px}
@@ -478,6 +543,7 @@
   }
   @media (max-width:900px){
     .book-grid{grid-template-columns:1fr}
+    .msg-grid{grid-template-columns:1fr}
     .why-grid,.about-grid{grid-template-columns:1fr;gap:36px}
     .accordion{grid-template-columns:1fr}
     .dash-stats{grid-template-columns:1fr 1fr}
@@ -527,7 +593,7 @@
     nav.main a.btn{display:none}
     a.btn.header-call{
       display:inline-flex;min-height:40px;padding:0 15px;font-size:14.5px;flex:0 0 auto;
-      background:var(--amber);border-color:var(--amber);color:var(--ink);border-radius:8px;
+      background:var(--amber);border-color:var(--amber);color:#171310;border-radius:8px;
     }
     a.btn.header-call:hover{background:var(--amber-deep);border-color:var(--amber-deep)}
     nav.main{
@@ -563,9 +629,8 @@
     <nav class="main" aria-label="Main">
       <a href="#estimate">Estimate</a>
       <a href="#book">Book</a>
+      <a href="#message">Message</a>
       <a href="#services">Services</a>
-      <a href="#why">Why us</a>
-      <a href="#visit">Visit</a>
       <a href="#about">About</a>
       <a class="btn amber call" href="#book">Book service</a>
     </nav>
@@ -616,16 +681,6 @@
     if(p && p.catch) p.catch(function(){});
   })();
   </script>
-
-  <!-- Credentials strip — grounded facts only -->
-  <div class="creds">
-    <div class="wrap creds-in">
-      <span>ASE Master Technician</span>
-      <span>BBB rated A–</span>
-      <span>Foreign &amp; domestic</span>
-      <span>San Pedro families coming back for 20–30 years</span>
-    </div>
-  </div>
 
   <!-- 01 · Estimator — a paper estimate sheet -->
   <section class="section" id="estimate">
@@ -774,11 +829,92 @@
     </div>
   </section>
 
-  <!-- 03 · Services — numbered ledger rows on the ink band -->
+  <!-- 03 · Message the shop — assistant card + message box, mid-page -->
+  <section class="section" id="message">
+    <div class="wrap">
+      <div class="section-head rv">
+        <p class="label">03 · Message the shop</p>
+        <h2>Send us a message</h2>
+        <p class="lede">A quick question before you book? Ask here — the common answers come back straight away, and anything else goes to the shop with your name on it.</p>
+      </div>
+      <div class="msg-grid">
+        <aside class="assistant-card">
+          <div class="assistant-id">
+            <span class="assistant-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+            <div>
+              <h3>How can I help you?</h3>
+              <p class="assistant-name">San Pedro Assistant</p>
+              <p class="assistant-role">San Pedro Automotive · online support</p>
+            </div>
+          </div>
+          <p class="a-note">Tap a topic for an instant answer, or write your own message in the box and the shop will come back to you by phone.</p>
+          <div class="support-opts">
+            <a href="tel:+13108313700">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>Call the shop<span class="so-sub">(310) 831-3700 · Mon–Fri, 7:00 AM–4:30 PM</span></span>
+            </a>
+            <a href="#estimate">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+              <span>Get an estimate<span class="so-sub">Example prices, built on this page</span></span>
+            </a>
+            <a href="#book">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              <span>Book a visit<span class="so-sub">Pick a service, a day and a time</span></span>
+            </a>
+            <button type="button" data-ask="hours">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span>Hours &amp; directions<span class="so-sub">When we're open, and how to find us</span></span>
+            </button>
+          </div>
+          <div class="assistant-facts">
+            <span><strong>Hours:</strong> Monday – Friday · 7:00 AM – 4:30 PM</span>
+            <span><strong>Shop:</strong> 1208 N Gaffey St, Suite C, San Pedro, CA 90731</span>
+            <span><strong>Email:</strong> fixit@sanpedroautotech.com</span>
+          </div>
+        </aside>
+
+        <div class="chat-card">
+          <div class="chat-thread" id="chat-thread" aria-live="polite">
+            <div class="bubble bot"><span class="b-name">San Pedro Assistant</span>How can I help you? Ask about hours, prices, pick-up &amp; drop, or booking — or send the shop a message below and they'll reply by phone.</div>
+          </div>
+          <div class="chat-chips" role="group" aria-label="Quick questions">
+            <button class="q-chip" type="button" data-ask="hours">Opening hours</button>
+            <button class="q-chip" type="button" data-ask="location">Where are you?</button>
+            <button class="q-chip" type="button" data-ask="price">Example prices</button>
+            <button class="q-chip" type="button" data-ask="services">What do you repair?</button>
+            <button class="q-chip" type="button" data-ask="pickup">Pick-up &amp; drop?</button>
+            <button class="q-chip" type="button" data-ask="book">How do I book?</button>
+          </div>
+          <form class="msg-form" id="msg-form" novalidate>
+            <div class="form-error" id="msg-error" role="alert" hidden></div>
+            <div class="field-row">
+              <div class="field">
+                <label for="m-name">Your name</label>
+                <input id="m-name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="m-phone">Phone <span class="hint">— so the shop can reply</span></label>
+                <input id="m-phone" type="tel" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="m-text">Your message</label>
+              <textarea id="m-text" placeholder="e.g. My brakes are squeaking — what would that cost to look at?" required></textarea>
+            </div>
+            <div class="msg-sent" id="msg-sent" hidden>Message sent — it's in the shop's dashboard, and they'll reply by phone during shop hours.</div>
+            <button class="btn amber" type="submit">Send message</button>
+            <p class="form-note">Your message goes straight to the shop's dashboard on this site, next to the booking requests.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Services — numbered ledger rows on the ink band -->
   <section class="section ink on-ink" id="services">
     <div class="wrap">
       <div class="section-head rv">
-        <p class="label">03 · Services</p>
+        <p class="label">04 · Services</p>
         <h2>We offer a wide range of car services</h2>
         <p class="lede">The whole car, not one part of it — every service below is done in this shop, by this team.</p>
       </div>
@@ -841,101 +977,17 @@
     </div>
   </section>
 
-  <!-- 04 · Why choose us -->
-  <section class="section" id="why">
-    <div class="wrap">
-      <div class="why-grid">
-        <div class="why-photo rv"><img src="assets/visit-shop.webp" alt="Inside the workshop — a sedan on the floor with its hood up and a technician at the engine" loading="lazy" width="1600" height="900" /></div>
-        <div class="rv">
-          <p class="label">04 · Why drivers choose us</p>
-          <h2>What makes this shop different</h2>
-          <ul class="check-list">
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong>Joe Bustamante, ASE Master Technician</strong> — owns the shop and works on site, so the person you talk to is the person who knows your car.</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong>Foreign &amp; domestic</strong> — maintenance, service, repairs and diagnostics for both, under one roof.</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong>Honest estimates before work</strong> — the price is agreed with you before anything begins.</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong>Families keep coming back</strong> — San Pedro families have returned to this shop for 20–30 years.</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong>BBB rated A–</strong> — on the shop's Better Business Bureau listing.</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="accordion">
-        <details open>
-          <summary>An ASE Master Technician owns the shop</summary>
-          <p>Joe Bustamante owns San Pedro Automotive and leads the work himself — the person you talk to is the person who knows your car.</p>
-        </details>
-        <details>
-          <summary>Foreign &amp; domestic, under one roof</summary>
-          <p>Maintenance, service, repairs and diagnostics for foreign and domestic vehicles, so one shop covers the whole household's cars.</p>
-        </details>
-        <details>
-          <summary>Honest example estimates up front</summary>
-          <p>The estimator above gives you an example ballpark before you book, and the shop inspects first and calls with the exact price — nothing starts until you say yes.</p>
-        </details>
-        <details>
-          <summary>Pick-up &amp; drop available</summary>
-          <p>Turn on pick-up &amp; drop when you book, and the shop will arrange collection and return when they call to confirm.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 · Visit -->
-  <section class="section white" id="visit">
-    <div class="wrap">
-      <div class="section-head rv">
-        <p class="label">05 · Visit</p>
-        <h2>Find the shop</h2>
-      </div>
-      <div class="visit-grid">
-        <div class="visit-card-item">
-          <span class="vc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <h3>Find us</h3>
-          <p><strong>San Pedro Automotive</strong><br />
-          1208 N Gaffey St, Suite C<br />
-          San Pedro, CA 90731</p>
-          <p><a class="u-line" href="https://www.google.com/maps/dir/?api=1&amp;destination=San+Pedro+Automotive%2C+1208+N+Gaffey+St+%23C%2C+San+Pedro%2C+CA+90731" target="_blank" rel="noopener">Get directions</a></p>
-        </div>
-        <div class="visit-card-item">
-          <span class="vc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-          <h3>Hours</h3>
-          <p><strong>Monday – Friday</strong><br />7:00 AM – 4:30 PM</p>
-          <p>Book a time inside those hours, or call ahead.</p>
-        </div>
-        <div class="visit-card-item">
-          <span class="vc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <h3>Talk to us</h3>
-          <p>Phone: <a href="tel:+13108313700">(310) 831-3700</a></p>
-          <p>Email: <a href="mailto:fixit@sanpedroautotech.com">fixit@sanpedroautotech.com</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 06 · About — last content section -->
+  <!-- 05 · About — last content section -->
   <section class="section" id="about">
     <div class="wrap about-grid">
       <div class="about-photo rv"><img src="assets/intro.webp" alt="A technician's gloved hands working in an engine bay" loading="lazy" width="1200" height="800" /></div>
       <div class="rv">
-        <p class="label">06 · About the shop</p>
+        <p class="label">05 · About the shop</p>
         <h2>We open it. We find it. We fix it.</h2>
         <p class="lede">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself — an ASE Master Technician on site, not behind a desk. San Pedro families have kept bringing their cars back to him for 20–30 years, foreign and domestic alike.</p>
       </div>
     </div>
   </section>
-
-  <!-- Amber CTA band -->
-  <div class="cta-band">
-    <div class="wrap cta-in">
-      <div>
-        <h2>Ready to get your car looked at?</h2>
-        <p>Book in a minute, or call the shop and talk to the team directly.</p>
-      </div>
-      <div class="cta-actions">
-        <a class="btn" href="#book">Book service</a>
-        <a class="cta-phone u-line" href="tel:+13108313700">(310) 831-3700</a>
-      </div>
-    </div>
-  </div>
 
   <!-- Owner dashboard -->
   <section id="dashboard" hidden>
@@ -993,9 +1045,8 @@
         <ul>
           <li><a class="u-line" href="#estimate">Estimate</a></li>
           <li><a class="u-line" href="#book">Book</a></li>
+          <li><a class="u-line" href="#message">Message</a></li>
           <li><a class="u-line" href="#services">Services</a></li>
-          <li><a class="u-line" href="#why">Why us</a></li>
-          <li><a class="u-line" href="#visit">Visit</a></li>
           <li><a class="u-line" href="#about">About</a></li>
         </ul>
       </div>
@@ -1019,6 +1070,11 @@
     </div>
   </div>
 </footer>
+
+<!-- Floating chat button — jumps to the message box -->
+<button class="chat-fab" type="button" id="chat-fab" aria-label="Message the shop">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+</button>
 
 <!-- Owner sign-in modal -->
 <div class="modal-backdrop" id="signin-modal" hidden>
@@ -1141,7 +1197,7 @@
         return '<option value="' + key + '"' + (r.status===key?" selected":"") + '>' + STATUS[key].label + '</option>';
       }).join("");
       return '<article class="dash-req">'
-        + '<div class="req-top"><h3>' + esc(r.service) + ' — ' + esc(r.vehicle) + '</h3>'
+        + '<div class="req-top"><h3>' + esc(r.service) + (r.vehicle && r.vehicle !== "—" ? ' — ' + esc(r.vehicle) : '') + '</h3>'
         + '<span class="status ' + STATUS[r.status].cls + '">' + STATUS[r.status].label + '</span></div>'
         + '<p class="meta">' + esc(r.id) + ' · ' + esc(r.name) + ' · ' + esc(r.phone) + ' · ' + esc(fmtDate(r.date)) + ' · ' + esc(r.time)
         + (r.contact ? ' · Prefers ' + esc(r.contact.toLowerCase()) : '')
@@ -1363,6 +1419,94 @@
     form.hidden = false;
     $("f-service").focus();
   });
+
+  /* ---------- Message box: San Pedro Assistant ----------
+     Scripted answers use only the shop's real facts. Anything else a
+     visitor writes is passed to the shop as a message request in the
+     same in-memory store as bookings, so it shows in the dashboard. */
+  var DIR_URL = "https://www.google.com/maps/dir/?api=1&destination=San+Pedro+Automotive%2C+1208+N+Gaffey+St+%23C%2C+San+Pedro%2C+CA+90731";
+  var ANSWERS = {
+    hours: "We're open <strong>Monday to Friday, 7:00 AM – 4:30 PM</strong>. The shop is at 1208 N Gaffey St, Suite C, San Pedro, CA 90731 — <a href=\"" + DIR_URL + "\" target=\"_blank\" rel=\"noopener\">get directions</a>.",
+    location: "You'll find us at <strong>1208 N Gaffey St, Suite C, San Pedro, CA 90731</strong>. <a href=\"" + DIR_URL + "\" target=\"_blank\" rel=\"noopener\">Get directions</a> — or call <a href=\"tel:+13108313700\">(310) 831-3700</a> and we'll talk you in.",
+    price: "Use the <a href=\"#estimate\">estimator on this page</a>: pick your car type, tick what it needs, and the example total builds as you go. The shop inspects first and confirms the exact price before any work begins — nothing starts until you say yes.",
+    services: "We cover <strong>diagnostics, brake service, oil &amp; fluids, scheduled maintenance, suspension &amp; steering, and general repair</strong> — for foreign and domestic vehicles, all done in this shop. The <a href=\"#services\">services list</a> is just below.",
+    pickup: "Yes — when you <a href=\"#book\">book</a>, turn on <strong>pick-up &amp; drop</strong> in the form, and the shop will arrange collecting your car and bringing it back when they call to confirm.",
+    book: "Booking takes about a minute on the <a href=\"#book\">booking form</a>: pick the service, a day and a time, and tell us what the car is doing. The shop then calls you to confirm — no account, no email needed."
+  };
+  var thread = $("chat-thread");
+  function addBubble(who, html){
+    var d = document.createElement("div");
+    d.className = "bubble " + who;
+    if(who === "bot"){
+      d.innerHTML = '<span class="b-name">San Pedro Assistant</span>' + html;
+    } else {
+      d.textContent = html;
+    }
+    thread.appendChild(d);
+    thread.scrollTop = thread.scrollHeight;
+  }
+  var askButtons = document.querySelectorAll("[data-ask]");
+  for(var ab=0; ab<askButtons.length; ab++){
+    askButtons[ab].addEventListener("click", function(){
+      var key = this.getAttribute("data-ask");
+      var isChip = this.classList.contains("q-chip");
+      if(isChip) addBubble("user", this.textContent);
+      if(ANSWERS[key]) addBubble("bot", ANSWERS[key]);
+      if(!isChip) thread.scrollIntoView({behavior:"smooth", block:"nearest"});
+    });
+  }
+  function keywordAnswer(text){
+    var t = text.toLowerCase();
+    if(/hour|open|close|when/.test(t)) return ANSWERS.hours;
+    if(/where|address|direction|located|find you/.test(t)) return ANSWERS.location;
+    if(/price|cost|estimate|quote|how much|charge/.test(t)) return ANSWERS.price;
+    if(/pick.?up|drop.?off|collect/.test(t)) return ANSWERS.pickup;
+    if(/book|appointment|schedule/.test(t)) return ANSWERS.book;
+    if(/brake|oil|diagnos|suspension|steering|repair|service/.test(t)) return ANSWERS.services;
+    return null;
+  }
+  var msgForm = $("msg-form");
+  msgForm.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var name = $("m-name").value.trim();
+    var phone = $("m-phone").value.trim();
+    var text = $("m-text").value.trim();
+    var err = $("msg-error");
+    if(!name || !text){
+      err.textContent = "Please add your name and a message so the shop can help.";
+      err.hidden = false;
+      err.scrollIntoView({behavior:"smooth", block:"center"});
+      return;
+    }
+    err.hidden = true;
+    addBubble("user", text);
+    var auto = keywordAnswer(text);
+    if(auto) addBubble("bot", auto);
+    seq += 1;
+    requests.push({
+      id: "SP-" + String(1000 + seq),
+      service: "Message", name: name, phone: phone || "—", vehicle: "—",
+      date: isoOf(new Date()), time: "Message", contact: "",
+      pickup: false, note: text, status: "received"
+    });
+    addBubble("bot", "Thanks, " + esc(name.split(" ")[0]) + " — your message is with the shop now. They reply by phone during shop hours (Mon–Fri, 7:00 AM–4:30 PM). Anything urgent, call <a href=\"tel:+13108313700\">(310) 831-3700</a>.");
+    $("msg-sent").hidden = false;
+    $("m-text").value = "";
+    if(ownerSignedIn) renderDashboard();
+  });
+
+  /* ---------- Floating chat button → message box ---------- */
+  var fab = $("chat-fab");
+  fab.addEventListener("click", function(){
+    document.getElementById("message").scrollIntoView({behavior:"smooth"});
+    setTimeout(function(){ $("m-text").focus({preventScroll:true}); }, 650);
+  });
+  if("IntersectionObserver" in window){
+    var fabObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ fab.classList.toggle("away", en.isIntersecting); });
+    }, {threshold:.1});
+    fabObs.observe(document.getElementById("message"));
+  }
 
   /* ---------- Owner sign-in ---------- */
   var modal = $("signin-modal");
