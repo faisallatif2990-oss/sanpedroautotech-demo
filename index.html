@@ -202,18 +202,27 @@
   }
   .sheet-head .sh-title{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:19px;letter-spacing:.02em}
   .sheet-head .sh-sub{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
-  .est-label{font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);margin-top:28px}
+  .est-label{display:block;font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);margin-top:28px}
   .seg{
     display:flex;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;margin-top:14px;background:var(--sheet);
   }
   .seg .tile{
     flex:1 1 0;background:var(--sheet);border:none;border-right:1.5px solid var(--ink);
-    padding:13px 10px;cursor:pointer;font-weight:700;font-size:16.5px;color:var(--ink);
-    min-height:50px;transition:background-color .15s var(--ease),color .15s var(--ease);
+    padding:0;cursor:pointer;font-weight:700;font-size:16.5px;color:var(--ink);
+    min-height:50px;display:flex;flex-direction:column;
+    transition:background-color .15s var(--ease),color .15s var(--ease);
   }
   .seg .tile:last-child{border-right:none}
   .seg .tile:hover{background:var(--paper-2)}
   .seg .tile[aria-checked="true"]{background:var(--amber);color:#171310}
+  .seg .tile .tile-photo{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--ink-deep)}
+  .seg .tile .tile-photo img{width:100%;height:100%;object-fit:cover}
+  .seg .tile .tile-name{display:block;text-align:center;padding:11px 10px}
+  .est-note-text{
+    width:100%;box-sizing:border-box;background:var(--field);border:1px solid var(--line-strong);
+    border-radius:8px;padding:11px 13px;min-height:84px;resize:vertical;color:var(--ink);margin-top:14px;
+  }
+  .est-note-text:focus{border-color:var(--amber-deep);outline:none;box-shadow:0 0 0 3px var(--amber-tint)}
   .est-services{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
   .est-svc{
     display:flex;align-items:center;gap:12px;padding:13px 4px;cursor:pointer;min-height:50px;
@@ -471,39 +480,31 @@
   .msg.err{background:var(--err-bg);color:var(--err)}
   .msg[hidden]{display:none}
 
-  /* Message the shop — assistant card + message box */
-  #message{scroll-margin-top:92px}
-  .msg-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:28px;align-items:start;margin-top:44px;position:relative;z-index:1}
-  .assistant-card{
-    background:var(--ink-deep);border:1px solid var(--line);border-radius:10px;padding:30px;color:var(--on-ink);
-  }
+  /* Message the shop — everything lives in the side pop-up panel */
   .assistant-id{display:flex;align-items:center;gap:14px}
   .assistant-avatar{
     width:52px;height:52px;flex:0 0 52px;border-radius:999px;background:var(--amber);color:#171310;
     display:flex;align-items:center;justify-content:center;
   }
   .assistant-avatar svg{width:26px;height:26px}
-  .assistant-card h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:25px;color:#FBF7EA;line-height:1.15}
   .assistant-name{color:var(--amber);font-weight:700;font-size:15px;margin-top:3px}
   .assistant-role{color:var(--on-ink-2);font-size:14.5px}
-  .assistant-card .a-note{color:var(--on-ink-2);font-size:15.5px;margin-top:16px}
-  .support-opts{display:grid;gap:10px;margin-top:22px}
+  .support-opts{display:grid;gap:10px;margin-top:18px}
   .support-opts a,.support-opts button{
     display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;text-align:left;
-    background:rgba(250,247,240,.05);border:1px solid var(--line-ink);border-radius:8px;
-    padding:13px 16px;min-height:52px;color:#FBF7EA;text-decoration:none;font-weight:600;font-size:16px;cursor:pointer;
+    background:var(--field);border:1px solid var(--line);border-radius:8px;
+    padding:13px 16px;min-height:52px;color:var(--ink);text-decoration:none;font-weight:600;font-size:16px;cursor:pointer;
     transition:background-color .16s var(--ease),border-color .16s var(--ease);
   }
-  .support-opts a:hover,.support-opts button:hover{background:rgba(250,247,240,.11);border-color:rgba(250,247,240,.35)}
+  .support-opts a:hover,.support-opts button:hover{background:var(--paper-2);border-color:var(--line-strong)}
   .support-opts svg{width:19px;height:19px;color:var(--amber);flex:0 0 19px}
-  .support-opts .so-sub{display:block;font-weight:400;color:var(--on-ink-2);font-size:13.5px}
-  .assistant-facts{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-ink);color:var(--on-ink-2);font-size:14.5px;display:grid;gap:6px}
-  .assistant-facts strong{color:#FBF7EA}
+  .support-opts .so-sub{display:block;font-weight:400;color:var(--ink-2);font-size:13.5px}
+  .assistant-facts{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);color:var(--ink-2);font-size:14.5px;display:grid;gap:6px}
+  .assistant-facts strong{color:var(--ink)}
 
-  .chat-card{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:26px}
   .chat-thread{
-    display:flex;flex-direction:column;gap:10px;max-height:320px;overflow-y:auto;
-    padding:4px 2px 6px;scrollbar-width:thin;
+    display:flex;flex-direction:column;gap:10px;max-height:250px;overflow-y:auto;
+    padding:4px 2px 6px;scrollbar-width:thin;margin-top:22px;
   }
   .bubble{
     max-width:85%;padding:11px 15px;border-radius:14px;font-size:15.5px;line-height:1.5;
@@ -524,17 +525,45 @@
   .msg-sent{background:var(--ok-bg);color:var(--ok);border-radius:8px;padding:12px 14px;font-weight:600}
   .msg-sent[hidden]{display:none}
 
-  /* Floating chat button — jumps to the message box */
+  /* Side pop-up panel — opened in place by the floating chat button */
+  .chat-panel{
+    position:fixed;right:20px;bottom:92px;z-index:56;
+    width:min(400px,calc(100vw - 32px));
+    max-height:min(680px,calc(100dvh - 116px));
+    display:flex;flex-direction:column;
+    background:var(--sheet);border:1px solid var(--line-strong);border-radius:12px;
+    box-shadow:0 24px 60px rgba(0,0,0,.55);overflow:hidden;
+    animation:panel-in .25s var(--ease);
+  }
+  .chat-panel[hidden]{display:none}
+  @keyframes panel-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .chat-panel-head{
+    background:var(--ink-deep);color:var(--on-ink);padding:20px 22px;flex:0 0 auto;
+    display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid var(--line);
+  }
+  .chat-panel-head .assistant-id{flex:1 1 auto;min-width:0}
+  .chat-panel-head h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:23px;color:#FBF7EA;line-height:1.15}
+  .chat-close{
+    flex:0 0 40px;width:40px;height:40px;border-radius:8px;border:1px solid var(--line-ink);
+    background:transparent;color:#FBF7EA;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background-color .16s var(--ease);
+  }
+  .chat-close:hover{background:rgba(250,247,240,.12)}
+  .chat-close svg{width:18px;height:18px}
+  .chat-panel-body{overflow-y:auto;padding:20px 22px 22px;scrollbar-width:thin}
+  .chat-panel-body .a-note{color:var(--ink-2);font-size:15.5px}
+  .chat-panel .field-row{grid-template-columns:1fr}
+
+  /* Floating chat button — opens the pop-up panel */
   .chat-fab{
     position:fixed;right:20px;bottom:20px;z-index:55;width:58px;height:58px;border-radius:999px;
     background:var(--amber);border:none;color:#171310;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 10px 28px rgba(0,0,0,.5);
-    transition:background-color .16s var(--ease),opacity .25s var(--ease),transform .25s var(--ease);
+    transition:background-color .16s var(--ease);
   }
   .chat-fab svg{width:26px;height:26px}
   .chat-fab:hover{background:var(--amber-deep)}
-  .chat-fab.away{opacity:0;pointer-events:none;transform:translateY(10px)}
 
   @media (max-width:1020px){
     .visit-grid{grid-template-columns:1fr 1fr}
@@ -543,7 +572,6 @@
   }
   @media (max-width:900px){
     .book-grid{grid-template-columns:1fr}
-    .msg-grid{grid-template-columns:1fr}
     .why-grid,.about-grid{grid-template-columns:1fr;gap:36px}
     .accordion{grid-template-columns:1fr}
     .dash-stats{grid-template-columns:1fr 1fr}
@@ -554,6 +582,7 @@
     .svc-row .req-link{grid-column:3}
   }
   @media (max-width:640px){
+    .chat-panel{right:16px;bottom:88px}
     .topbar{display:none}
     .wrap{padding:0 18px}
     section[id]{scroll-margin-top:126px}
@@ -697,12 +726,14 @@
         </div>
         <p class="est-label" id="est-type-label">1 · Your car</p>
         <div class="seg" role="radiogroup" aria-labelledby="est-type-label" id="est-tiles">
-          <button class="tile" type="button" role="radio" aria-checked="true" data-cartype="sedan">Sedan</button>
-          <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="suv">SUV</button>
-          <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="truck">Truck</button>
+          <button class="tile" type="button" role="radio" aria-checked="true" data-cartype="sedan"><span class="tile-photo"><img src="assets/tile-sedan.webp" alt="" width="760" height="326" /></span><span class="tile-name">Sedan</span></button>
+          <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="suv"><span class="tile-photo"><img src="assets/tile-suv.webp" alt="" width="760" height="513" /></span><span class="tile-name">SUV</span></button>
+          <button class="tile" type="button" role="radio" aria-checked="false" data-cartype="truck"><span class="tile-photo"><img src="assets/tile-truck.webp" alt="" width="760" height="507" /></span><span class="tile-name">Truck</span></button>
         </div>
-        <p class="est-label" id="est-svc-label">2 · What it needs</p>
+        <p class="est-label" id="est-svc-label">2 · Service needed</p>
         <div class="est-services" id="est-services" role="group" aria-labelledby="est-svc-label"></div>
+        <label class="est-label" for="est-note-text">3 · Tell us what's needed</label>
+        <textarea class="est-note-text" id="est-note-text" placeholder="e.g. There's a grinding noise when I brake, and the check-engine light came on last week."></textarea>
         <div class="est-summary">
           <p class="es-title">Itemised summary</p>
           <div id="est-lines"></div>
@@ -829,92 +860,11 @@
     </div>
   </section>
 
-  <!-- 03 · Message the shop — assistant card + message box, mid-page -->
-  <section class="section" id="message">
-    <div class="wrap">
-      <div class="section-head rv">
-        <p class="label">03 · Message the shop</p>
-        <h2>Send us a message</h2>
-        <p class="lede">A quick question before you book? Ask here — the common answers come back straight away, and anything else goes to the shop with your name on it.</p>
-      </div>
-      <div class="msg-grid">
-        <aside class="assistant-card">
-          <div class="assistant-id">
-            <span class="assistant-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
-            <div>
-              <h3>How can I help you?</h3>
-              <p class="assistant-name">San Pedro Assistant</p>
-              <p class="assistant-role">San Pedro Automotive · online support</p>
-            </div>
-          </div>
-          <p class="a-note">Tap a topic for an instant answer, or write your own message in the box and the shop will come back to you by phone.</p>
-          <div class="support-opts">
-            <a href="tel:+13108313700">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span>Call the shop<span class="so-sub">(310) 831-3700 · Mon–Fri, 7:00 AM–4:30 PM</span></span>
-            </a>
-            <a href="#estimate">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
-              <span>Get an estimate<span class="so-sub">Example prices, built on this page</span></span>
-            </a>
-            <a href="#book">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-              <span>Book a visit<span class="so-sub">Pick a service, a day and a time</span></span>
-            </a>
-            <button type="button" data-ask="hours">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              <span>Hours &amp; directions<span class="so-sub">When we're open, and how to find us</span></span>
-            </button>
-          </div>
-          <div class="assistant-facts">
-            <span><strong>Hours:</strong> Monday – Friday · 7:00 AM – 4:30 PM</span>
-            <span><strong>Shop:</strong> 1208 N Gaffey St, Suite C, San Pedro, CA 90731</span>
-            <span><strong>Email:</strong> fixit@sanpedroautotech.com</span>
-          </div>
-        </aside>
-
-        <div class="chat-card">
-          <div class="chat-thread" id="chat-thread" aria-live="polite">
-            <div class="bubble bot"><span class="b-name">San Pedro Assistant</span>How can I help you? Ask about hours, prices, pick-up &amp; drop, or booking — or send the shop a message below and they'll reply by phone.</div>
-          </div>
-          <div class="chat-chips" role="group" aria-label="Quick questions">
-            <button class="q-chip" type="button" data-ask="hours">Opening hours</button>
-            <button class="q-chip" type="button" data-ask="location">Where are you?</button>
-            <button class="q-chip" type="button" data-ask="price">Example prices</button>
-            <button class="q-chip" type="button" data-ask="services">What do you repair?</button>
-            <button class="q-chip" type="button" data-ask="pickup">Pick-up &amp; drop?</button>
-            <button class="q-chip" type="button" data-ask="book">How do I book?</button>
-          </div>
-          <form class="msg-form" id="msg-form" novalidate>
-            <div class="form-error" id="msg-error" role="alert" hidden></div>
-            <div class="field-row">
-              <div class="field">
-                <label for="m-name">Your name</label>
-                <input id="m-name" type="text" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="m-phone">Phone <span class="hint">— so the shop can reply</span></label>
-                <input id="m-phone" type="tel" autocomplete="tel" />
-              </div>
-            </div>
-            <div class="field">
-              <label for="m-text">Your message</label>
-              <textarea id="m-text" placeholder="e.g. My brakes are squeaking — what would that cost to look at?" required></textarea>
-            </div>
-            <div class="msg-sent" id="msg-sent" hidden>Message sent — it's in the shop's dashboard, and they'll reply by phone during shop hours.</div>
-            <button class="btn amber" type="submit">Send message</button>
-            <p class="form-note">Your message goes straight to the shop's dashboard on this site, next to the booking requests.</p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 · Services — numbered ledger rows on the ink band -->
+  <!-- 03 · Services — numbered ledger rows on the ink band -->
   <section class="section ink on-ink" id="services">
     <div class="wrap">
       <div class="section-head rv">
-        <p class="label">04 · Services</p>
+        <p class="label">03 · Services</p>
         <h2>We offer a wide range of car services</h2>
         <p class="lede">The whole car, not one part of it — every service below is done in this shop, by this team.</p>
       </div>
@@ -977,12 +927,12 @@
     </div>
   </section>
 
-  <!-- 05 · About — last content section -->
+  <!-- 04 · About — last content section -->
   <section class="section" id="about">
     <div class="wrap about-grid">
       <div class="about-photo rv"><img src="assets/intro.webp" alt="A technician's gloved hands working in an engine bay" loading="lazy" width="1200" height="800" /></div>
       <div class="rv">
-        <p class="label">05 · About the shop</p>
+        <p class="label">04 · About the shop</p>
         <h2>We open it. We find it. We fix it.</h2>
         <p class="lede">Joe Bustamante owns San Pedro Automotive and leads the work in the shop himself — an ASE Master Technician on site, not behind a desk. San Pedro families have kept bringing their cars back to him for 20–30 years, foreign and domestic alike.</p>
       </div>
@@ -1071,8 +1021,82 @@
   </div>
 </footer>
 
-<!-- Floating chat button — jumps to the message box -->
-<button class="chat-fab" type="button" id="chat-fab" aria-label="Message the shop">
+<!-- Message the shop — side pop-up panel, opened by the floating chat button -->
+<div class="chat-panel" id="chat-panel" role="dialog" aria-label="Message the shop" hidden>
+  <div class="chat-panel-head">
+    <div class="assistant-id">
+      <span class="assistant-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+      <div>
+        <h3>How can I help you?</h3>
+        <p class="assistant-name">San Pedro Assistant</p>
+        <p class="assistant-role">San Pedro Automotive · online support</p>
+      </div>
+    </div>
+    <button class="chat-close" type="button" id="chat-close" aria-label="Close chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="chat-panel-body" id="chat-panel-body">
+    <p class="a-note">Tap a topic for an instant answer, or write your own message below and the shop will come back to you by phone.</p>
+    <div class="support-opts">
+      <a href="tel:+13108313700">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Call the shop<span class="so-sub">(310) 831-3700 · Mon–Fri, 7:00 AM–4:30 PM</span></span>
+      </a>
+      <a href="#estimate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+        <span>Get an estimate<span class="so-sub">Example prices, built on this page</span></span>
+      </a>
+      <a href="#book">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span>Book a visit<span class="so-sub">Pick a service, a day and a time</span></span>
+      </a>
+      <button type="button" data-ask="hours">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span>Hours &amp; directions<span class="so-sub">When we're open, and how to find us</span></span>
+      </button>
+    </div>
+    <div class="assistant-facts">
+      <span><strong>Hours:</strong> Monday – Friday · 7:00 AM – 4:30 PM</span>
+      <span><strong>Shop:</strong> 1208 N Gaffey St, Suite C, San Pedro, CA 90731</span>
+      <span><strong>Email:</strong> fixit@sanpedroautotech.com</span>
+    </div>
+    <div class="chat-thread" id="chat-thread" aria-live="polite">
+      <div class="bubble bot"><span class="b-name">San Pedro Assistant</span>How can I help you? Ask about hours, prices, pick-up &amp; drop, or booking — or send the shop a message below and they'll reply by phone.</div>
+    </div>
+    <div class="chat-chips" role="group" aria-label="Quick questions">
+      <button class="q-chip" type="button" data-ask="hours">Opening hours</button>
+      <button class="q-chip" type="button" data-ask="location">Where are you?</button>
+      <button class="q-chip" type="button" data-ask="price">Example prices</button>
+      <button class="q-chip" type="button" data-ask="services">What do you repair?</button>
+      <button class="q-chip" type="button" data-ask="pickup">Pick-up &amp; drop?</button>
+      <button class="q-chip" type="button" data-ask="book">How do I book?</button>
+    </div>
+    <form class="msg-form" id="msg-form" novalidate>
+      <div class="form-error" id="msg-error" role="alert" hidden></div>
+      <div class="field-row">
+        <div class="field">
+          <label for="m-name">Your name</label>
+          <input id="m-name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="m-phone">Phone <span class="hint">— so the shop can reply</span></label>
+          <input id="m-phone" type="tel" autocomplete="tel" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="m-text">Your message</label>
+        <textarea id="m-text" placeholder="e.g. My brakes are squeaking — what would that cost to look at?" required></textarea>
+      </div>
+      <div class="msg-sent" id="msg-sent" hidden>Message sent — it's in the shop's dashboard, and they'll reply by phone during shop hours.</div>
+      <button class="btn amber" type="submit">Send message</button>
+      <p class="form-note">Your message goes straight to the shop's dashboard on this site, next to the booking requests.</p>
+    </form>
+  </div>
+</div>
+
+<!-- Floating chat button — opens the message pop-up in place -->
+<button class="chat-fab" type="button" id="chat-fab" aria-label="Message the shop" aria-haspopup="dialog" aria-controls="chat-panel" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
 </button>
 
@@ -1301,9 +1325,13 @@
       if(sel.options[o].text===picked[0].name || sel.options[o].value===picked[0].name){ sel.selectedIndex=o; break; }
     }
     var note = $("f-note");
+    var extra = $("est-note-text").value.trim();
     if(!note.value.trim()){
       note.value = "From the estimator: " + picked.map(function(s){ return s.name; }).join(", ")
-        + " for " + TYPE_PHRASE[estType] + " — example estimate $" + estTotal() + ".";
+        + " for " + TYPE_PHRASE[estType] + " — example estimate $" + estTotal() + "."
+        + (extra ? " In the customer's words: " + extra : "");
+    } else if(extra && note.value.indexOf(extra)===-1){
+      note.value += " " + extra;
     }
     document.getElementById("book").scrollIntoView({behavior:"smooth"});
   });
@@ -1475,7 +1503,7 @@
     if(!name || !text){
       err.textContent = "Please add your name and a message so the shop can help.";
       err.hidden = false;
-      err.scrollIntoView({behavior:"smooth", block:"center"});
+      err.scrollIntoView({behavior:"smooth", block:"nearest"});
       return;
     }
     err.hidden = true;
@@ -1495,18 +1523,38 @@
     if(ownerSignedIn) renderDashboard();
   });
 
-  /* ---------- Floating chat button → message box ---------- */
+  /* ---------- Floating chat button → side pop-up panel ---------- */
   var fab = $("chat-fab");
-  fab.addEventListener("click", function(){
-    document.getElementById("message").scrollIntoView({behavior:"smooth"});
-    setTimeout(function(){ $("m-text").focus({preventScroll:true}); }, 650);
-  });
-  if("IntersectionObserver" in window){
-    var fabObs = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ fab.classList.toggle("away", en.isIntersecting); });
-    }, {threshold:.1});
-    fabObs.observe(document.getElementById("message"));
+  var panel = $("chat-panel");
+  function openChat(){
+    panel.hidden = false;
+    fab.setAttribute("aria-expanded", "true");
+    setTimeout(function(){ $("m-text").focus({preventScroll:true}); }, 60);
   }
+  function closeChat(){
+    panel.hidden = true;
+    fab.setAttribute("aria-expanded", "false");
+  }
+  fab.addEventListener("click", function(){
+    if(panel.hidden) openChat(); else closeChat();
+  });
+  $("chat-close").addEventListener("click", function(){ closeChat(); fab.focus(); });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape" && !panel.hidden){ closeChat(); fab.focus(); }
+  });
+  /* Nav and footer "Message" links open the same pop-up — there is no
+     message section in the page flow any more. */
+  var msgLinks = document.querySelectorAll('a[href="#message"]');
+  for(var ml=0; ml<msgLinks.length; ml++){
+    msgLinks[ml].addEventListener("click", function(ev){ ev.preventDefault(); openChat(); });
+  }
+  /* Section links inside the panel (support options, chat answers) close
+     the panel first, then the browser's anchor jump takes over. */
+  panel.addEventListener("click", function(ev){
+    var t = ev.target;
+    var a = (t && t.closest) ? t.closest('a[href^="#"]') : null;
+    if(a) closeChat();
+  });
 
   /* ---------- Owner sign-in ---------- */
   var modal = $("signin-modal");
