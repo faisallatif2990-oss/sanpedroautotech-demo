@@ -1118,11 +1118,15 @@
   var ownerCodeHash = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
   var ownerSignedIn = false;
 
-  /* ---------- In-memory stores (this session only) ----------
+  /* ---------- Stores, persisted in this browser ----------
      Two separate lists: jobs (booking requests, which carry the
      Received → Inspection → … → Completed status flow) and messages
      (Assistant pop-up messages, which never carry a job status —
-     they are simply new or replied). */
+     they are simply new or replied). Both lists, the id counter and
+     the owner-code fingerprint are saved to this device's local
+     storage on every change and restored on load, so a full page
+     reload no longer wipes a visitor's message or a booking before
+     the owner can see it. */
   var requests = [];
   var messages = [];
   var seq = 0;
@@ -1136,6 +1140,39 @@
     ready:      { label: "Ready for pickup", cls: "working" },
     completed:  { label: "Completed",        cls: "completed" }
   };
+
+  /* ---------- Persistence (this browser, this device only) ---------- */
+  var STORE_KEY = "spa-demo-v1";
+  function saveStore(){
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify({
+        requests: requests,
+        messages: messages,
+        seq: seq,
+        ownerCodeHash: ownerCodeHash
+      }));
+    } catch(e){ /* Storage unavailable (e.g. blocked): the demo keeps working in memory for this session. */ }
+  }
+  function loadStore(){
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if(!raw) return;
+      var data = JSON.parse(raw);
+      if(!data || typeof data !== "object") return;
+      if(Array.isArray(data.requests)) requests = data.requests;
+      if(Array.isArray(data.messages)) messages = data.messages;
+      if(typeof data.seq === "number" && isFinite(data.seq)) seq = data.seq;
+      if(typeof data.ownerCodeHash === "string" && data.ownerCodeHash) ownerCodeHash = data.ownerCodeHash;
+      /* Normalise anything half-formed so rendering never trips over it. */
+      for(var i=0;i<requests.length;i++){
+        if(!STATUS[requests[i].status]) requests[i].status = "received";
+      }
+      for(var j=0;j<messages.length;j++){
+        if(!Array.isArray(messages[j].replies)) messages[j].replies = [];
+      }
+    } catch(e){ /* Corrupt or unreadable store: start fresh rather than break the page. */ }
+  }
+  loadStore();
 
   function $(id){ return document.getElementById(id); }
   function esc(s){
@@ -1188,6 +1225,7 @@
         for(var j=0;j<requests.length;j++){
           if(requests[j].id===id){ requests[j].status = this.value; break; }
         }
+        saveStore();
         renderDashboard();
       });
     }
@@ -1229,6 +1267,7 @@
         for(var j=0;j<messages.length;j++){
           if(messages[j].id===id){
             messages[j].replies.push(text);
+            saveStore();
             addBubble("bot", "<strong>Reply from the shop:</strong> " + esc(text));
             break;
           }
@@ -1508,6 +1547,7 @@
       note: note, status: "received"
     };
     requests.push(req);
+    saveStore();
 
     $("confirm-details").innerHTML =
         '<dt>Request</dt><dd>' + esc(req.id) + '</dd>'
@@ -1559,6 +1599,15 @@
     thread.appendChild(d);
     thread.scrollTop = thread.scrollHeight;
   }
+  /* Restore this visitor's earlier conversation on this device: their
+     stored messages and the shop's replies, oldest first, so a reload
+     doesn't blank the thread. */
+  for(var ci=0; ci<messages.length; ci++){
+    addBubble("user", messages[ci].text);
+    for(var cj=0; cj<messages[ci].replies.length; cj++){
+      addBubble("bot", "<strong>Reply from the shop:</strong> " + esc(messages[ci].replies[cj]));
+    }
+  }
   function keywordAnswer(text){
     var t = text.toLowerCase();
     if(/hour|open|close|when/.test(t)) return ANSWERS.hours;
@@ -1592,6 +1641,7 @@
       name: name, phone: phone || "—",
       date: isoOf(new Date()), text: text, replies: []
     });
+    saveStore();
     addBubble("bot", "Thanks, " + esc(name.split(" ")[0]) + " — your message is in the shop's Assistant Messages box now. Their reply will appear right here in this chat, and they may call you too. Shop hours: Mon–Fri, 7:00 AM–4:30 PM — anything urgent, call <a href=\"tel:+13108313700\">(310) 831-3700</a>.");
     $("msg-sent").hidden = false;
     $("m-text").value = "";
@@ -1687,6 +1737,7 @@
     if(nw !== cf){ fail("The new code was typed two different ways. Try again."); return; }
     if(sha256(nw) === ownerCodeHash){ fail("That is already the current code. Choose a different one."); return; }
     ownerCodeHash = sha256(nw);
+    saveStore();
     this.reset();
     okMsg.hidden = false;
     okMsg.scrollIntoView({behavior:"smooth", block:"center"});
