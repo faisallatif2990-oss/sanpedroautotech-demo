@@ -404,8 +404,13 @@
   .modal form{display:grid;gap:16px;margin-top:20px}
   .modal .m-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
 
-  /* Dashboard */
-  #dashboard{padding:72px 0 88px;background:var(--paper)}
+  /* Dashboard — its own separate full screen, not part of the page.
+     Signing in swaps the whole view to this screen; the website is
+     hidden underneath (page scroll locked) until Back is pressed. */
+  #dashboard{
+    position:fixed;inset:0;z-index:80;overflow-y:auto;
+    background:var(--paper);padding:40px 0 88px;
+  }
   #dashboard[hidden]{display:none}
   .dash-head{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin-bottom:8px}
   .dash-head h2{font-size:36px}
@@ -429,6 +434,23 @@
     padding:24px;color:var(--ink-2);margin-top:40px;max-width:840px;position:relative;z-index:1;
   }
   .empty[hidden]{display:none}
+  .dash-box{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:26px 28px;margin-top:28px}
+  .dash-box-head{display:flex;align-items:center;gap:12px;justify-content:space-between}
+  .dash-box-head h3{font-size:21px;font-family:"Fraunces",Georgia,serif;font-weight:600}
+  .dash-count{font-size:14px;font-weight:800;background:var(--amber);color:#171310;border-radius:999px;padding:3px 12px;font-variant-numeric:tabular-nums;flex:0 0 auto}
+  .dash-box-sub{color:var(--ink-2);font-size:15px;margin-top:8px;max-width:48em}
+  .dash-msg{background:var(--sheet);border:1px solid var(--line);border-radius:8px;padding:20px 22px}
+  .dash-msg h3{font-size:18px}
+  .dash-msg .meta{color:var(--ink-2);font-size:15px;margin-top:4px}
+  .dash-msg .note{margin-top:8px;font-size:16px}
+  .reply-log{margin-top:12px;border-top:1px dashed var(--line-strong);padding-top:10px;display:grid;gap:8px}
+  .reply-log p{font-size:15px}
+  .reply-log .r-lab{font-weight:700;color:var(--amber-ink);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+  .reply-form{display:grid;gap:10px;margin-top:14px}
+  .reply-form label{font-weight:600;font-size:15px}
+  .reply-form textarea{background:var(--field);border:1px solid var(--line-strong);border-radius:8px;padding:10px 12px;min-height:64px;resize:vertical;color:var(--ink);width:100%;box-sizing:border-box}
+  .reply-form textarea:focus{border-color:var(--amber-deep);outline:none;box-shadow:0 0 0 3px var(--amber-tint)}
+  .reply-form .btn{justify-self:start}
   .code-panel{margin-top:32px}
   .code-panel form{display:grid;gap:16px;max-width:440px;margin-top:16px}
   .msg{border-radius:8px;padding:12px 14px;font-weight:600}
@@ -898,16 +920,33 @@
         <div>
           <h2>Request dashboard</h2>
         </div>
-        <button class="btn secondary" type="button" id="dash-signout">Sign out</button>
+        <button class="btn secondary" type="button" id="dash-signout">← Back to website</button>
       </div>
       <div class="dash-stats" role="group" aria-label="Request counts">
-        <div class="stat"><p class="s-num" id="stat-total">0</p><p class="s-lab">Total requests</p></div>
+        <div class="stat"><p class="s-num" id="stat-total">0</p><p class="s-lab">Total jobs</p></div>
         <div class="stat"><p class="s-num" id="stat-new">0</p><p class="s-lab">New</p></div>
         <div class="stat"><p class="s-num" id="stat-active">0</p><p class="s-lab">In the shop</p></div>
         <div class="stat"><p class="s-num" id="stat-done">0</p><p class="s-lab">Completed</p></div>
       </div>
-      <div class="empty" id="dash-empty" style="margin-top:24px;max-width:none">No service requests yet. New requests from the booking form appear here straight away.</div>
-      <div class="dash-table" id="dash-list"></div>
+      <div class="dash-box">
+        <div class="dash-box-head">
+          <h3>Assistant messages</h3>
+          <span class="dash-count" id="msg-count">0</span>
+        </div>
+        <p class="dash-box-sub">Messages visitors send from the San Pedro Assistant pop-up. Read each one and reply right here — your answer is saved on the message and appears in that visitor's chat pop-up.</p>
+        <div class="empty" id="msg-empty" style="margin-top:16px;max-width:none">No messages yet. New messages from the chat pop-up appear here.</div>
+        <div class="dash-table" id="msg-list" style="margin-top:16px"></div>
+      </div>
+
+      <div class="dash-box">
+        <div class="dash-box-head">
+          <h3>Jobs — inspection &amp; repair work</h3>
+          <span class="dash-count" id="job-count">0</span>
+        </div>
+        <p class="dash-box-sub">Booking requests from the booking form. Move each job along as the work progresses — received, inspection, in progress, quality check, ready for pickup, completed.</p>
+        <div class="empty" id="dash-empty" style="margin-top:16px;max-width:none">No service requests yet. New requests from the booking form appear here straight away.</div>
+        <div class="dash-table" id="dash-list" style="margin-top:16px"></div>
+      </div>
 
       <div class="form-card code-panel">
         <h3 style="font-size:21px">Change owner access code</h3>
@@ -989,7 +1028,7 @@
   </div>
   <div class="chat-panel-body" id="chat-panel-body">
     <div class="chat-thread" id="chat-thread" aria-live="polite">
-      <div class="bubble bot">Hi — how can I help? Leave a message here and the shop will reply by phone.</div>
+      <div class="bubble bot">Hi — how can I help? Leave a message here and the shop's reply will appear in this chat.</div>
     </div>
     <form class="msg-form" id="msg-form" novalidate>
       <div class="form-error" id="msg-error" role="alert" hidden></div>
@@ -1007,9 +1046,9 @@
         <label for="m-text">Your message</label>
         <textarea id="m-text" placeholder="e.g. My brakes are squeaking — what would that cost to look at?" required></textarea>
       </div>
-      <div class="msg-sent" id="msg-sent" hidden>Message sent — it's in the shop's dashboard, and they'll reply by phone during shop hours.</div>
+      <div class="msg-sent" id="msg-sent" hidden>Message sent — it's in the shop's Assistant Messages box. Their reply will appear here in this chat.</div>
       <button class="btn amber" type="submit">Send message</button>
-      <p class="form-note">Your message goes straight to the shop's dashboard on this site, next to the booking requests.</p>
+      <p class="form-note">Your message goes to the shop's Assistant Messages box in their dashboard — separate from booking requests. Their reply appears here in this chat.</p>
     </form>
   </div>
 </div>
@@ -1093,8 +1132,13 @@
   var ownerCodeHash = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
   var ownerSignedIn = false;
 
-  /* ---------- In-memory request store (this session only) ---------- */
+  /* ---------- In-memory stores (this session only) ----------
+     Two separate lists: jobs (booking requests, which carry the
+     Received → Inspection → … → Completed status flow) and messages
+     (Assistant pop-up messages, which never carry a job status —
+     they are simply new or replied). */
   var requests = [];
+  var messages = [];
   var seq = 0;
 
   /* Dashboard request statuses. */
@@ -1134,6 +1178,7 @@
     $("stat-new").textContent = nNew;
     $("stat-active").textContent = nActive;
     $("stat-done").textContent = nDone;
+    $("job-count").textContent = total;
     $("dash-empty").hidden = total>0;
     $("dash-list").innerHTML = requests.slice().reverse().map(function(r){
       var opts = Object.keys(STATUS).map(function(key){
@@ -1156,6 +1201,51 @@
         var id = this.getAttribute("data-status-for");
         for(var j=0;j<requests.length;j++){
           if(requests[j].id===id){ requests[j].status = this.value; break; }
+        }
+        renderDashboard();
+      });
+    }
+    renderMessages();
+  }
+
+  /* Assistant messages box — no job statuses here. Each message shows
+     who sent it and what they wrote, plus a reply box. Sending a reply
+     saves it on the message, marks the message "Replied", and drops the
+     reply into the visitor's chat pop-up thread. */
+  function renderMessages(){
+    $("msg-count").textContent = messages.length;
+    $("msg-empty").hidden = messages.length>0;
+    $("msg-list").innerHTML = messages.slice().reverse().map(function(m){
+      var first = esc(m.name.split(" ")[0]);
+      var replies = m.replies.map(function(rp){
+        return '<p><span class="r-lab">Your reply</span>' + esc(rp) + '</p>';
+      }).join("");
+      return '<article class="dash-msg">'
+        + '<div class="req-top"><h3>' + esc(m.name) + '</h3>'
+        + '<span class="status ' + (m.replies.length ? 'completed' : '') + '">' + (m.replies.length ? 'Replied' : 'New message') + '</span></div>'
+        + '<p class="meta">' + esc(m.id) + ' · ' + esc(m.phone) + ' · ' + esc(fmtDate(m.date)) + '</p>'
+        + '<p class="note">' + esc(m.text) + '</p>'
+        + (replies ? '<div class="reply-log">' + replies + '</div>' : '')
+        + '<form class="reply-form" data-reply-for="' + m.id + '">'
+        + '<label for="rp-' + m.id + '">Reply to ' + first + '</label>'
+        + '<textarea id="rp-' + m.id + '" placeholder="Type your reply — it appears in ' + first + '&rsquo;s chat pop-up on this site."></textarea>'
+        + '<button class="btn small" type="submit">Send reply</button>'
+        + '</form>'
+        + '</article>';
+    }).join("");
+    var forms = document.querySelectorAll("[data-reply-for]");
+    for(var i=0;i<forms.length;i++){
+      forms[i].addEventListener("submit", function(ev){
+        ev.preventDefault();
+        var id = this.getAttribute("data-reply-for");
+        var text = this.querySelector("textarea").value.trim();
+        if(!text) return;
+        for(var j=0;j<messages.length;j++){
+          if(messages[j].id===id){
+            messages[j].replies.push(text);
+            addBubble("bot", "<strong>Reply from the shop:</strong> " + esc(text));
+            break;
+          }
         }
         renderDashboard();
       });
@@ -1404,8 +1494,9 @@
 
   /* ---------- Message box: San Pedro Assistant ----------
      Scripted answers use only the shop's real facts. Anything else a
-     visitor writes is passed to the shop as a message request in the
-     same in-memory store as bookings, so it shows in the dashboard. */
+     visitor writes is passed to the shop as a message in its own
+     store, shown in the dashboard's Assistant Messages box — never
+     mixed into the booking jobs list. */
   var DIR_URL = "https://www.google.com/maps/dir/?api=1&destination=San+Pedro+Automotive%2C+1208+N+Gaffey+St+%23C%2C+San+Pedro%2C+CA+90731";
   var ANSWERS = {
     hours: "We're open <strong>Monday to Friday, 7:00 AM – 4:30 PM</strong>. The shop is at 1208 N Gaffey St, Suite C, San Pedro, CA 90731 — <a href=\"" + DIR_URL + "\" target=\"_blank\" rel=\"noopener\">get directions</a>.",
@@ -1465,13 +1556,12 @@
     var auto = keywordAnswer(text);
     if(auto) addBubble("bot", auto);
     seq += 1;
-    requests.push({
+    messages.push({
       id: "SP-" + String(1000 + seq),
-      service: "Message", name: name, phone: phone || "—", vehicle: "—",
-      date: isoOf(new Date()), time: "Message", contact: "",
-      pickup: false, note: text, status: "received"
+      name: name, phone: phone || "—",
+      date: isoOf(new Date()), text: text, replies: []
     });
-    addBubble("bot", "Thanks, " + esc(name.split(" ")[0]) + " — your message is with the shop now. They reply by phone during shop hours (Mon–Fri, 7:00 AM–4:30 PM). Anything urgent, call <a href=\"tel:+13108313700\">(310) 831-3700</a>.");
+    addBubble("bot", "Thanks, " + esc(name.split(" ")[0]) + " — your message is in the shop's Assistant Messages box now. Their reply will appear right here in this chat, and they may call you too. Shop hours: Mon–Fri, 7:00 AM–4:30 PM — anything urgent, call <a href=\"tel:+13108313700\">(310) 831-3700</a>.");
     $("msg-sent").hidden = false;
     $("m-text").value = "";
     if(ownerSignedIn) renderDashboard();
@@ -1532,9 +1622,12 @@
     if(sha256(code) === ownerCodeHash){
       ownerSignedIn = true;
       modal.hidden = true;
-      $("dashboard").hidden = false;
+      var dash = $("dashboard");
+      dash.hidden = false;
+      dash.scrollTop = 0;
+      document.body.style.overflow = "hidden";
       renderDashboard();
-      $("dashboard").scrollIntoView({behavior:"smooth"});
+      $("dash-signout").focus();
     } else {
       $("signin-err").hidden = false;
       $("signin-code").select();
@@ -1544,7 +1637,9 @@
   $("dash-signout").addEventListener("click", function(){
     ownerSignedIn = false;
     $("dashboard").hidden = true;
+    document.body.style.overflow = "";
     window.scrollTo({top:0, behavior:"smooth"});
+    $("owner-open").focus();
   });
 
   /* ---------- Change owner code ---------- */
